@@ -46,6 +46,10 @@ a{color:var(--blue)}
 .brand .grow{flex:1 1 auto; min-width:0}
 .yt{display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600; font-size:.92rem; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px; white-space:nowrap}
 .yt:hover{border-color:#ff0000}
+.yt.fb:hover{border-color:#1877f2}
+.yt-band .yt.fb{background:#1877f2; border-color:#1877f2}
+.yt-band .btns{display:flex; flex-wrap:wrap; gap:10px}
+.yt-band.fbb{border-left-color:#1877f2}
 .yt-band{margin-top:28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; background:var(--surface); border:1px solid var(--line); border-left:6px solid #ff0000; border-radius:16px; padding:16px 20px}
 .yt-band h3{margin:0 0 2px; font-size:1.15rem}
 .yt-band p{margin:0; color:var(--muted); font-size:.95rem}
@@ -126,6 +130,7 @@ footer{color:var(--muted); font-size:.85rem; padding-block:24px 36px; border-top
       <div class="tag">Simple information · Better health · Smarter choices</div>
     </div>
     <span class="grow"></span>
+    <a class="yt fb" href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877f2"/><path d="M13.4 19v-6h2l.3-2.4h-2.3V9.1c0-.7.2-1.2 1.2-1.2h1.2V5.8c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6z" fill="#fff"/></svg><span class="lbl">Facebook page</span></a>
     <a class="yt" href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l7.5-4.5z" fill="#fff"/></svg><span class="lbl">YouTube channel</span></a>
   </header>
 
@@ -159,14 +164,17 @@ footer{color:var(--muted); font-size:.85rem; padding-block:24px 36px; border-top
 
 <div class="wrap">
   <div class="yt-band">
-    <div><h3>Watch on YouTube</h3><p>All our videos on the Health Test Simplified YouTube channel. Subscribe for new videos.</p></div>
+    <div><h3>Follow us for a new video every day</h3><p>Watch on YouTube, follow our Facebook page, and send us the test you want explained next.</p></div>
+    <div class="btns">
+    <a class="yt fb" href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#fff"/><path d="M13.4 19v-6h2l.3-2.4h-2.3V9.1c0-.7.2-1.2 1.2-1.2h1.2V5.8c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6z" fill="#1877f2"/></svg><span>Follow on Facebook</span></a>
     <a class="yt" href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l7.5-4.5z" fill="#fff"/></svg><span>Subscribe on YouTube</span></a>
+    </div>
   </div>
   <div class="note">
     <div class="med"><h3>About medicines</h3><p>Take any medicine only as advised by your doctor.</p></div>
     <div class="warn"><h3>For awareness only</h3><p>These videos explain tests in simple words. They do not replace a doctor's advice. Report ranges vary slightly between labs.</p></div>
   </div>
-  <footer>Health Test Simplified · Follow us on Facebook and <a href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener">YouTube</a> for a new video every day.</footer>
+  <footer>Health Test Simplified · Follow us on <a href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener">Facebook</a> and <a href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener">YouTube</a> for a new video every day.</footer>
 </div>
 
 <script>
