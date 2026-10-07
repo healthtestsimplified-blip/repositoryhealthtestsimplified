@@ -36,6 +36,14 @@ Copy `studio/engine/example_voice.py` and `studio/engine/example_cartoon.py` (Th
 ## 5. Render
 `nohup python3 x_cartoon.py > /tmp/x_render.log 2>&1 &` then poll for `done` (8–10 min). Output MP4 is written in the engine folder: name it like `Thursday_Health_Tips_8Oct2026_ECG_Hindi.mp4`. Do not commit full-size MP4s from the engine folder; only the compressed site copy.
 
+## 5b. SEO keywords (mandatory for every video)
+Write ONE line of 20–30 comma-separated search keywords people actually type: English test/disease names and abbreviations, symptom searches ("memory loss test"), Hindi (Devanagari) terms, Hinglish (e.g. "bhoolne ki bimari"), "in hindi" variants, plus "health test simplified". No hashtags, no brand of any lab.
+Embed them inside the MP4 (title, description, keywords tags) without re-encoding:
+```
+python3 studio/engine/seo_meta.py <MP4> "<Title> | Health Test Simplified" "<one-sentence description>" "<keyword line>"
+```
+Use the same keyword line for the website search keywords (`KEYS` in data.js) and include it in the report as "SEO keywords (paste into YouTube tags / Facebook tags)".
+
 ## 6. Publish on the website
 From repo root:
 ```
@@ -59,5 +67,6 @@ EOF
 Send the full-size MP4 with SendUserFile, and a short message with:
 - what the video covers (5–7 bullets),
 - the Facebook caption (must include the line "⚠️ For general awareness only. Facts may change. Don't compare your condition with this video; consult your doctor and follow their advice."): hook line, "Watch till the end 👀", a question, "Share with your family 🙏", "👉 Follow our Facebook page & YouTube channel to get more information", the direct link `https://healthtestsimplified.netlify.app/#<id>`, then hashtags. Always include: #HealthTestSimplified #india #WestBengal #assam #jharkhand #Bihar #science #biology #ReelsIndia #FBReels #viralreelschallenge plus 4–5 topic tags,
+- the SEO keyword line (comma separated, one line),
 - the sources used, and anything lab-specific the owner should confirm with Suraksha's lab team.
 If any step fails, publish nothing broken: report what failed and leave the website unchanged.

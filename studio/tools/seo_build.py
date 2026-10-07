@@ -19,7 +19,7 @@ try:
         b = p.chromium.launch(executable_path="/opt/pw-browsers/chromium"); pg = b.new_page()
         pg.goto("http://localhost:8799/"); pg.evaluate("localStorage.clear()"); pg.goto("http://localhost:8799/"); pg.wait_for_timeout(600)
         main_html = pg.eval_on_selector("#main", "e => e.innerHTML")
-        data = pg.evaluate("V.map(v => ({id:v.id, t:v.t, s:v.s, l:v.l, d:v.d}))")
+        data = pg.evaluate("V.map(v => ({id:v.id, t:v.t, s:v.s, l:v.l, d:v.d, k:(KEYS[v.id]||'')}))")
         b.close()
 finally:
     srv.terminate()
@@ -30,7 +30,7 @@ def iso(d): m, s = d.split(":"); return f"PT{int(m)}M{int(s)}S"
 vids = [{"@type": "VideoObject", "name": v["t"], "description": v["s"],
          "thumbnailUrl": SITE + f"p/{v['id']}.jpg", "contentUrl": SITE + f"v/{v['id']}.mp4",
          "uploadDate": UPLOAD.get(v["id"], "2026-10-06") + "T08:00:00+05:30", "duration": iso(v["d"]),
-         "inLanguage": "bn" if v["l"] == "Bengali" else "hi", "url": SITE + "#" + v["id"]} for v in data]
+         "inLanguage": "bn" if v["l"] == "Bengali" else "hi", "url": SITE + "#" + v["id"], "keywords": v["k"]} for v in data]
 ld = {"@context": "https://schema.org", "@graph": [
     {"@type": "Organization", "@id": SITE + "#org", "name": "Health Test Simplified", "url": SITE,
      "logo": SITE + "logo.jpg", "sameAs": [FB, YT]},
