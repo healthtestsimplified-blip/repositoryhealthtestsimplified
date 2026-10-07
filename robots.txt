@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://healthtestsimplified.netlify.app/sitemap.xml
