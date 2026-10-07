@@ -152,13 +152,30 @@ def a_blood(fr, t, D):
     pop(fr, box_text("Treating them can improve memory", GREEN, 42), 540, 1480, t, D * 0.8, "ding")
 
 def a_scan(fr, t, D):
-    show(fr, pill("BRAIN SCAN & NEWER TESTS", TEAL, size=46), 230, t, 0.1)
-    d = ImageDraw.Draw(fr); mri(d, 540, 520, 200, t); fire("whoosh", 0.3)
-    show(fr, card("MRI / CT: rules out stroke, tumour, fluid", TEAL, "1", size=38), 820, t, D * 0.15)
-    show(fr, card("Sometimes: PET scan or spinal fluid test", PURPLE, "2", size=38), 955, t, D * 0.35)
-    show(fr, card("New p-tau217 blood test: USA, 2025", BLUE, "3", size=38), 1090, t, D * 0.55)
-    fire("pop", D * 0.15); fire("pop", D * 0.35); fire("pop", D * 0.55)
-    pop(fr, box_text("Used only along with a doctor's check-up", ORANGE, 40), 540, 1300, t, D * 0.75, "ding")
+    show(fr, pill("BRAIN SCAN", TEAL, size=48), 230, t, 0.1)
+    d = ImageDraw.Draw(fr); mri(d, 540, 540, 220, t); fire("whoosh", 0.3)
+    show(fr, card("MRI / CT: rules out stroke, tumour, fluid", TEAL, "1", size=38), 860, t, D * 0.2)
+    show(fr, card("Can show shrinking of the brain", PURPLE, "2", size=40), 995, t, D * 0.4)
+    show(fr, card("Sometimes: PET scan or spinal fluid test", BLUE, "3", size=38), 1130, t, D * 0.6)
+    fire("pop", D * 0.2); fire("pop", D * 0.4); fire("pop", D * 0.6)
+
+def a_blood2(fr, t, D):
+    show(fr, pill("NOW AVAILABLE: A BLOOD TEST", PURPLE, size=44), 230, t, 0.1)
+    d = ImageDraw.Draw(fr); tube(d, 230, 470); brain(d, 760, 460, 160, face="happy"); fire("ding", 0.3)
+    show(fr, text_el("pTau217 / Amyloid ratio blood test", 46, color=DBLUE), 660, t, D * 0.08)
+    show(fr, card("Blood sample, report in about 48 hours", GREEN, "1", size=38), 770, t, D * 0.16)
+    show(fr, card("For adults 50+ WITH memory symptoms", ORANGE, "2", size=38), 895, t, D * 0.26)
+    fire("pop", D * 0.16); fire("pop", D * 0.26)
+    rows = [("POSITIVE", "High chance of Alzheimer's changes", GREEN), ("GREY ZONE", "More tests may be needed", ORANGE),
+            ("NEGATIVE", "Very low chance", BLUE)]
+    for i, (a, b, c) in enumerate(rows):
+        tin = D * (0.4 + 0.1 * i); fire("pop", tin)
+        if t < tin: continue
+        y = 1030 + i * 125
+        d.rounded_rectangle((70, y, W - 70, y + 105), 26, fill=WHITE, outline=c, width=6)
+        d.text((230, y + 52), a, font=font("Bold", 38), fill=c, anchor="mm")
+        d.text((680, y + 52), b, font=font("Medium", 32), fill=GREY, anchor="mm")
+    pop(fr, box_text("Not a screening test. Your doctor reads it with other tests.", RED, 38), 540, 1505, t, D * 0.75, "boom")
 
 def a_protect(fr, t, D):
     show(fr, pill("PROTECT YOUR BRAIN", GREEN, size=48), 230, t, 0.1)
@@ -171,17 +188,17 @@ def a_protect(fr, t, D):
         fire("pop", D * (0.35 + 0.13 * i)); show(fr, card(txt, c, m, size=38), 990 + i * 130, t, D * (0.35 + 0.13 * i))
 
 SC = [(a_hook, "purple"), (a_what, "light"), (a_signs, "light"), (a_india, "light"), (a_how, "light"),
-      (a_blood, "light"), (a_scan, "light"), (a_protect, "light"),
+      (a_blood, "light"), (a_scan, "light"), (a_blood2, "light"), (a_protect, "light"),
       (close_scene("Elder at home forgetting things?", TOPIC), "light")]
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "preview":
-        D = [14, 15, 14, 12, 14, 17, 21, 19, 26]; tests = [(0, .9), (1, .95), (2, .95), (3, .95), (4, .95), (5, .95), (6, .95), (7, .95), (8, .9)]
+        D = [14, 15, 14, 12, 14, 17, 13, 32, 19, 26]; tests = [(0, .9), (1, .95), (2, .95), (3, .95), (4, .95), (5, .95), (6, .95), (7, .95), (8, .95), (9, .9)]
         ims = []
         for si, p in tests:
             fn, bg = SC[si]; d = D[si]; NOW.update(t=d * p, t0=0, shake=0)
             fr = BASES[bg].copy(); fn(fr, d * p, d); ims.append(fr.convert("RGB").resize((360, 640)))
-        s = Image.new("RGB", (360 * 5, 640 * 2), "white")
+        s = Image.new("RGB", (360 * 5, 640 * 2), "white"); ims = ims[4:]
         for i, im in enumerate(ims): s.paste(im, ((i % 5) * 360, (i // 5) * 640))
         s.save("sheet.png")
-    else: run(SC, "/tmp/alz_", "Alzheimers_Test_Hindi.mp4")
+    else: run(SC, "/tmp/alz2_", "Alzheimers_Test_Hindi.mp4")
