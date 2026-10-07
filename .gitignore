@@ -1,0 +1,4 @@
+__pycache__/
+studio/engine/*.mp4
+studio/engine/sheet.png
+studio/engine/close_preview.png
