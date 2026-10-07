@@ -16,357 +16,439 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="en_IN">
 <meta name="twitter:card" content="summary">
-<meta name="theme-color" content="#0d47a1">
+<meta name="theme-color" content="#0e3a5b">
 <link rel="icon" href="logo.jpg">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Hind:wght@400;500;600&display=swap">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Mukta:wght@400;500;600;700&display=swap">
 <style>
-/* Layout: a clinic-style video library. Brand bar, short intro, sticky filter strip, category sections of 9:16 video cards with expandable test notes. */
+/* Health Test Simplified: concern-first video library. Mint-white page, logo blue/green/saffron, Baloo 2 + Mukta. */
 :root{
-  --bg:#f3f7fb; --surface:#ffffff; --ink:#13243b; --muted:#56657a; --line:#dbe4ef;
-  --blue:#0d47a1; --green:#2e8b3a; --orange:#e66a00; --chip:#e8f0fb; --chip-ink:#0d47a1;
-  --soft-green:#e6f4e8; --soft-orange:#fff1e3;
-  --display:"Baloo 2", "Hind", system-ui, sans-serif;
-  --body:"Hind", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --bg:#f2f8f5; --surface:#ffffff; --ink:#10283d; --muted:#4d6273; --line:#d6e5de;
+  --blue:#0e3a5b; --blue-2:#1565a8; --green:#2e9b5b; --saffron:#f29f05; --red:#d93848;
+  --tint-blue:#e3eef8; --tint-green:#e1f3e8; --tint-saffron:#fdf0d8; --tint-red:#fbe4e6;
+  --shadow:0 1px 2px rgba(16,40,61,.06), 0 8px 24px rgba(16,40,61,.07);
+  --display:"Baloo 2", system-ui, sans-serif; --body:"Mukta", system-ui, sans-serif;
+  color-scheme:light;
 }
-@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]){
-  --bg:#0d1520; --surface:#152132; --ink:#e7eef8; --muted:#9fb0c6; --line:#24364d;
-  --blue:#7fb2ff; --green:#73c77e; --orange:#ffa55a; --chip:#1c2e47; --chip-ink:#a9caff;
-  --soft-green:#183324; --soft-orange:#3a2717; color-scheme:dark } }
+@media (prefers-color-scheme:dark){ :root:not([data-theme="light"]){
+  --bg:#0c1a24; --surface:#13263a; --ink:#e7f0f6; --muted:#9fb3c3; --line:#22394f;
+  --blue:#8cc2f2; --blue-2:#7ab6ec; --green:#6cd096; --saffron:#ffc04d; --red:#ff7a86;
+  --tint-blue:#163250; --tint-green:#173a2a; --tint-saffron:#3b2d12; --tint-red:#3d1d22;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25); color-scheme:dark } }
 :root[data-theme="dark"]{
-  --bg:#0d1520; --surface:#152132; --ink:#e7eef8; --muted:#9fb0c6; --line:#24364d;
-  --blue:#7fb2ff; --green:#73c77e; --orange:#ffa55a; --chip:#1c2e47; --chip-ink:#a9caff;
-  --soft-green:#183324; --soft-orange:#3a2717; color-scheme:dark }
+  --bg:#0c1a24; --surface:#13263a; --ink:#e7f0f6; --muted:#9fb3c3; --line:#22394f;
+  --blue:#8cc2f2; --blue-2:#7ab6ec; --green:#6cd096; --saffron:#ffc04d; --red:#ff7a86;
+  --tint-blue:#163250; --tint-green:#173a2a; --tint-saffron:#3b2d12; --tint-red:#3d1d22;
+  --shadow:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.25); color-scheme:dark }
 
 *{box-sizing:border-box}
-body{background:var(--bg); color:var(--ink); font-family:var(--body); font-size:17px; line-height:1.55; margin:0}
-.wrap{max-width:1180px; margin:0 auto; padding-inline:20px}
-h1,h2,h3{font-family:var(--display); line-height:1.15; text-wrap:balance; margin:0}
-a{color:var(--blue)}
-:focus-visible{outline:3px solid var(--orange); outline-offset:2px}
+html{scroll-behavior:smooth}
+body{margin:0; background:var(--bg); color:var(--ink); font:400 1.05rem/1.55 var(--body); -webkit-text-size-adjust:100%}
+h1,h2,h3{font-family:var(--display); line-height:1.12; margin:0; color:var(--ink)}
+a{color:var(--blue-2)}
+button{font:inherit; color:inherit}
+:focus-visible{outline:3px solid var(--saffron); outline-offset:2px; border-radius:8px}
+.wrap{max-width:1180px; margin-inline:auto; padding-inline:24px}
+.sr{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0)}
 
-/* brand bar */
-.brand{display:flex; align-items:center; gap:14px; padding-block:18px 6px}
-.brand img{width:58px; height:58px; border-radius:50%; flex:none}
-.brand .name{font-family:var(--display); font-weight:800; font-size:1.55rem; color:var(--blue); line-height:1}
-.brand .name span{color:var(--green)}
-.brand .grow{flex:1 1 auto; min-width:0}
-.yt{display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600; font-size:.92rem; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px; white-space:nowrap}
-.yt:hover{border-color:#ff0000}
-.yt.fb:hover{border-color:#1877f2}
-.yt-band .yt.fb{background:#1877f2; border-color:#1877f2}
-.yt-band .btns{display:flex; flex-wrap:wrap; gap:10px}
-.yt-band.fbb{border-left-color:#1877f2}
-.yt-band{margin-top:28px; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between; gap:12px; background:var(--surface); border:1px solid var(--line); border-left:6px solid #ff0000; border-radius:16px; padding:16px 20px}
-.yt-band h3{margin:0 0 2px; font-size:1.15rem}
-.yt-band p{margin:0; color:var(--muted); font-size:.95rem}
-.yt-band .yt{background:#ff0000; color:#fff; border-color:#ff0000}
-.finder{flex:0 1 260px; min-width:0; background:var(--surface); color:var(--ink); border:1px solid var(--line); border-radius:999px; padding:9px 14px; font:inherit}
-.hits{font-size:.85rem; color:var(--muted); width:100%; margin:0}
-@media (max-width:560px){ .yt .lbl{display:none} .finder{flex:1 1 100%} }
-.brand .tag{font-size:.78rem; letter-spacing:.12em; text-transform:uppercase; color:var(--muted); margin-top:4px}
+/* header */
+.top{display:flex; align-items:center; gap:12px; padding-block:16px}
+.top img{width:52px; height:52px; border-radius:50%; flex:none}
+.top .name{font-family:var(--display); font-weight:800; font-size:1.45rem; line-height:1; color:var(--blue)}
+.top .name b{color:var(--green); font-weight:800}
+.top .sub{font-size:.9rem; color:var(--muted)}
+.top .grow{flex:1}
+.soc{display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600; font-size:.95rem; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:7px 14px}
+.soc:hover{border-color:var(--blue-2)}
 
-/* intro */
-.intro{display:grid; grid-template-columns:minmax(0,1.4fr) minmax(0,1fr); gap:28px; align-items:end; padding-block:22px 26px}
-.intro h1{font-size:clamp(2rem,4.4vw,3.1rem); font-weight:800}
-.intro h1 em{font-style:normal; color:var(--green)}
-.intro p{color:var(--muted); max-width:58ch; margin:.6rem 0 0}
-.facts{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px}
-.fact{background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:12px 14px}
-.fact b{display:block; font-family:var(--display); font-size:1.6rem; color:var(--blue); line-height:1.1; font-variant-numeric:tabular-nums}
-.fact small{color:var(--muted); font-size:.82rem}
+/* hero */
+.hero{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:40px; align-items:center; padding-block:20px 36px}
+.hero h1{font-size:clamp(2.2rem,5vw,3.6rem); font-weight:800; letter-spacing:-.01em; color:var(--blue); max-width:14ch}
+.hero p.lead{font-size:1.15rem; color:var(--muted); margin:14px 0 22px; max-width:46ch}
+.find{position:relative; display:flex; align-items:center; gap:10px; background:var(--surface); border:2px solid var(--blue-2); border-radius:18px; padding:12px 16px; box-shadow:var(--shadow); max-width:560px}
+.find svg{flex:none; color:var(--blue-2)}
+.find input{border:0; outline:0; background:transparent; font:500 1.1rem var(--body); color:var(--ink); width:100%; min-width:0}
+.quick{display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; font-size:.95rem; color:var(--muted)}
+.quick button{border:0; background:var(--tint-blue); color:var(--blue); font-weight:600; border-radius:999px; padding:3px 12px; cursor:pointer}
+.today{background:var(--surface); border-radius:24px; box-shadow:var(--shadow); padding:14px; display:grid; grid-template-columns:150px minmax(0,1fr); gap:16px; align-items:center; border:1px solid var(--line); position:relative}
+.today .thumb{position:relative; border-radius:16px; overflow:hidden; aspect-ratio:9/16; background:#0e3a5b; cursor:pointer; border:0; padding:0}
+.today .thumb img{width:100%; height:100%; object-fit:cover; display:block}
+.badge{display:inline-block; background:var(--red); color:#fff; font-weight:700; font-size:.85rem; border-radius:999px; padding:2px 12px}
+.today h2{font-size:1.5rem; margin:8px 0 6px}
+.today p{margin:0 0 12px; color:var(--muted)}
+.play{display:inline-flex; align-items:center; gap:8px; background:var(--green); color:#fff; border:0; border-radius:999px; padding:10px 18px; font-weight:700; cursor:pointer; text-decoration:none}
+.play:hover{filter:brightness(1.07)}
+.pbtn{position:absolute; inset:auto auto 10px 10px; width:46px; height:46px; border-radius:50%; background:rgba(255,255,255,.95); display:grid; place-items:center; box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.pbtn::after{content:""; border-left:15px solid #d93848; border-top:9px solid transparent; border-bottom:9px solid transparent; margin-left:4px}
 
-/* filter strip */
-.bar{position:sticky; top:env(safe-area-inset-top,0px); z-index:5; background:color-mix(in srgb, var(--bg) 92%, transparent); backdrop-filter:blur(8px); border-bottom:1px solid var(--line)}
-.bar .wrap{display:flex; flex-wrap:wrap; gap:10px; align-items:center; padding-block:12px}
-.search{flex:1 1 240px; min-width:0; display:flex; align-items:center; gap:8px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:8px 14px}
-.search input{border:0; outline:0; background:transparent; color:var(--ink); font:inherit; width:100%; min-width:0}
-.search svg{flex:none; color:var(--muted)}
-.chips{display:flex; flex-wrap:wrap; gap:8px}
-.chip{border:1px solid var(--line); background:var(--surface); color:var(--ink); font:600 .92rem var(--body); border-radius:999px; padding:7px 14px; cursor:pointer}
-.chip[aria-pressed="true"]{background:var(--blue); border-color:var(--blue); color:var(--surface)}
+/* concern picker */
+.worry{background:var(--blue); color:#fff; border-radius:28px; padding:30px 28px 28px; margin-bottom:40px}
+.worry h2{color:#fff; font-size:clamp(1.6rem,3.4vw,2.3rem)}
+.worry > p{margin:4px 0 20px; color:#cfe2f3}
+.tiles{display:grid; grid-template-columns:repeat(5,minmax(0,1fr)); gap:12px}
+.tile{display:flex; flex-direction:column; align-items:flex-start; gap:6px; text-align:left; border:0; border-radius:18px; padding:16px; cursor:pointer; background:#fff; color:#10283d; min-height:118px; transition:transform .15s}
+.tile:hover{transform:translateY(-2px)}
+.tile[aria-pressed="true"]{outline:4px solid var(--saffron)}
+.tile .ic{font-size:1.9rem; line-height:1}
+.tile b{font-family:var(--display); font-size:1.15rem; line-height:1.15}
+.tile small{color:#4d6273; font-size:.88rem; line-height:1.3}
 
-/* sections + cards */
-main{padding-block:10px 40px}
-section.cat{padding-block:26px 6px}
-.cat-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:10px 16px; margin-bottom:16px}
-.cat-head h2{font-size:1.75rem}
-.cat-head p{color:var(--muted); margin:0; font-size:.98rem}
-.grid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:22px}
-.card{scroll-margin-top:190px; background:var(--surface); border:1px solid var(--line); border-radius:18px; overflow:hidden; display:flex; flex-direction:column; min-width:0}
-.card video{display:block; width:100%; aspect-ratio:9/16; max-height:560px; object-fit:cover; background:#0b1a2e}
-.body{padding:14px 16px 16px; display:flex; flex-direction:column; gap:8px; min-width:0}
-.meta{display:flex; flex-wrap:wrap; gap:6px; font-size:.78rem}
-.meta span{background:var(--chip); color:var(--chip-ink); border-radius:999px; padding:2px 10px; font-weight:600}
-.meta .lang{background:var(--soft-green); color:var(--green)}
-.meta .dur{background:transparent; color:var(--muted); padding-inline:2px; font-variant-numeric:tabular-nums}
-.card h3{font-size:1.3rem}
-.card .sum{margin:0; color:var(--muted); font-size:.97rem}
-details{border-top:1px dashed var(--line); padding-top:8px}
-summary{cursor:pointer; font-weight:600; color:var(--blue); list-style:none; display:flex; align-items:center; gap:6px}
+/* myth strip */
+.myths h2{font-size:1.8rem}
+.myths > p{margin:2px 0 16px; color:var(--muted)}
+.mrow{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:14px; margin-bottom:44px}
+.myth{border:0; padding:0; background:none; cursor:pointer; text-align:left; perspective:900px; min-height:190px}
+.myth .in{position:relative; display:block; width:100%; height:100%; min-height:190px; transition:transform .45s; transform-style:preserve-3d}
+.myth[aria-expanded="true"] .in{transform:rotateY(180deg)}
+.myth .f,.myth .b{position:absolute; inset:0; backface-visibility:hidden; border-radius:20px; padding:18px; display:flex; flex-direction:column; gap:8px}
+.myth .f{background:var(--tint-red); color:var(--ink)}
+.myth .b{background:var(--tint-green); transform:rotateY(180deg)}
+.myth .tag{font-weight:700; font-size:.9rem; color:var(--red)}
+.myth .b .tag{color:var(--green)}
+.myth q{quotes:none; font-family:var(--display); font-weight:700; font-size:1.2rem; line-height:1.2}
+.myth .hint{margin-top:auto; font-size:.88rem; color:var(--muted)}
+.myth .b span{font-size:1rem}
+
+/* library */
+.libhead{display:flex; flex-wrap:wrap; align-items:end; justify-content:space-between; gap:12px; margin-bottom:12px}
+.libhead h2{font-size:1.8rem}
+.filters{position:sticky; top:0; z-index:5; background:color-mix(in srgb,var(--bg) 94%,transparent); backdrop-filter:blur(8px); padding-block:10px; margin-bottom:8px; border-bottom:1px solid var(--line)}
+.filters .wrap{display:flex; flex-wrap:wrap; gap:8px; align-items:center}
+.chip{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:6px 14px; font-weight:600; font-size:.95rem; cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--blue); border-color:var(--blue); color:#fff}
+.filters .mini{position:relative; flex:1 1 200px; min-width:0; max-width:320px; margin-left:auto; display:flex; align-items:center; gap:6px; background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:6px 12px}
+.filters .mini input{border:0; outline:0; background:transparent; font:inherit; color:var(--ink); width:100%; min-width:0}
+.status{display:flex; align-items:center; gap:10px; flex-wrap:wrap; min-height:0; margin:6px 0 4px; color:var(--muted)}
+.status:empty{display:none}
+.status button{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:2px 12px; cursor:pointer; font-weight:600}
+.cat{padding-top:22px}
+.cat-head{display:flex; flex-wrap:wrap; align-items:baseline; gap:4px 14px; margin-bottom:14px}
+.cat-head h2{font-size:1.55rem}
+.cat-head p{margin:0; color:var(--muted)}
+.grid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:18px}
+.card{background:var(--surface); border:1px solid var(--line); border-radius:20px; overflow:hidden; display:flex; flex-direction:column; min-width:0; scroll-margin-top:90px}
+.card .thumb{position:relative; display:block; aspect-ratio:4/5; overflow:hidden; background:#0e3a5b; border:0; padding:0; cursor:pointer; width:100%}
+.card .thumb img{width:100%; height:100%; object-fit:cover; object-position:center 30%; display:block; transition:transform .3s}
+.card .thumb:hover img{transform:scale(1.04)}
+.dur{position:absolute; right:10px; bottom:10px; background:rgba(0,0,0,.72); color:#fff; font-size:.82rem; font-weight:600; border-radius:8px; padding:1px 8px}
+.card .body{padding:12px 14px 14px; display:flex; flex-direction:column; gap:6px; flex:1}
+.meta{display:flex; gap:6px; flex-wrap:wrap; font-size:.78rem; font-weight:600}
+.meta span{background:var(--tint-blue); color:var(--blue); border-radius:999px; padding:0 9px}
+.meta .lang{background:var(--tint-green); color:var(--green)}
+.card h3{font-size:1.15rem}
+.card .sum{margin:0; font-size:.95rem; color:var(--muted)}
+.card details{margin-top:auto; border-top:1px dashed var(--line); padding-top:8px}
+summary{cursor:pointer; font-weight:700; color:var(--blue-2); list-style:none; font-size:.95rem}
 summary::-webkit-details-marker{display:none}
-summary::before{content:"+"; font-family:var(--display); font-size:1.2rem; width:1ch}
-details[open] summary::before{content:"–"}
-dl{margin:10px 0 0; display:grid; gap:9px}
-dt{font-size:.74rem; letter-spacing:.1em; text-transform:uppercase; color:var(--orange); font-weight:600}
-dd{margin:0; font-size:.95rem}
-.empty{padding:40px 0; color:var(--muted); text-align:center}
+summary::before{content:"+ "}
+details[open] summary::before{content:"– "}
+dl{margin:8px 0 0; display:grid; gap:7px; font-size:.92rem}
+dt{font-weight:700; color:var(--saffron); filter:brightness(.85)}
+dd{margin:0}
+.empty{padding:30px 0; color:var(--muted)}
 
-/* footer */
-.note{margin-top:30px; display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px}
-.note div{border-radius:16px; padding:18px 20px}
-.note .med{background:var(--soft-green)}
-.note .warn{background:var(--soft-orange)}
-.note h3{font-size:1.15rem; margin-bottom:4px}
-.note p{margin:0; font-size:.95rem}
-footer{color:var(--muted); font-size:.85rem; padding-block:24px 36px; border-top:1px solid var(--line); margin-top:30px}
+/* follow + notes */
+.follow{margin-top:48px; display:grid; grid-template-columns:minmax(0,1fr) auto; gap:18px; align-items:center; background:var(--tint-saffron); border-radius:24px; padding:24px 26px}
+.follow h2{font-size:1.6rem}
+.follow p{margin:4px 0 0; color:var(--muted)}
+.follow .btns{display:flex; flex-wrap:wrap; gap:10px}
+.fbtn{display:inline-flex; align-items:center; gap:8px; text-decoration:none; color:#fff; font-weight:700; border-radius:999px; padding:10px 18px}
+.fbtn.fb{background:#1877f2}
+.fbtn.yt{background:#e00000}
+.notes{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:16px; margin-top:16px}
+.notes div{border-radius:18px; padding:16px 20px; background:var(--surface); border:1px solid var(--line)}
+.notes h3{font-size:1.1rem}
+.notes p{margin:2px 0 0; color:var(--muted); font-size:.95rem}
+footer{color:var(--muted); font-size:.9rem; padding-block:24px 40px}
 
-@media (max-width:900px){ .grid{grid-template-columns:repeat(2,minmax(0,1fr))} .intro{grid-template-columns:minmax(0,1fr)} }
-@media (max-width:560px){ .grid{grid-template-columns:minmax(0,1fr)} .note{grid-template-columns:minmax(0,1fr)} .wrap{padding-inline:16px} .facts b{font-size:1.35rem} }
-@media (prefers-reduced-motion:reduce){ *{scroll-behavior:auto!important} }
+/* player */
+dialog{border:0; padding:0; background:transparent; max-width:min(940px,96vw); width:100%; color:var(--ink)}
+dialog::backdrop{background:rgba(6,18,28,.82)}
+.pl{background:var(--surface); border-radius:24px; overflow:hidden; display:grid; grid-template-columns:minmax(0,360px) minmax(0,1fr); max-height:92vh}
+.pl video{width:100%; height:100%; max-height:92vh; background:#000; display:block; aspect-ratio:9/16; object-fit:contain}
+.pl .side{padding:22px; overflow:auto; display:flex; flex-direction:column; gap:10px}
+.pl h3{font-size:1.5rem}
+.pl .sum{margin:0; color:var(--muted)}
+.pl .acts{display:flex; flex-wrap:wrap; gap:8px; margin-top:6px}
+.wa{display:inline-flex; align-items:center; gap:8px; background:#25d366; color:#06331a; font-weight:700; text-decoration:none; border-radius:999px; padding:10px 16px}
+.ghost{border:1px solid var(--line); background:var(--surface); border-radius:999px; padding:9px 16px; font-weight:700; cursor:pointer}
+.x{position:absolute; top:10px; right:10px; width:42px; height:42px; border-radius:50%; border:0; background:rgba(255,255,255,.95); color:#10283d; font-size:1.5rem; line-height:1; cursor:pointer; z-index:2}
+.next{margin-top:auto; border-top:1px solid var(--line); padding-top:12px}
+.next small{color:var(--muted)}
+.next button{display:flex; gap:12px; align-items:center; width:100%; text-align:left; border:0; background:var(--tint-blue); border-radius:16px; padding:8px; cursor:pointer; margin-top:6px}
+.next img{width:52px; height:70px; object-fit:cover; border-radius:10px}
+.next b{font-family:var(--display); font-size:1.05rem; line-height:1.15}
+
+@media (max-width:1000px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} .tiles{grid-template-columns:repeat(3,minmax(0,1fr))} .mrow{grid-template-columns:repeat(2,minmax(0,1fr))} }
+@media (max-width:820px){ .hero{grid-template-columns:minmax(0,1fr); gap:24px} .follow{grid-template-columns:minmax(0,1fr)} .pl{grid-template-columns:minmax(0,1fr); max-height:none} .pl video{max-height:70vh} dialog{max-height:96vh; overflow:auto} }
+@media (max-width:600px){ .wrap{padding-inline:16px} .grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px} .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .mrow{grid-template-columns:minmax(0,1fr)} .myth,.myth .in{min-height:150px} .notes{grid-template-columns:minmax(0,1fr)} .soc .lbl{display:none} .top .sub{display:none} .today{grid-template-columns:110px minmax(0,1fr)} .worry{padding:22px 16px; border-radius:22px} .card .body{padding:10px} .card h3{font-size:1rem} .card .sum{display:none} .filters .wrap{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none} .filters .wrap::-webkit-scrollbar{display:none} .chip{flex:none} .filters .mini{flex:0 0 150px; margin-left:0} }
+@media (prefers-reduced-motion:reduce){ *{transition:none!important; scroll-behavior:auto!important} }
 </style>
 <script type="application/ld+json" id="ld">{"@context": "https://schema.org", "@graph": [{"@type": "Organization", "@id": "https://healthtestsimplified.netlify.app/#org", "name": "Health Test Simplified", "url": "https://healthtestsimplified.netlify.app/", "logo": "https://healthtestsimplified.netlify.app/logo.jpg", "sameAs": ["https://www.facebook.com/profile.php?id=61594730205462", "https://www.youtube.com/@Healthtestsimplified"]}, {"@type": "WebSite", "name": "Health Test Simplified", "url": "https://healthtestsimplified.netlify.app/", "inLanguage": ["en", "hi", "bn"], "publisher": {"@id": "https://healthtestsimplified.netlify.app/#org"}}, {"@type": "ItemList", "name": "Health test videos", "itemListElement": [{"@type": "ListItem", "position": 1, "item": {"@type": "VideoObject", "name": "Liver Function Test (LFT)", "description": "Dr. Health fights Fatty Liver, Hepatitis and Alcohol with the LFT blood test.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/lft.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/lft.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M21S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#lft"}}, {"@type": "ListItem", "position": 2, "item": {"@type": "VideoObject", "name": "Lipid Profile", "description": "Your heart against Bad Cholesterol, Smoking and Junk Food. High cholesterol has no symptoms.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/lipid.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/lipid.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M16S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#lipid"}}, {"@type": "ListItem", "position": 3, "item": {"@type": "VideoObject", "name": "CBC (Complete Blood Count)", "description": "The blood team of red cells, white cells and platelets fights Anaemia, Infection and Dengue.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/cbc.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/cbc.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M21S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#cbc"}}, {"@type": "ListItem", "position": 4, "item": {"@type": "VideoObject", "name": "Kidney Function Test (KFT)", "description": "Kidneys can fail silently. The kidney hero takes on Diabetes, High BP and painkiller overuse.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/kft.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/kft.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M25S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#kft"}}, {"@type": "ListItem", "position": 5, "item": {"@type": "VideoObject", "name": "Whole Abdomen USG", "description": "An ultrasound uses sound waves to find Gallstones, Fatty Liver and Kidney Stones. No radiation, no pain.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/usg.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/usg.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M32S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#usg"}}, {"@type": "ListItem", "position": 6, "item": {"@type": "VideoObject", "name": "2D Echo (Echocardiography)", "description": "An ultrasound of the heart that checks its size, pumping power and valves.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/echo.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/echo.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M37S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#echo"}}, {"@type": "ListItem", "position": 7, "item": {"@type": "VideoObject", "name": "Urine Routine (R/E)", "description": "A small sample with a big report card, plus the urine colour chart.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/urine.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/urine.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M25S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#urine"}}, {"@type": "ListItem", "position": 8, "item": {"@type": "VideoObject", "name": "Urine Culture & Sensitivity", "description": "Finds the exact germ behind a UTI and which antibiotic will actually work.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/culture.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/culture.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M35S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#culture"}}, {"@type": "ListItem", "position": 9, "item": {"@type": "VideoObject", "name": "HbA1c & Blood Sugar", "description": "Why your doctor asks for HbA1c even when the sugar test is normal.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/hba1c.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/hba1c.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M8S", "inLanguage": "bn", "url": "https://healthtestsimplified.netlify.app/#hba1c"}}, {"@type": "ListItem", "position": 10, "item": {"@type": "VideoObject", "name": "Vitamin D & B12", "description": "Always tired, aching or tingling? It could be low Vitamin D or B12.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/vitd.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/vitd.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M13S", "inLanguage": "bn", "url": "https://healthtestsimplified.netlify.app/#vitd"}}, {"@type": "ListItem", "position": 11, "item": {"@type": "VideoObject", "name": "Double Marker Test", "description": "Part 1. A first-trimester blood test, and what 'high risk' really means.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/dmarker.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/dmarker.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M11S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#dmarker"}}, {"@type": "ListItem", "position": 12, "item": {"@type": "VideoObject", "name": "NIPT", "description": "Part 2. Reads tiny pieces of the baby's DNA in the mother's blood.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/nipt.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/nipt.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M26S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#nipt"}}, {"@type": "ListItem", "position": 13, "item": {"@type": "VideoObject", "name": "CVS & Amniocentesis", "description": "Part 3. Diagnostic tests that give a confirmed answer.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/cvs.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/cvs.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M29S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#cvs"}}, {"@type": "ListItem", "position": 14, "item": {"@type": "VideoObject", "name": "Karyotyping", "description": "Counts all 46 chromosomes. Key test for repeated miscarriages and infertility.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/karyo.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/karyo.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M42S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#karyo"}}, {"@type": "ListItem", "position": 15, "item": {"@type": "VideoObject", "name": "Chromosomal Microarray: 750K vs 315K", "description": "Finds tiny missing or extra chromosome pieces that a karyotype cannot see.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/cma.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/cma.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M51S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#cma"}}, {"@type": "ListItem", "position": 16, "item": {"@type": "VideoObject", "name": "Whole Exome Sequencing", "description": "Reads about 20,000 genes letter by letter when other tests give no answer.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/wes.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/wes.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M40S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#wes"}}, {"@type": "ListItem", "position": 17, "item": {"@type": "VideoObject", "name": "From Protein to Cell: the full story", "description": "Seven chapters in one video: protein, gene, DNA, histones, chromosome, nucleus and cell.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/story.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/story.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT4M9S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#story"}}, {"@type": "ListItem", "position": 18, "item": {"@type": "VideoObject", "name": "What is a Cell?", "description": "You are made of about 30 lakh crore cells. Each one is a tiny factory.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/cell.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/cell.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M3S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#cell"}}, {"@type": "ListItem", "position": 19, "item": {"@type": "VideoObject", "name": "What is the Nucleus?", "description": "Every cell has a boss, except red blood cells.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/nucleus.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/nucleus.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT1M44S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#nucleus"}}, {"@type": "ListItem", "position": 20, "item": {"@type": "VideoObject", "name": "What is a Chromosome?", "description": "46 chromosomes in 23 pairs, and the truth about who decides a baby's sex.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/chromosome.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/chromosome.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M20S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#chromosome"}}, {"@type": "ListItem", "position": 21, "item": {"@type": "VideoObject", "name": "What is DNA?", "description": "A 4-letter code, about 3 billion letters long, in every cell.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/dna.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/dna.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT1M57S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#dna"}}, {"@type": "ListItem", "position": 22, "item": {"@type": "VideoObject", "name": "What is a Gene?", "description": "DNA is the cookbook, a gene is one recipe, a protein is the dish.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/gene.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/gene.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT1M47S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#gene"}}, {"@type": "ListItem", "position": 23, "item": {"@type": "VideoObject", "name": "What are Histones?", "description": "Protein spools that pack 2 metres of DNA into a tiny cell and switch genes on and off.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/histones.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/histones.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT1M59S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#histones"}}, {"@type": "ListItem", "position": 24, "item": {"@type": "VideoObject", "name": "Thyroid test (TSH, T3, T4)", "description": "Wednesday tips, 7 Oct 2026. Always tired, weight going up, hair falling? Check your thyroid.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/thyroid.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/thyroid.mp4", "uploadDate": "2026-10-07T08:00:00+05:30", "duration": "PT2M24S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#thyroid"}}, {"@type": "ListItem", "position": 25, "item": {"@type": "VideoObject", "name": "Dengue, Malaria or Typhoid?", "description": "Monday tips, 5 Oct 2026. Same fever, different test.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/fever.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/fever.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT1M49S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#fever"}}, {"@type": "ListItem", "position": 26, "item": {"@type": "VideoObject", "name": "Thalassaemia: test before marriage", "description": "Tuesday tips, 6 Oct 2026. One blood test can protect your future child.", "thumbnailUrl": "https://healthtestsimplified.netlify.app/p/thal.jpg", "contentUrl": "https://healthtestsimplified.netlify.app/v/thal.mp4", "uploadDate": "2026-10-06T08:00:00+05:30", "duration": "PT2M24S", "inLanguage": "hi", "url": "https://healthtestsimplified.netlify.app/#thal"}}]}]}</script>
 </head>
 <body>
 
-
 <div class="wrap">
-  <header class="brand">
-    <img src="logo.jpg" alt="Health Test Simplified logo">
-    <div>
-      <div class="name">Health <span>Test</span> Simplified</div>
-      <div class="tag">Simple information · Better health · Smarter choices</div>
-    </div>
+  <header class="top">
+    <img src="logo.jpg" alt="Health Test Simplified logo" width="52" height="52">
+    <div><div class="name">Health <b>Test</b> Simplified</div><div class="sub">Free health test videos in Hindi &amp; Bengali</div></div>
     <span class="grow"></span>
-    <a class="yt fb" href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877f2"/><path d="M13.4 19v-6h2l.3-2.4h-2.3V9.1c0-.7.2-1.2 1.2-1.2h1.2V5.8c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6z" fill="#fff"/></svg><span class="lbl">Facebook page</span></a>
-    <a class="yt" href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l7.5-4.5z" fill="#fff"/></svg><span class="lbl">YouTube channel</span></a>
+    <a class="soc" href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877f2"/><path d="M13.4 19v-6h2l.3-2.4h-2.3V9.1c0-.7.2-1.2 1.2-1.2h1.2V5.8c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6z" fill="#fff"/></svg><span class="lbl">Facebook</span></a>
+    <a class="soc" href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l7.5-4.5z" fill="#fff"/></svg><span class="lbl">YouTube</span></a>
   </header>
 
-  <section class="intro" aria-label="About">
+  <section class="hero">
     <div>
-      <h1>Understand your health tests <em>in about 2 minutes</em></h1>
-      <p>Short animated videos in Hindi and Bengali that explain what each test checks, who should get it, how to prepare, and how to read the report. Covers blood tests like CBC, thyroid (TSH), sugar (HbA1c), liver (LFT) and kidney (KFT), scans, pregnancy screening and genetic tests. <span lang="hi">हिंदी में आसान भाषा में हेल्थ टेस्ट की जानकारी।</span></p>
+      <h1>Understand your health test in 2 minutes</h1>
+      <p class="lead">Short cartoon videos in Hindi and Bengali. What the test checks, who needs it, how to prepare, and how to read the report. <span lang="hi">हिंदी में आसान भाषा में।</span></p>
+      <label class="find" for="q">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <span class="sr">Search by test name</span>
+        <input id="q" type="search" placeholder="Type a test: thyroid, CBC, sugar, LFT…" autocomplete="off" list="testnames">
+        <datalist id="testnames"></datalist>
+      </label>
+      <div class="quick">Popular: <button type="button" data-q="thyroid">Thyroid</button><button type="button" data-q="cbc">CBC</button><button type="button" data-q="sugar">Sugar</button><button type="button" data-q="pregnancy">Pregnancy</button></div>
     </div>
-    <div class="facts">
-      <div class="fact"><b id="f-videos">22</b><small>videos</small></div>
-      <div class="fact"><b>5</b><small>topics</small></div>
-      <div class="fact"><b>2</b><small>languages</small></div>
-    </div>
+    <article class="today" id="today"></article>
   </section>
+
+  <section class="worry" aria-labelledby="worry-h">
+    <h2 id="worry-h">What's worrying you?</h2>
+    <p>Tap one. We'll show the videos that help.</p>
+    <div class="tiles" id="tiles"></div>
+  </section>
+
+  <section class="myths" aria-labelledby="myth-h">
+    <h2 id="myth-h">Myth or fact?</h2>
+    <p>Tap a card to see the truth.</p>
+    <div class="mrow" id="myths"></div>
+  </section>
+
+  <div class="libhead" id="library"><h2>All videos</h2></div>
 </div>
 
-<div class="bar">
+<div class="filters">
   <div class="wrap">
-    <label class="search" for="q">
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
-      <input id="q" type="search" placeholder="Search by test name: CBC, LFT, sugar, pregnancy…" autocomplete="off" list="testnames" aria-label="Search by test name">
-      <datalist id="testnames"></datalist>
-    </label>
-    <select class="finder" id="finder" aria-label="Choose a test"><option value="">Choose a test (A–Z)</option></select>
-    <div class="chips" id="chips" role="group" aria-label="Filter by topic"></div>
-    <p class="hits" id="hits" aria-live="polite"></p>
+    <div id="chips" role="group" aria-label="Filter by topic" style="display:contents"></div>
+    <label class="mini" for="q2"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg><span class="sr">Search</span><input id="q2" type="search" placeholder="Search tests" autocomplete="off" list="testnames"></label>
   </div>
 </div>
 
-<main class="wrap" id="main"><section class="cat" aria-labelledby="h-tests"><div class="cat-head"><h2 id="h-tests">Health tests</h2><p>Doctor vs Disease: blood, urine and scan tests explained as a fight.</p></div><div class="grid"><article class="card" id="lft">
-    <video controls="" preload="none" playsinline="" poster="p/lft.jpg" src="v/lft.mp4" aria-label="Liver Function Test (LFT) video"></video>
+<div class="wrap">
+  <div class="status" id="status" aria-live="polite"></div>
+  <main id="main"><section class="cat" aria-labelledby="h-tests"><div class="cat-head"><h2 id="h-tests">Health tests</h2><p>Doctor vs Disease: blood, urine and scan tests explained as a fight.</p></div><div class="grid"><article class="card" id="lft">
+    <button class="thumb" type="button" data-play="lft" aria-label="Play: Liver Function Test (LFT)"><img src="p/lft.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:21</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:21 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>Liver Function Test (LFT)</h3>
       <p class="sum">Dr. Health fights Fatty Liver, Hepatitis and Alcohol with the LFT blood test.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>SGPT and SGOT (liver damage alarm), bilirubin (jaundice), albumin (liver strength), ALP (bile flow).</dd><dt>Who should test</dt><dd>People who drink alcohol regularly, are overweight or diabetic, take long-term medicines, or have had jaundice or hepatitis.</dd><dt>Approximate normal</dt><dd>SGPT/SGOT up to about 40 U/L · Bilirubin 0.3–1.2 mg/dL · Albumin 3.5–5.0 g/dL</dd><dt>Good to know</dt><dd>Early fatty liver can often be reversed with diet and exercise. Your liver can regrow itself.</dd></dl></details>
     </div></article><article class="card" id="lipid">
-    <video controls="" preload="none" playsinline="" poster="p/lipid.jpg" src="v/lipid.mp4" aria-label="Lipid Profile video"></video>
+    <button class="thumb" type="button" data-play="lipid" aria-label="Play: Lipid Profile"><img src="p/lipid.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:16</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:16 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>Lipid Profile</h3>
       <p class="sum">Your heart against Bad Cholesterol, Smoking and Junk Food. High cholesterol has no symptoms.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Total cholesterol, LDL (bad), HDL (good) and triglycerides.</dd><dt>Who should test</dt><dd>Every adult from age 20, yearly after 40; people with diabetes, high BP, smoking, extra weight, or early heart attack in the family.</dd><dt>Preparation</dt><dd>Fast for 10–12 hours. Water is fine. Follow your lab's instructions.</dd><dt>Healthy levels (mg/dL)</dt><dd>Total below 200 · LDL below 100 · Triglycerides below 150 · HDL above 40 (men) / 50 (women)</dd></dl></details>
     </div></article><article class="card" id="cbc">
-    <video controls="" preload="none" playsinline="" poster="p/cbc.jpg" src="v/cbc.mp4" aria-label="CBC (Complete Blood Count) video"></video>
+    <button class="thumb" type="button" data-play="cbc" aria-label="Play: CBC (Complete Blood Count)"><img src="p/cbc.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:21</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:21 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>CBC (Complete Blood Count)</h3>
       <p class="sum">The blood team of red cells, white cells and platelets fights Anaemia, Infection and Dengue.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Haemoglobin and RBC (anaemia), WBC (infection), platelets (dengue and bleeding).</dd><dt>Who should test</dt><dd>Tiredness or pale skin, fever for 2 days or more, pregnancy, and a yearly check-up.</dd><dt>Preparation</dt><dd>No fasting needed.</dd><dt>Approximate normal</dt><dd>Hb men 13–17 / women 12–15 g/dL · WBC 4,000–11,000 /cumm · Platelets 1.5–4.5 lakh /cumm</dd></dl></details>
     </div></article><article class="card" id="kft">
-    <video controls="" preload="none" playsinline="" poster="p/kft.jpg" src="v/kft.mp4" aria-label="Kidney Function Test (KFT) video"></video>
+    <button class="thumb" type="button" data-play="kft" aria-label="Play: Kidney Function Test (KFT)"><img src="p/kft.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:25</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:25 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>Kidney Function Test (KFT)</h3>
       <p class="sum">Kidneys can fail silently. The kidney hero takes on Diabetes, High BP and painkiller overuse.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Creatinine (filter alarm), urea (waste level), eGFR (filter speed), uric acid and salts.</dd><dt>Who should test</dt><dd>Diabetes or high BP, long-term painkiller use, swelling in feet or face, foamy urine, kidney disease in the family.</dd><dt>Approximate normal</dt><dd>Creatinine men 0.7–1.3 / women 0.6–1.1 mg/dL · Urea 15–40 mg/dL · eGFR 90 or above</dd><dt>Good to know</dt><dd>Usually no fasting needed. Never take painkillers without a doctor's advice.</dd></dl></details>
     </div></article><article class="card" id="usg">
-    <video controls="" preload="none" playsinline="" poster="p/usg.jpg" src="v/usg.mp4" aria-label="Whole Abdomen USG video"></video>
+    <button class="thumb" type="button" data-play="usg" aria-label="Play: Whole Abdomen USG"><img src="p/usg.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:32</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:32 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>Whole Abdomen USG</h3>
       <p class="sum">An ultrasound uses sound waves to find Gallstones, Fatty Liver and Kidney Stones. No radiation, no pain.</p>
       <details><summary>Test details</summary><dl><dt>What it shows</dt><dd>Liver and gallbladder, kidneys and bladder, pancreas and spleen, uterus and ovaries or prostate.</dd><dt>Preparation</dt><dd>Fast 6–8 hours. Drink 4–5 glasses of water an hour before and hold urine so the bladder stays full.</dd><dt>Report words</dt><dd>Calculus = stone · Cholelithiasis = gallbladder stones · Hepatomegaly = enlarged liver · Simple cyst = fluid bubble, often harmless</dd><dt>Good to know</dt><dd>Painless, safe in pregnancy, and usually takes 15–20 minutes.</dd></dl></details>
     </div></article><article class="card" id="echo">
-    <video controls="" preload="none" playsinline="" poster="p/echo.jpg" src="v/echo.mp4" aria-label="2D Echo (Echocardiography) video"></video>
+    <button class="thumb" type="button" data-play="echo" aria-label="Play: 2D Echo (Echocardiography)"><img src="p/echo.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:37</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:37 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>2D Echo (Echocardiography)</h3>
       <p class="sum">An ultrasound of the heart that checks its size, pumping power and valves.</p>
       <details><summary>Test details</summary><dl><dt>What it shows</dt><dd>Heart size and wall thickness, pumping power (EF), valves (open, close or leak), holes and fluid around the heart.</dd><dt>When it's advised</dt><dd>Breathlessness, chest pain, swelling in the feet, a heart murmur, or long-standing high BP or diabetes.</dd><dt>Report words</dt><dd>EF 55–70% = normal pumping · LVH = thick heart wall · MR/TR/AR = leaky valve · Stenosis = narrow valve</dd><dt>ECG vs Echo</dt><dd>ECG checks the heart's electrical rhythm. Echo shows moving pictures of its structure.</dd></dl></details>
     </div></article><article class="card" id="urine">
-    <video controls="" preload="none" playsinline="" poster="p/urine.jpg" src="v/urine.mp4" aria-label="Urine Routine (R/E) video"></video>
+    <button class="thumb" type="button" data-play="urine" aria-label="Play: Urine Routine (R/E)"><img src="p/urine.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:25</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:25 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>Urine Routine (R/E)</h3>
       <p class="sum">A small sample with a big report card, plus the urine colour chart.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Colour and clarity, sugar and protein, pus cells and bacteria (infection), blood and crystals (stone clues).</dd><dt>How to give the sample</dt><dd>First morning urine, clean the area, skip the first few drops, use the lab's sterile cup, and deliver within an hour.</dd><dt>Usually normal</dt><dd>Sugar nil · Protein nil or trace · Pus cells 0–5 /hpf · RBC 0–2 /hpf</dd><dt>Colour guide</dt><dd>Pale yellow = well hydrated · Dark yellow = drink more water · Red or brown = see a doctor</dd></dl></details>
     </div></article><article class="card" id="culture">
-    <video controls="" preload="none" playsinline="" poster="p/culture.jpg" src="v/culture.mp4" aria-label="Urine Culture &amp; Sensitivity video"></video>
+    <button class="thumb" type="button" data-play="culture" aria-label="Play: Urine Culture &amp; Sensitivity"><img src="p/culture.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:35</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span><span class="dur">2:35 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Hindi</span></div>
       <h3>Urine Culture &amp; Sensitivity</h3>
       <p class="sum">Finds the exact germ behind a UTI and which antibiotic will actually work.</p>
       <details><summary>Test details</summary><dl><dt>What it does</dt><dd>Grows germs from urine on a lab plate for 48–72 hours, then tests antibiotics against them.</dd><dt>When it's advised</dt><dd>Repeated UTI, no improvement with medicine, fever with burning urine, pregnancy, children and catheter patients.</dd><dt>Report words</dt><dd>No growth = usually no infection · More than 1 lakh CFU/mL = significant · S = antibiotic works · R = it won't</dd><dt>Most important tip</dt><dd>Give the sample before starting antibiotics. Never take antibiotics without a doctor.</dd></dl></details>
     </div></article><article class="card" id="hba1c">
-    <video controls="" preload="none" playsinline="" poster="p/hba1c.jpg" src="v/hba1c.mp4" aria-label="HbA1c &amp; Blood Sugar video"></video>
+    <button class="thumb" type="button" data-play="hba1c" aria-label="Play: HbA1c &amp; Blood Sugar"><img src="p/hba1c.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:08</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Bengali</span><span class="dur">2:08 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Bengali</span></div>
       <h3>HbA1c &amp; Blood Sugar</h3>
       <p class="sum">Why your doctor asks for HbA1c even when the sugar test is normal.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Your average blood sugar over the last 2–3 months.</dd><dt>Who should test</dt><dd>Everyone above 30 yearly; family history of diabetes, extra weight, high BP or PCOS; diabetics every 3 months.</dd><dt>Results</dt><dd>HbA1c below 5.7% normal · 5.7–6.4% prediabetes · 6.5% or above diabetes</dd><dt>Good to know</dt><dd>No fasting needed for HbA1c. Anaemia or thalassaemia can make it misleading.</dd></dl></details>
     </div></article><article class="card" id="vitd">
-    <video controls="" preload="none" playsinline="" poster="p/vitd.jpg" src="v/vitd.mp4" aria-label="Vitamin D &amp; B12 video"></video>
+    <button class="thumb" type="button" data-play="vitd" aria-label="Play: Vitamin D &amp; B12"><img src="p/vitd.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:13</span></button>
     <div class="body">
-      <div class="meta"><span>Health tests</span><span class="lang">Bengali</span><span class="dur">2:13 min</span></div>
+      <div class="meta"><span>Health tests</span><span class="lang">Bengali</span></div>
       <h3>Vitamin D &amp; B12</h3>
       <p class="sum">Always tired, aching or tingling? It could be low Vitamin D or B12.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Vitamin D for bones and muscles; Vitamin B12 for blood and nerves.</dd><dt>Who should test</dt><dd>People mostly indoors, women over 40 and the elderly, vegetarians, and long-term metformin or acidity-tablet users.</dd><dt>Approximate normal</dt><dd>Vitamin D 30–100 ng/mL · B12 above 300 pg/mL</dd><dt>Good to know</dt><dd>Don't take high-dose Vitamin D on your own. Test first.</dd></dl></details>
     </div></article></div></section><section class="cat" aria-labelledby="h-preg"><div class="cat-head"><h2 id="h-preg">Pregnancy care</h2><p>A three-part series for mothers-to-be.</p></div><div class="grid"><article class="card" id="dmarker">
-    <video controls="" preload="none" playsinline="" poster="p/dmarker.jpg" src="v/dmarker.mp4" aria-label="Double Marker Test video"></video>
+    <button class="thumb" type="button" data-play="dmarker" aria-label="Play: Double Marker Test"><img src="p/dmarker.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:11</span></button>
     <div class="body">
-      <div class="meta"><span>Pregnancy care</span><span class="lang">Hindi</span><span class="dur">2:11 min</span></div>
+      <div class="meta"><span>Pregnancy care</span><span class="lang">Hindi</span></div>
       <h3>Double Marker Test</h3>
       <p class="sum">Part 1. A first-trimester blood test, and what 'high risk' really means.</p>
       <details><summary>Test details</summary><dl><dt>What it is</dt><dd>A blood test (beta-hCG and PAPP-A) read together with the NT scan.</dd><dt>When</dt><dd>Between 11 and 14 weeks of pregnancy. If missed, triple or quad marker at 15–20 weeks.</dd><dt>What it screens for</dt><dd>The chance of Down syndrome (21), Edwards (18) and Patau (13).</dd><dt>Remember</dt><dd>Screening is not diagnosis. Most high-risk results still have healthy babies. Baby's sex is never disclosed.</dd></dl></details>
     </div></article><article class="card" id="nipt">
-    <video controls="" preload="none" playsinline="" poster="p/nipt.jpg" src="v/nipt.mp4" aria-label="NIPT video"></video>
+    <button class="thumb" type="button" data-play="nipt" aria-label="Play: NIPT"><img src="p/nipt.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:26</span></button>
     <div class="body">
-      <div class="meta"><span>Pregnancy care</span><span class="lang">Hindi</span><span class="dur">2:26 min</span></div>
+      <div class="meta"><span>Pregnancy care</span><span class="lang">Hindi</span></div>
       <h3>NIPT</h3>
       <p class="sum">Part 2. Reads tiny pieces of the baby's DNA in the mother's blood.</p>
       <details><summary>Test details</summary><dl><dt>What it is</dt><dd>Non-Invasive Prenatal Test: one blood sample from the mother. Safe for the baby.</dd><dt>When</dt><dd>From 10 weeks of pregnancy. Results usually in 1–2 weeks.</dd><dt>Accuracy</dt><dd>Detects over 99% of Down syndrome cases, but it is still a screening test.</dd><dt>Good to know</dt><dd>An anomaly scan is still needed. Costlier than double marker. Tell your doctor about twins or IVF.</dd></dl></details>
     </div></article><article class="card" id="cvs">
-    <video controls="" preload="none" playsinline="" poster="p/cvs.jpg" src="v/cvs.mp4" aria-label="CVS &amp; Amniocentesis video"></video>
+    <button class="thumb" type="button" data-play="cvs" aria-label="Play: CVS &amp; Amniocentesis"><img src="p/cvs.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:29</span></button>
     <div class="body">
-      <div class="meta"><span>Pregnancy care</span><span class="lang">Hindi</span><span class="dur">2:29 min</span></div>
+      <div class="meta"><span>Pregnancy care</span><span class="lang">Hindi</span></div>
       <h3>CVS &amp; Amniocentesis</h3>
       <p class="sum">Part 3. Diagnostic tests that give a confirmed answer.</p>
       <details><summary>Test details</summary><dl><dt>CVS</dt><dd>At 11–14 weeks. A tiny sample of placenta, taken under ultrasound.</dd><dt>Amniocentesis</dt><dd>From 15 weeks. 3–4 teaspoons of the fluid around the baby.</dd><dt>What they confirm</dt><dd>Chromosome conditions, thalassaemia major in the baby, and other genetic diseases.</dd><dt>Safety</dt><dd>Done by an expert in a few minutes. Small miscarriage risk, usually under 1%. Rh-negative mothers may need anti-D.</dd></dl></details>
     </div></article></div></section><section class="cat" aria-labelledby="h-gen"><div class="cat-head"><h2 id="h-gen">Genetic tests</h2><p>Karyotype, microarray and exome: finding the cause in the genes.</p></div><div class="grid"><article class="card" id="karyo">
-    <video controls="" preload="none" playsinline="" poster="p/karyo.jpg" src="v/karyo.mp4" aria-label="Karyotyping video"></video>
+    <button class="thumb" type="button" data-play="karyo" aria-label="Play: Karyotyping"><img src="p/karyo.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:42</span></button>
     <div class="body">
-      <div class="meta"><span>Genetic tests</span><span class="lang">Hindi</span><span class="dur">2:42 min</span></div>
+      <div class="meta"><span>Genetic tests</span><span class="lang">Hindi</span></div>
       <h3>Karyotyping</h3>
       <p class="sum">Counts all 46 chromosomes. Key test for repeated miscarriages and infertility.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>All 46 chromosomes (23 pairs): extra or missing chromosomes and swapped pieces (translocations).</dd><dt>Who should test</dt><dd>Couples with 2 or more miscarriages, infertility or very low sperm count, a child with delay or birth defects, girls with short height and no periods, some blood cancers (bone marrow).</dd><dt>Sample &amp; time</dt><dd>Usually a blood sample; in pregnancy, a CVS or amniocentesis sample. Report in about 2–3 weeks.</dd><dt>Reading the report</dt><dd>46,XX = normal female · 46,XY = normal male · 47,XY,+21 = Down syndrome. The first number is the total count.</dd><dt>Good to know</dt><dd>Very small changes are missed; microarray or exome may be needed. Baby's sex is not disclosed in pregnancy.</dd></dl></details>
     </div></article><article class="card" id="cma">
-    <video controls="" preload="none" playsinline="" poster="p/cma.jpg" src="v/cma.mp4" aria-label="Chromosomal Microarray: 750K vs 315K video"></video>
+    <button class="thumb" type="button" data-play="cma" aria-label="Play: Chromosomal Microarray: 750K vs 315K"><img src="p/cma.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:51</span></button>
     <div class="body">
-      <div class="meta"><span>Genetic tests</span><span class="lang">Hindi</span><span class="dur">2:51 min</span></div>
+      <div class="meta"><span>Genetic tests</span><span class="lang">Hindi</span></div>
       <h3>Chromosomal Microarray: 750K vs 315K</h3>
       <p class="sum">Finds tiny missing or extra chromosome pieces that a karyotype cannot see.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>Small deletions (missing pieces) and duplications (extra pieces) across all chromosomes.</dd><dt>750K vs 315K</dt><dd>750K: about 7.5 lakh probes, finer detail, mostly for children and adults. 315K: about 3.15 lakh probes, focused on key regions, mostly for pregnancy (CVS/amnio) and miscarriage tissue.</dd><dt>Who should test</dt><dd>Developmental delay, autism, birth defects, a problem seen on the baby's scan, repeated miscarriage or stillbirth.</dd><dt>Why it matters</dt><dd>Finds a cause in about 15–20% of children with delay or autism, versus about 3–5% with karyotype.</dd><dt>Good to know</dt><dd>Does not show balanced translocations (karyotype) or single-letter changes (exome). Parents' samples may be needed.</dd></dl></details>
     </div></article><article class="card" id="wes">
-    <video controls="" preload="none" playsinline="" poster="p/wes.jpg" src="v/wes.mp4" aria-label="Whole Exome Sequencing video"></video>
+    <button class="thumb" type="button" data-play="wes" aria-label="Play: Whole Exome Sequencing"><img src="p/wes.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:40</span></button>
     <div class="body">
-      <div class="meta"><span>Genetic tests</span><span class="lang">Hindi</span><span class="dur">2:40 min</span></div>
+      <div class="meta"><span>Genetic tests</span><span class="lang">Hindi</span></div>
       <h3>Whole Exome Sequencing</h3>
       <p class="sum">Reads about 20,000 genes letter by letter when other tests give no answer.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>The exome: the 1–2% of DNA that holds the recipes for proteins, where most known disease-causing changes are found.</dd><dt>Who should test</dt><dd>Delayed development, unexplained fits or muscle weakness, multiple birth defects, unknown genetic illness in the family, or when other tests gave no answer.</dd><dt>Sample &amp; time</dt><dd>Blood (or saliva). Report in about 3–6 weeks. Testing the child with both parents ('trio') gives more reliable results.</dd><dt>Reading the report</dt><dd>Positive (cause found) · Negative (no cause found, genetic not ruled out) · VUS (change of uncertain meaning). About 1 in 3 families find an answer.</dd><dt>Good to know</dt><dd>Cannot catch every change (e.g. Fragile X). Genetic counselling before and after is important.</dd></dl></details>
     </div></article></div></section><section class="cat" aria-labelledby="h-bio"><div class="cat-head"><h2 id="h-bio">Biology made simple</h2><p>From one protein to the whole body.</p></div><div class="grid"><article class="card" id="story">
-    <video controls="" preload="none" playsinline="" poster="p/story.jpg" src="v/story.mp4" aria-label="From Protein to Cell: the full story video"></video>
+    <button class="thumb" type="button" data-play="story" aria-label="Play: From Protein to Cell: the full story"><img src="p/story.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">4:09</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">4:09 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>From Protein to Cell: the full story</h3>
       <p class="sum">Seven chapters in one video: protein, gene, DNA, histones, chromosome, nucleus and cell.</p>
       <details><summary>Test details</summary><dl><dt>Chapters</dt><dd>Protein · Gene · DNA · Histones · Chromosome · Nucleus · Cell</dd><dt>Big picture</dt><dd>Recipes for proteins are in genes, genes are in DNA, DNA wraps into chromosomes inside the nucleus of every cell.</dd><dt>Lab link</dt><dd>Albumin (protein), HPLC (haemoglobin), karyotype (chromosomes), Pap smear (cells), CBC (blood cells).</dd></dl></details>
     </div></article><article class="card" id="cell">
-    <video controls="" preload="none" playsinline="" poster="p/cell.jpg" src="v/cell.mp4" aria-label="What is a Cell? video"></video>
+    <button class="thumb" type="button" data-play="cell" aria-label="Play: What is a Cell?"><img src="p/cell.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:03</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">2:03 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>What is a Cell?</h3>
       <p class="sum">You are made of about 30 lakh crore cells. Each one is a tiny factory.</p>
       <details><summary>Test details</summary><dl><dt>Parts</dt><dd>Membrane = security wall · Nucleus = head office · Mitochondria = powerhouse · Ribosomes = protein workers</dd><dt>Lifespan</dt><dd>Skin cells 2–4 weeks · Red blood cells about 120 days · Many nerve cells a whole lifetime</dd><dt>Lab link</dt><dd>CBC counts blood cells; Pap smear and FNAC look at cells under the microscope.</dd></dl></details>
     </div></article><article class="card" id="nucleus">
-    <video controls="" preload="none" playsinline="" poster="p/nucleus.jpg" src="v/nucleus.mp4" aria-label="What is the Nucleus? video"></video>
+    <button class="thumb" type="button" data-play="nucleus" aria-label="Play: What is the Nucleus?"><img src="p/nucleus.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">1:44</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">1:44 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>What is the Nucleus?</h3>
       <p class="sum">Every cell has a boss, except red blood cells.</p>
       <details><summary>Test details</summary><dl><dt>Inside</dt><dd>A wall with gates (nuclear pores), DNA files, and the nucleolus.</dd><dt>Fun fact</dt><dd>Red blood cells have no nucleus, which leaves more room for haemoglobin.</dd><dt>Lab link</dt><dd>WBC types are told apart by nucleus shape (the CBC differential).</dd></dl></details>
     </div></article><article class="card" id="chromosome">
-    <video controls="" preload="none" playsinline="" poster="p/chromosome.jpg" src="v/chromosome.mp4" aria-label="What is a Chromosome? video"></video>
+    <button class="thumb" type="button" data-play="chromosome" aria-label="Play: What is a Chromosome?"><img src="p/chromosome.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:20</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">2:20 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>What is a Chromosome?</h3>
       <p class="sum">46 chromosomes in 23 pairs, and the truth about who decides a baby's sex.</p>
       <details><summary>Test details</summary><dl><dt>Basics</dt><dd>46 chromosomes in every cell: 23 from mother, 23 from father.</dd><dt>Myth busted</dt><dd>The father's X or Y decides whether a baby is a boy or girl, not the mother. Sex determination before birth is illegal in India.</dd><dt>Tests</dt><dd>Karyotyping; double marker or NIPT in pregnancy, as your doctor advises.</dd></dl></details>
     </div></article><article class="card" id="dna">
-    <video controls="" preload="none" playsinline="" poster="p/dna.jpg" src="v/dna.mp4" aria-label="What is DNA? video"></video>
+    <button class="thumb" type="button" data-play="dna" aria-label="Play: What is DNA?"><img src="p/dna.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">1:57</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">1:57 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>What is DNA?</h3>
       <p class="sum">A 4-letter code, about 3 billion letters long, in every cell.</p>
       <details><summary>Test details</summary><dl><dt>The code</dt><dd>Four letters: A pairs with T, G pairs with C.</dd><dt>Fun fact</dt><dd>You share about 99.9% of your DNA with every human. DNA from one cell is about 2 metres long.</dd><dt>Tests</dt><dd>Genetic disease tests like thalassaemia, some cancer risk genes, paternity, and forensics.</dd></dl></details>
     </div></article><article class="card" id="gene">
-    <video controls="" preload="none" playsinline="" poster="p/gene.jpg" src="v/gene.mp4" aria-label="What is a Gene? video"></video>
+    <button class="thumb" type="button" data-play="gene" aria-label="Play: What is a Gene?"><img src="p/gene.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">1:47</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">1:47 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>What is a Gene?</h3>
       <p class="sum">DNA is the cookbook, a gene is one recipe, a protein is the dish.</p>
       <details><summary>Test details</summary><dl><dt>Basics</dt><dd>About 20,000 genes, each in two copies: one from mother, one from father.</dd><dt>Carriers</dt><dd>Two healthy thalassaemia carriers have a 1 in 4 chance, each pregnancy, of a child with thalassaemia major.</dd><dt>Lifestyle</dt><dd>Family history raises risk, but healthy habits can change the story.</dd></dl></details>
     </div></article><article class="card" id="histones">
-    <video controls="" preload="none" playsinline="" poster="p/histones.jpg" src="v/histones.mp4" aria-label="What are Histones? video"></video>
+    <button class="thumb" type="button" data-play="histones" aria-label="Play: What are Histones?"><img src="p/histones.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">1:59</span></button>
     <div class="body">
-      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span><span class="dur">1:59 min</span></div>
+      <div class="meta"><span>Biology made simple</span><span class="lang">Hindi</span></div>
       <h3>What are Histones?</h3>
       <p class="sum">Protein spools that pack 2 metres of DNA into a tiny cell and switch genes on and off.</p>
       <details><summary>Test details</summary><dl><dt>Basics</dt><dd>Eight histones make one core. DNA wraps around it to form a nucleosome, like beads on a string.</dd><dt>Gene switch</dt><dd>Tight wrap = gene off; loose wrap = gene on. This is epigenetics.</dd><dt>Don't confuse</dt><dd>Histones are not antihistamines. Antihistamines are allergy medicines.</dd></dl></details>
     </div></article></div></section><section class="cat" aria-labelledby="h-daily"><div class="cat-head"><h2 id="h-daily">Daily health tips</h2><p>Seasonal tips posted on the page.</p></div><div class="grid"><article class="card" id="thyroid">
-    <video controls="" preload="none" playsinline="" poster="p/thyroid.jpg" src="v/thyroid.mp4" aria-label="Thyroid test (TSH, T3, T4) video"></video>
+    <button class="thumb" type="button" data-play="thyroid" aria-label="Play: Thyroid test (TSH, T3, T4)"><img src="p/thyroid.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:24</span></button>
     <div class="body">
-      <div class="meta"><span>Daily health tips</span><span class="lang">Hindi</span><span class="dur">2:24 min</span></div>
+      <div class="meta"><span>Daily health tips</span><span class="lang">Hindi</span></div>
       <h3>Thyroid test (TSH, T3, T4)</h3>
       <p class="sum">Wednesday tips, 7 Oct 2026. Always tired, weight going up, hair falling? Check your thyroid.</p>
       <details><summary>Test details</summary><dl><dt>What it checks</dt><dd>TSH (the signal from the brain) and T3, T4 (the thyroid hormones). TSH high usually means a slow thyroid; TSH low usually means a fast thyroid.</dd><dt>Symptoms</dt><dd>Slow (hypo): tiredness, weight gain, feeling cold, hair fall, constipation. Fast (hyper): weight loss, fast heartbeat, sweating, shaky hands, anxiety.</dd><dt>Who should test</dt><dd>Women over 35, before or during pregnancy, after delivery, thyroid in the family, diabetes, PCOD or irregular periods. For newborns, ask your doctor about thyroid screening.</dd><dt>Preparation</dt><dd>Usually no fasting. Morning sample is best. On a thyroid tablet, give the sample before the dose as your doctor says. Tell your doctor if you take biotin.</dd><dt>Good to know</dt><dd>About 1 in 10 adults in India has hypothyroidism. Never stop or change your thyroid tablet on your own.</dd></dl></details>
     </div></article><article class="card" id="fever">
-    <video controls="" preload="none" playsinline="" poster="p/fever.jpg" src="v/fever.mp4" aria-label="Dengue, Malaria or Typhoid? video"></video>
+    <button class="thumb" type="button" data-play="fever" aria-label="Play: Dengue, Malaria or Typhoid?"><img src="p/fever.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">1:49</span></button>
     <div class="body">
-      <div class="meta"><span>Daily health tips</span><span class="lang">Hindi</span><span class="dur">1:49 min</span></div>
+      <div class="meta"><span>Daily health tips</span><span class="lang">Hindi</span></div>
       <h3>Dengue, Malaria or Typhoid?</h3>
       <p class="sum">Monday tips, 5 Oct 2026. Same fever, different test.</p>
       <details><summary>Test details</summary><dl><dt>Dengue</dt><dd>High fever, eye and body pain, rash. Test: NS1 (days 1–5), IgM (after day 5), CBC for platelets.</dd><dt>Malaria</dt><dd>Fever with chills that comes and goes. Test: rapid antigen test or blood smear.</dd><dt>Typhoid</dt><dd>Slowly rising fever, stomach upset. Test: blood culture as your doctor advises.</dd><dt>Fever rules</dt><dd>Test within 1–3 days, no antibiotics or painkillers on your own, plenty of water and ORS.</dd></dl></details>
     </div></article><article class="card" id="thal">
-    <video controls="" preload="none" playsinline="" poster="p/thal.jpg" src="v/thal.mp4" aria-label="Thalassaemia: test before marriage video"></video>
+    <button class="thumb" type="button" data-play="thal" aria-label="Play: Thalassaemia: test before marriage"><img src="p/thal.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">2:24</span></button>
     <div class="body">
-      <div class="meta"><span>Daily health tips</span><span class="lang">Hindi</span><span class="dur">2:24 min</span></div>
+      <div class="meta"><span>Daily health tips</span><span class="lang">Hindi</span></div>
       <h3>Thalassaemia: test before marriage</h3>
       <p class="sum">Tuesday tips, 6 Oct 2026. One blood test can protect your future child.</p>
       <details><summary>Test details</summary><dl><dt>Carrier vs major</dt><dd>Carriers are usually healthy. Thalassaemia major needs blood transfusions every 2–4 weeks for life.</dd><dt>The risk</dt><dd>If both parents are carriers, each pregnancy has a 1 in 4 chance of thalassaemia major.</dd><dt>The test</dt><dd>CBC gives the first clue; HPLC confirms. Once in a lifetime, ideally before marriage or pregnancy.</dd><dt>Myth</dt><dd>Not all anaemia needs iron. Take iron only as your doctor advises.</dd></dl></details>
     </div></article></div></section></main>
 
-<div class="wrap">
-  <div class="yt-band">
-    <div><h3>Follow us for a new video every day</h3><p>Watch on YouTube, follow our Facebook page, and send us the test you want explained next.</p></div>
+  <section class="follow">
+    <div><h2>A new video every day</h2><p>Follow us, and send the test you want explained next. We make videos from your questions.</p></div>
     <div class="btns">
-    <a class="yt fb" href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#fff"/><path d="M13.4 19v-6h2l.3-2.4h-2.3V9.1c0-.7.2-1.2 1.2-1.2h1.2V5.8c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6z" fill="#1877f2"/></svg><span>Follow on Facebook</span></a>
-    <a class="yt" href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l7.5-4.5z" fill="#fff"/></svg><span>Subscribe on YouTube</span></a>
+      <a class="fbtn fb" href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener">Follow on Facebook</a>
+      <a class="fbtn yt" href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener">Subscribe on YouTube</a>
+    </div>
+  </section>
+  <div class="notes">
+    <div><h3>About medicines</h3><p>Take any medicine only as advised by your doctor.</p></div>
+    <div><h3>For awareness only</h3><p>These videos explain tests in simple words. They do not replace a doctor's advice. Report ranges vary slightly between labs.</p></div>
+  </div>
+  <footer>Health Test Simplified. Follow us on <a href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener">Facebook</a> and <a href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener">YouTube</a> to get more information.</footer>
+</div>
+
+<dialog id="player" aria-label="Video player">
+  <button class="x" type="button" id="px" aria-label="Close video">×</button>
+  <div class="pl">
+    <video id="pv" controls playsinline preload="metadata"></video>
+    <div class="side">
+      <div class="meta" id="pm"></div>
+      <h3 id="pt"></h3>
+      <p class="sum" id="ps"></p>
+      <div class="acts"><a class="wa" id="pw" target="_blank" rel="noopener">Share on WhatsApp</a><button class="ghost" type="button" id="pc">Copy link</button></div>
+      <details open><summary>Test details</summary><dl id="pd"></dl></details>
+      <div class="next" id="pn"></div>
     </div>
   </div>
-  <div class="note">
-    <div class="med"><h3>About medicines</h3><p>Take any medicine only as advised by your doctor.</p></div>
-    <div class="warn"><h3>For awareness only</h3><p>These videos explain tests in simple words. They do not replace a doctor's advice. Report ranges vary slightly between labs.</p></div>
-  </div>
-  <footer>Health Test Simplified · Follow us on <a href="https://www.facebook.com/profile.php?id=61594730205462" target="_blank" rel="noopener">Facebook</a> and <a href="https://www.youtube.com/@Healthtestsimplified" target="_blank" rel="noopener">YouTube</a> for a new video every day.</footer>
-</div>
+</dialog>
 
 <script>
 const CATS = [
@@ -558,74 +640,130 @@ const KEYS = {
  fever:"dengue malaria typhoid fever ns1 widal",
  thal:"thalassaemia thalassemia hplc carrier marriage"
 };
-const main = document.getElementById("main");
-const chips = document.getElementById("chips");
-const q = document.getElementById("q");
-const hits = document.getElementById("hits");
-const finder = document.getElementById("finder");
-const sorted = V.slice().sort((a,b) => a.t.localeCompare(b.t));
-document.getElementById("testnames").innerHTML = sorted.map(v => `<option value="${esc(v.t)}">`).join("");
-finder.innerHTML += sorted.map(v => `<option value="${v.id}">${esc(v.t)}</option>`).join("");
-finder.addEventListener("change", () => {
-  const id = finder.value; if (!id) return;
-  q.value = ""; active = "all"; chipsRender(); render();
-  const el = document.getElementById(id);
-  if (el) { el.scrollIntoView({behavior:"smooth", block:"start"}); el.querySelector("details").open = true; }
-  finder.value = "";
-});
-let active = "all";
-try { const s = localStorage.getItem("hts-cat"); if (s) active = s; } catch(e) {}
 
-function esc(s){ return s.replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+const SITE = "https://healthtestsimplified.netlify.app/";
+const TODAY = "thyroid";
+const WORRIES = [
+ {ic:"😴", t:"Always tired", s:"Weakness, low energy, hair fall", ids:["thyroid","cbc","vitd","hba1c"]},
+ {ic:"🍬", t:"Sugar / diabetes", s:"Sugar level, kidneys, cholesterol", ids:["hba1c","kft","lipid","urine"]},
+ {ic:"🤒", t:"Fever", s:"Dengue, malaria, typhoid, infection", ids:["fever","cbc","culture"]},
+ {ic:"❤️", t:"Heart & cholesterol", s:"Cholesterol, heart scan", ids:["lipid","echo"]},
+ {ic:"🫄", t:"Planning a baby", s:"Pregnancy tests, thalassaemia", ids:["thal","dmarker","nipt","cvs","karyo"]},
+ {ic:"🍺", t:"Liver & stomach", s:"Fatty liver, jaundice, pain", ids:["lft","usg"]},
+ {ic:"💧", t:"Kidney & urine", s:"Burning urine, stones, kidney", ids:["kft","urine","culture","usg"]},
+ {ic:"🧒", t:"Child's growth", s:"Delay, fits, birth defects", ids:["cma","wes","karyo"]},
+ {ic:"🦴", t:"Bones & vitamins", s:"Body pain, tingling", ids:["vitd"]},
+ {ic:"🧬", t:"How the body works", s:"Cell, DNA, gene, chromosome", ids:["story","cell","nucleus","chromosome","dna","gene","histones"]}
+];
+const MYTHS = [
+ {m:"Feeling better? You can stop your thyroid tablet.", f:"Never stop or change the dose on your own. Your doctor decides when to recheck TSH.", id:"thyroid"},
+ {m:"All anaemia needs iron tablets.", f:"Thalassaemia carriers have anaemia that is not from low iron. Test first, take iron only as your doctor advises.", id:"thal"},
+ {m:"A thalassaemia carrier is a patient.", f:"Carriers are usually healthy. The risk is for the baby when both parents are carriers.", id:"thal"},
+ {m:"Normal karyotype means no genetic problem.", f:"Very small changes can be missed. A microarray or exome test may still find the cause.", id:"cma"}
+];
+const $ = id => document.getElementById(id);
+const main = $("main"), q = $("q"), q2 = $("q2"), chips = $("chips"), statusEl = $("status");
+const byId = Object.fromEntries(V.map(v => [v.id, v]));
+let active = "all", worry = null;
+function esc(s){ return String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c])); }
+const catName = id => CATS.find(c => c.id === id).name;
 
 function card(v){
   const dl = v.x.map(([a,b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("");
   return `<article class="card" id="${v.id}">
-    <video controls preload="none" playsinline poster="p/${v.id}.jpg" src="v/${v.id}.mp4" aria-label="${esc(v.t)} video"></video>
+    <button class="thumb" type="button" data-play="${v.id}" aria-label="Play: ${esc(v.t)}"><img src="p/${v.id}.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">${v.d}</span></button>
     <div class="body">
-      <div class="meta"><span>${esc(CATS.find(c=>c.id===v.c).name)}</span><span class="lang">${v.l}</span><span class="dur">${v.d} min</span></div>
+      <div class="meta"><span>${esc(catName(v.c))}</span><span class="lang">${v.l}</span></div>
       <h3>${esc(v.t)}</h3>
       <p class="sum">${esc(v.s)}</p>
       <details><summary>Test details</summary><dl>${dl}</dl></details>
     </div></article>`;
 }
+const hay = v => (v.t+" "+v.s+" "+(KEYS[v.id]||"")+" "+v.x.flat().join(" ")).toLowerCase();
 
 function render(){
-  const term = q.value.trim().toLowerCase();
-  const words = term.split(/\s+/).filter(Boolean);
-  const hay = v => (v.t + " " + v.s + " " + (KEYS[v.id]||"") + " " + v.x.flat().join(" ")).toLowerCase();
-  const match = v => !words.length || words.every(w => hay(v).includes(w));
-  const cat = words.length ? "all" : active;
-  let html = "";
-  for (const c of CATS){
-    if (cat !== "all" && cat !== c.id) continue;
-    const items = V.filter(v => v.c === c.id && match(v));
-    if (!items.length) continue;
-    html += `<section class="cat" aria-labelledby="h-${c.id}"><div class="cat-head"><h2 id="h-${c.id}">${c.name}</h2><p>${c.blurb}</p></div><div class="grid">${items.map(card).join("")}</div></section>`;
+  const term = q.value.trim().toLowerCase(); const words = term.split(/\s+/).filter(Boolean);
+  let html = "", n = 0;
+  if (worry){
+    const w = WORRIES[worry]; const items = w.ids.map(id => byId[id]).filter(Boolean); n = items.length;
+    html = `<section class="cat"><div class="grid">${items.map(card).join("")}</div></section>`;
+    statusEl.innerHTML = `<span>Videos for <b>${esc(w.t)}</b> (${n})</span><button type="button" data-clear>Show all videos</button>`;
+  } else {
+    for (const c of CATS){
+      if (!words.length && active !== "all" && active !== c.id) continue;
+      const items = V.filter(v => v.c === c.id && words.every(w => hay(v).includes(w)));
+      if (!items.length) continue; n += items.length;
+      html += `<section class="cat" aria-labelledby="h-${c.id}"><div class="cat-head"><h2 id="h-${c.id}">${c.name}</h2><p>${c.blurb}</p></div><div class="grid">${items.map(card).join("")}</div></section>`;
+    }
+    statusEl.innerHTML = words.length ? `<span>${n} video${n===1?"":"s"} for "<b>${esc(q.value.trim())}</b>"</span><button type="button" data-clear>Clear</button>` : "";
   }
-  main.innerHTML = html || `<p class="empty">No video yet for "${esc(q.value)}". Try another test name, or ask us on Facebook or YouTube.</p>`;
-  const n = main.querySelectorAll(".card").length;
-  hits.textContent = words.length ? `${n} video${n===1?"":"s"} found for "${q.value.trim()}"` : "";
+  main.innerHTML = html || `<p class="empty">No video yet for "${esc(q.value)}". Try another word, or ask us on Facebook and we'll make one.</p>`;
 }
-
 function chipsRender(){
-  const all = [{id:"all", name:"All"}].concat(CATS);
-  chips.innerHTML = all.map(c => `<button class="chip" type="button" data-id="${c.id}" aria-pressed="${c.id===active}">${c.name}</button>`).join("");
+  chips.innerHTML = [{id:"all",name:"All"}].concat(CATS).map(c => `<button class="chip" type="button" data-id="${c.id}" aria-pressed="${!worry && c.id===active}">${c.name}</button>`).join("");
 }
-chips.addEventListener("click", e => {
-  const b = e.target.closest(".chip"); if (!b) return;
-  active = b.dataset.id; try { localStorage.setItem("hts-cat", active); } catch(err) {}
-  chipsRender(); render();
+function tilesRender(){
+  $("tiles").innerHTML = WORRIES.map((w,i) => `<button class="tile" type="button" data-w="${i}" aria-pressed="${worry===String(i)}"><span class="ic" aria-hidden="true">${w.ic}</span><b>${esc(w.t)}</b><small>${esc(w.s)}</small></button>`).join("");
+}
+function toLibrary(){ $("library").scrollIntoView({behavior:"smooth"}); }
+function setSearch(val){ q.value = q2.value = val; worry = null; active = "all"; tilesRender(); chipsRender(); render(); }
+
+$("tiles").addEventListener("click", e => { const b = e.target.closest(".tile"); if (!b) return;
+  worry = b.dataset.w; q.value = q2.value = ""; tilesRender(); chipsRender(); render(); toLibrary(); });
+chips.addEventListener("click", e => { const b = e.target.closest(".chip"); if (!b) return;
+  active = b.dataset.id; worry = null; q.value = q2.value = ""; tilesRender(); chipsRender(); render(); });
+statusEl.addEventListener("click", e => { if (e.target.closest("[data-clear]")) setSearch(""); });
+q.addEventListener("input", () => { q2.value = q.value; worry = null; tilesRender(); chipsRender(); render(); });
+q.addEventListener("keydown", e => { if (e.key === "Enter") toLibrary(); });
+q.addEventListener("change", () => { if (q.value) toLibrary(); });
+q2.addEventListener("input", () => { q.value = q2.value; worry = null; tilesRender(); chipsRender(); render(); });
+document.querySelector(".quick").addEventListener("click", e => { const b = e.target.closest("[data-q]"); if (!b) return; setSearch(b.dataset.q); toLibrary(); });
+$("testnames").innerHTML = V.slice().sort((a,b)=>a.t.localeCompare(b.t)).map(v => `<option value="${esc(v.t)}">`).join("");
+
+// myths
+$("myths").innerHTML = MYTHS.map((m,i) => `<button class="myth" type="button" aria-expanded="false"><span class="in">
+  <span class="f"><span class="tag">Myth</span><q>${esc(m.m)}</q><span class="hint">Tap to see the fact</span></span>
+  <span class="b"><span class="tag">Fact</span><span>${esc(m.f)}</span><span class="hint" data-play="${m.id}" style="color:var(--blue-2);font-weight:700">Watch the video</span></span></span></button>`).join("");
+$("myths").addEventListener("click", e => {
+  const pl = e.target.closest("[data-play]"); const b = e.target.closest(".myth");
+  if (pl && b.getAttribute("aria-expanded") === "true") { openV(pl.dataset.play); return; }
+  if (b) b.setAttribute("aria-expanded", b.getAttribute("aria-expanded") === "true" ? "false" : "true");
 });
-q.addEventListener("input", render);
-// play one video at a time
-main.addEventListener("play", e => { main.querySelectorAll("video").forEach(v => { if (v !== e.target) v.pause(); }); }, true);
 
-document.getElementById("f-videos").textContent = V.length;
-chipsRender(); render();
-const h = location.hash.slice(1);
-if (h) { const el = document.getElementById(h); if (el) el.scrollIntoView(); }
+// today's video
+(function(){ const v = byId[TODAY] || V[V.length-1];
+  $("today").innerHTML = `<button class="thumb" type="button" data-play="${v.id}" aria-label="Play today's video"><img src="p/${v.id}.jpg" alt="" width="360" height="640"><span class="pbtn"></span></button>
+  <div><span class="badge">Today's video</span><h2>${esc(v.t)}</h2><p>${esc(v.s)}</p><button class="play" type="button" data-play="${v.id}">Watch now (${v.d})</button></div>`; })();
+
+// player
+const dlg = $("player"), pv = $("pv");
+let cur = null;
+function nextOf(id){ const list = worry ? WORRIES[worry].ids : V.map(v => v.id); const i = list.indexOf(id); return byId[list[(i+1) % list.length]] || V[0]; }
+function openV(id){
+  const v = byId[id]; if (!v) return; cur = id;
+  pv.src = `v/${v.id}.mp4`; pv.poster = `p/${v.id}.jpg`;
+  $("pm").innerHTML = `<span>${esc(catName(v.c))}</span><span class="lang">${v.l}</span><span>${v.d} min</span>`;
+  $("pt").textContent = v.t; $("ps").textContent = v.s;
+  $("pd").innerHTML = v.x.map(([a,b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("");
+  const url = SITE + "#" + v.id;
+  $("pw").href = "https://wa.me/?text=" + encodeURIComponent(v.t + " – watch this 2-minute video in Hindi: " + url);
+  const n = nextOf(id);
+  $("pn").innerHTML = `<small>Watch next</small><button type="button" data-next="${n.id}"><img src="p/${n.id}.jpg" alt=""><b>${esc(n.t)}</b></button>`;
+  if (!dlg.open) dlg.showModal();
+  history.replaceState(null, "", "#" + v.id);
+  pv.play().catch(()=>{});
+}
+function closeV(){ pv.pause(); pv.removeAttribute("src"); pv.load(); if (dlg.open) dlg.close(); history.replaceState(null, "", location.pathname); }
+document.addEventListener("click", e => { const p = e.target.closest("[data-play]"); if (p && !p.closest(".myth")) { e.preventDefault(); openV(p.dataset.play); } });
+$("pn").addEventListener("click", e => { const b = e.target.closest("[data-next]"); if (b) openV(b.dataset.next); });
+$("px").addEventListener("click", closeV);
+dlg.addEventListener("cancel", e => { e.preventDefault(); closeV(); });
+dlg.addEventListener("click", e => { if (e.target === dlg) closeV(); });
+pv.addEventListener("ended", () => { const b = $("pn").querySelector("button"); if (b) b.focus(); });
+$("pc").addEventListener("click", async () => { try { await navigator.clipboard.writeText(SITE + "#" + cur); $("pc").textContent = "Link copied"; setTimeout(()=>$("pc").textContent = "Copy link", 1600); } catch(e) {} });
+
+tilesRender(); chipsRender(); render();
+const h = location.hash.slice(1); if (h && byId[h]) openV(h);
 </script>
-
 </body>
 </html>
