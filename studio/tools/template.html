@@ -62,6 +62,12 @@ button{font:inherit; color:inherit}
 .soc{display:inline-flex; align-items:center; gap:8px; text-decoration:none; font-weight:600; font-size:.95rem; color:var(--ink); background:var(--surface); border:1px solid var(--line); border-radius:999px; padding:7px 14px}
 .soc:hover{border-color:var(--blue-2)}
 
+/* disclaimer */
+.disc{display:flex; gap:10px; align-items:flex-start; background:var(--tint-saffron); border:1px solid color-mix(in srgb,var(--saffron) 45%,transparent); border-radius:14px; padding:10px 14px; font-size:.95rem; color:var(--ink); margin-bottom:8px}
+.disc b{white-space:nowrap}
+.disc.big{padding:16px 20px; font-size:1rem; margin-top:16px}
+.pl .disc{margin:4px 0 0; font-size:.88rem}
+
 /* hero */
 .hero{display:grid; grid-template-columns:minmax(0,1.1fr) minmax(0,.9fr); gap:40px; align-items:center; padding-block:20px 36px}
 .hero h1{font-size:clamp(2.2rem,5vw,3.6rem); font-weight:800; letter-spacing:-.01em; color:var(--blue); max-width:14ch}
@@ -207,7 +213,7 @@ dialog::backdrop{background:rgba(6,18,28,.82)}
 
 @media (max-width:1000px){ .grid{grid-template-columns:repeat(3,minmax(0,1fr))} .tiles{grid-template-columns:repeat(3,minmax(0,1fr))} .mrow{grid-template-columns:repeat(2,minmax(0,1fr))} }
 @media (max-width:820px){ .hero{grid-template-columns:minmax(0,1fr); gap:24px} .follow{grid-template-columns:minmax(0,1fr)} .pl{grid-template-columns:minmax(0,1fr); max-height:none} .pl video{max-height:70vh} dialog{max-height:96vh; overflow:auto} }
-@media (max-width:600px){ .srow{grid-auto-columns:76%}  .wrap{padding-inline:16px} .grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px} .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .mrow{grid-template-columns:minmax(0,1fr)} .myth,.myth .in{min-height:150px} .notes{grid-template-columns:minmax(0,1fr)} .soc .lbl{display:none} .top .sub{display:none} .today{grid-template-columns:110px minmax(0,1fr)} .worry{padding:22px 16px; border-radius:22px} .card .body{padding:10px} .card h3{font-size:1rem} .card .sum{display:none} .filters .wrap{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none} .filters .wrap::-webkit-scrollbar{display:none} .chip{flex:none} .filters .mini{flex:0 0 150px; margin-left:0} }
+@media (max-width:600px){ .srow{grid-auto-columns:76%} .disc{font-size:.88rem; padding:8px 12px}  .wrap{padding-inline:16px} .grid{grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px} .tiles{grid-template-columns:repeat(2,minmax(0,1fr))} .mrow{grid-template-columns:minmax(0,1fr)} .myth,.myth .in{min-height:150px} .notes{grid-template-columns:minmax(0,1fr)} .soc .lbl{display:none} .top .sub{display:none} .today{grid-template-columns:110px minmax(0,1fr)} .worry{padding:22px 16px; border-radius:22px} .card .body{padding:10px} .card h3{font-size:1rem} .card .sum{display:none} .filters .wrap{flex-wrap:nowrap; overflow-x:auto; scrollbar-width:none} .filters .wrap::-webkit-scrollbar{display:none} .chip{flex:none} .filters .mini{flex:0 0 150px; margin-left:0} }
 @media (prefers-reduced-motion:reduce){ *{transition:none!important; scroll-behavior:auto!important} }
 </style>
 </head>
@@ -221,6 +227,8 @@ dialog::backdrop{background:rgba(6,18,28,.82)}
     <a class="soc" href="{{FB}}" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="12" fill="#1877f2"/><path d="M13.4 19v-6h2l.3-2.4h-2.3V9.1c0-.7.2-1.2 1.2-1.2h1.2V5.8c-.2 0-1-.1-1.8-.1-1.8 0-3 1.1-3 3.1v1.8H9v2.4h2v6z" fill="#fff"/></svg><span class="lbl">Facebook</span></a>
     <a class="soc" href="{{YT}}" target="_blank" rel="noopener"><svg width="22" height="16" viewBox="0 0 28 20" aria-hidden="true"><rect width="28" height="20" rx="5" fill="#ff0000"/><path d="M11 5.5v9l7.5-4.5z" fill="#fff"/></svg><span class="lbl">YouTube</span></a>
   </header>
+
+  <p class="disc" role="note"><b>Please note:</b><span>These videos are for general awareness only. Facts may change over time. Don't compare your condition with a video; always consult your doctor and follow their advice.</span></p>
 
   <section class="hero">
     <div>
@@ -280,8 +288,9 @@ dialog::backdrop{background:rgba(6,18,28,.82)}
   </section>
   <div class="notes">
     <div><h3>About medicines</h3><p>Take any medicine only as advised by your doctor.</p></div>
-    <div><h3>For awareness only</h3><p>These videos explain tests in simple words. They do not replace a doctor's advice. Report ranges vary slightly between labs.</p></div>
+    <div><h3>For awareness only</h3><p>These videos explain diseases and tests in simple words for general awareness. They do not replace a doctor's advice. Report ranges vary between labs.</p></div>
   </div>
+  <p class="disc big" role="note"><span>Disclaimer: these videos are for general awareness about diseases and tests only. Medical facts and guidelines may change over time. Please do not compare your own condition with any video. Always consult your doctor and follow only their advice.</span></p>
   <footer>Health Test Simplified. Follow us on <a href="{{FB}}" target="_blank" rel="noopener">Facebook</a> and <a href="{{YT}}" target="_blank" rel="noopener">YouTube</a> to get more information.</footer>
 </div>
 
@@ -295,6 +304,7 @@ dialog::backdrop{background:rgba(6,18,28,.82)}
       <p class="sum" id="ps"></p>
       <div class="acts"><a class="wa" id="pw" target="_blank" rel="noopener">Share on WhatsApp</a><button class="ghost" type="button" id="pc">Copy link</button></div>
       <details open><summary>Test details</summary><dl id="pd"></dl></details>
+      <p class="disc" role="note"><span>For general awareness only. Facts may change. Don't compare your condition with this video; consult your doctor and follow their advice.</span></p>
       <div class="next" id="pn"></div>
     </div>
   </div>

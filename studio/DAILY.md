@@ -26,7 +26,7 @@ Copy `studio/engine/example_voice.py` and `studio/engine/example_cartoon.py` (Th
 - 9 scenes, about 2–2.5 minutes total: hook (navy/purple bg), what it is, why/when, what it shows, who should test, preparation, how to read the result, myth buster or good-to-know, close.
 - Voice: Hindi, plain words, `.` not `।`, numbers in Hindi words. Hook ends with "आखिर तक देखिए".
 - Daily pill on screen: e.g. `THURSDAY HEALTH TIPS  •  8 OCT 2026` (weekday + date in IST).
-- Closing scene: ALWAYS `close_scene("<question in English>?", DATE)` from `hts_close.py`, and the voice line from `close_voice("<same question in Hindi>?")`. It says "Take any medicine only as advised by your doctor" and "follow our Facebook page & YouTube channel to get more information".
+- Closing scene: ALWAYS `close_scene("<question in English>?", DATE)` from `hts_close.py`, and the voice line from `close_voice("<same question in Hindi>?")`. It says "Take any medicine only as advised by your doctor", "follow our Facebook page & YouTube channel to get more information", and shows + speaks the DISCLAIMER (general awareness only; facts may change; don't compare your condition with the video; consult your doctor and follow only their advice). The disclaimer is mandatory in every video: the Hindi text is `DISCLAIMER_HI` in hts_close.py and must be the end of the last voice line.
 - Voice post-processing is already in example_voice.py (female voice, rubberband pitch 0.96, formant preserved). Keep it.
 - Run the voice script in the background (`nohup python3 x_voice.py > /tmp/x_voice.log 2>&1 &`) and poll; it writes `/tmp/<prefix>durs.json`.
 
@@ -58,6 +58,6 @@ EOF
 ## 7. Report to the owner
 Send the full-size MP4 with SendUserFile, and a short message with:
 - what the video covers (5–7 bullets),
-- the Facebook caption: hook line, "Watch till the end 👀", a question, "Share with your family 🙏", "👉 Follow our Facebook page & YouTube channel to get more information", the direct link `https://healthtestsimplified.netlify.app/#<id>`, then hashtags. Always include: #HealthTestSimplified #india #WestBengal #assam #jharkhand #Bihar #science #biology #ReelsIndia #FBReels #viralreelschallenge plus 4–5 topic tags,
+- the Facebook caption (must include the line "⚠️ For general awareness only. Facts may change. Don't compare your condition with this video; consult your doctor and follow their advice."): hook line, "Watch till the end 👀", a question, "Share with your family 🙏", "👉 Follow our Facebook page & YouTube channel to get more information", the direct link `https://healthtestsimplified.netlify.app/#<id>`, then hashtags. Always include: #HealthTestSimplified #india #WestBengal #assam #jharkhand #Bihar #science #biology #ReelsIndia #FBReels #viralreelschallenge plus 4–5 topic tags,
 - the sources used, and anything lab-specific the owner should confirm with Suraksha's lab team.
 If any step fails, publish nothing broken: report what failed and leave the website unchanged.

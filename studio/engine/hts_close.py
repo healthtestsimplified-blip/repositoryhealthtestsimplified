@@ -4,7 +4,13 @@ from lft_cartoon2 import *
 # Hindi voice for the last scene. Put the video-specific question in `question_hi`.
 def close_voice(question_hi):
     return ("याद रखें, कोई भी दवा सिर्फ डॉक्टर की सलाह से ही लें. " + question_hi +
-            " कमेंट में बताइए, और शेयर करें. और ज़्यादा जानकारी के लिए, हमारा फेसबुक पेज और यूट्यूब चैनल फॉलो करें. हेल्थ टेस्ट सिम्प्लिफाइड.")
+            " कमेंट में बताइए, और शेयर करें. और ज़्यादा जानकारी के लिए, हमारा फेसबुक पेज और यूट्यूब चैनल फॉलो करें. हेल्थ टेस्ट सिम्प्लिफाइड. "
+            + DISCLAIMER_HI)
+
+DISCLAIMER_HI = ("ध्यान दें, यह वीडियो केवल बीमारियों और टेस्ट के बारे में सामान्य जानकारी के लिए है. जानकारी समय के साथ बदल सकती है. "
+                 "अपनी स्थिति को इस वीडियो से न जोड़ें. हमेशा अपने डॉक्टर से ही सलाह लें, और उन्हीं की सलाह मानें.")
+DISCLAIMER_EN = ("Disclaimer: For general awareness about diseases and tests only. Facts may change over time. "
+                 "Do not compare your condition with this video. Always consult your doctor and follow only their advice.")
 
 FB_BLUE = (24, 119, 242); YT_RED = (230, 0, 0)
 
@@ -25,6 +31,16 @@ def social_row(fr, y, t, tin):
     if a < 1: im.putalpha(im.getchannel("A").point(lambda v: int(v * a)))
     fr.alpha_composite(im, (0, y))
 
+def disclaimer_box(fr, y, t, tin):
+    if t < tin: return
+    im = Image.new("RGBA", (W, 250), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle((50, 0, W - 50, 240), 26, fill=(255, 243, 224), outline=(245, 124, 0), width=4)
+    lines = ["Disclaimer: for general awareness only.", "Facts may change over time. Do not compare your",
+             "condition with this video. Always consult your", "doctor and follow only their advice."]
+    for i, l in enumerate(lines):
+        d.text((W / 2, 48 + i * 50), l, font=font("Bold" if i == 0 else "Medium", 34 if i == 0 else 31), fill=(120, 60, 0) if i == 0 else GREY, anchor="mm")
+    fr.alpha_composite(im, (0, y))
+
 def close_scene(question_en, date_pill=None):
     def s(fr, t, D):
         show(fr, big_logo(), 190, t, 0.2)
@@ -34,8 +50,8 @@ def close_scene(question_en, date_pill=None):
         fire("pop", D * 0.5)
         show(fr, text_el("Follow our Facebook page & YouTube channel to get more information", 42, color=DBLUE), 1190, t, D * 0.5)
         social_row(fr, 1290, t, D * 0.55)
-        if date_pill: show(fr, pill(date_pill, ORANGE, size=32), 1470, t, D * 0.65)
-        show(fr, text_el("For awareness only. Consult your doctor.", 30, "Regular", GREY), 1680, t, D * 0.7)
+        if date_pill: show(fr, pill(date_pill, ORANGE, size=32), 1445, t, D * 0.65)
+        disclaimer_box(fr, 1530, t, D * 0.7)
     return s
 
 if __name__ == "__main__":
