@@ -6,7 +6,7 @@
    "title": "ECG",
    "desc": "The 2-minute heart tracing: chest pain, palpitations, before surgery",
    "date": "2026-10-08",
-   "status": "planned",
+   "status": "done",
    "tests": [
     "E.C.G.",
     "E.C.G. WITH MAGNET",
@@ -14,7 +14,8 @@
     "E.C.G. WITH MAGNET - RESIDENT",
     "E.C.G. - RESIDENT",
     "RESIDENTIAL CHARGES FOR ECG"
-   ]
+   ],
+   "video": "ecg"
   },
   {
    "id": "sugar",
