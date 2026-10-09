@@ -160,6 +160,13 @@ const V = [
      ["Brain scan","MRI or CT rules out stroke, tumour or fluid and can show brain shrinkage. Sometimes PET or spinal fluid tests are used."],
      ["New blood test","pTau217 / Beta-Amyloid 1-42 ratio (plasma): a blood sample, report in about 48 hours, for adults 50+ with signs of memory decline. Positive = high chance of Alzheimer's-related amyloid changes; grey zone = more tests may be needed; negative = very low chance. Not a screening test and not a diagnosis on its own; your doctor reads it with other tests."],
      ["In India","About 7.4% of people over 60 (around 88 lakh) have dementia (LASI-DAD, 2023). Up to 45% of dementia may be prevented or delayed (Lancet Commission, 2024)."]]},
+ {id:"uric", c:"daily", t:"Uric acid test: gout & joint pain", l:"Hindi", d:"3:04",
+  s:"Saturday tips, 10 Oct 2026. Sudden pain and swelling in the big toe? What uric acid is, why it rises and how to read the test.",
+  x:[["What it is","Uric acid is a waste made when purines (found in our cells and some foods) break down. Most of it leaves the body through the kidneys in urine."],
+     ["Why it matters","If the body makes too much or the kidneys remove too little, the level rises. Needle-like crystals can form in joints (gout), and some people get kidney stones."],
+     ["What can raise it","Red and organ meat, some seafood, alcohol (especially beer), sugary soft drinks, extra weight, kidney disease, some medicines, and gout in the family."],
+     ["The test","A simple blood test; some labs ask for a few hours of fasting, so follow your lab's instructions. Avoid alcohol before the test and tell your doctor about your medicines. A 24-hour urine uric acid is sometimes done, mainly for kidney stones."],
+     ["Reading the result","Usually about 3.5 to 7 mg/dL (approximately), a little lower in women; ranges vary by lab. Uric acid can be normal during a gout attack, and many people with high uric acid never get gout. Whether medicine is needed is decided by your doctor."]]},
  {id:"sugar", c:"daily", t:"Blood sugar: fasting, PP & GTT", l:"Hindi", d:"2:49",
   s:"Friday tips, 9 Oct 2026. Thirsty, passing urine often, slow healing? The 3 main sugar tests and what the numbers mean.",
   x:[["Fasting (FBS)","No food for at least 8 hours; plain water is fine. Below 100 mg/dL normal, 100–125 prediabetes, 126 or more may be diabetes (ADA criteria)."],
@@ -189,6 +196,7 @@ const V = [
 ];
 
 const KEYS = {
+ uric:"uric acid test, uric acid normal range, high uric acid, uric acid symptoms, gout, gout test, joint pain test, big toe pain, hyperuricemia, serum uric acid, 24 hour urine uric acid, kidney stone test, uric acid in hindi, uric acid kitna hona chahiye, uric acid kaise kam kare, uric acid badhne ke lakshan, gathiya, यूरिक एसिड, यूरिक एसिड टेस्ट, यूरिक एसिड कितना होना चाहिए, गठिया, जोड़ों का दर्द, पैर के अंगूठे में दर्द, health test simplified",
  lft:"liver sgpt sgot bilirubin jaundice fatty liver hepatitis",
  lipid:"cholesterol ldl hdl triglycerides heart",
  cbc:"complete blood count haemoglobin hemoglobin hb platelets wbc rbc anaemia anemia dengue",

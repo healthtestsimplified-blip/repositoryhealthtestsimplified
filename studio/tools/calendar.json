@@ -45,12 +45,13 @@
    "title": "Uric acid",
    "desc": "Joint pain, gout and kidney stones",
    "date": "2026-10-10",
-   "status": "planned",
+   "status": "done",
    "tests": [
     "URIC ACID*",
     "URIC ACID, URINE*",
     "URIC ACID : CREATININE RATIO*"
-   ]
+   ],
+   "video": "uric"
   },
   {
    "id": "esrcrp",
