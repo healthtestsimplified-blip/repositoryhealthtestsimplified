@@ -22,7 +22,7 @@
    "title": "Blood sugar: fasting, PP & GTT",
    "desc": "Fasting, after-meal and glucose tolerance tests for diabetes",
    "date": "2026-10-09",
-   "status": "planned",
+   "status": "done",
    "tests": [
     "GLUCOSE TOLERANCE TEST 100 GM (0,1,2,3) (For pregnant women)",
     "GLUCOSE CHALLENGE TEST; (1 HR) (For pregnant women)",
@@ -37,7 +37,8 @@
     "GLUCOSE CHALLENGE TEST 75g; (2 HR) (For pregnant women)",
     "GROWTH HORMONE SUPPRESSION BY GLUCOSE",
     "GROWTH HORMONE SUPPRESSION TEST -GLUCOSE"
-   ]
+   ],
+   "video": "sugar"
   },
   {
    "id": "uric",
