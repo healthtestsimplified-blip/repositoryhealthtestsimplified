@@ -90,29 +90,39 @@
   },
   {
    "id": "ncv",
-   "title": "NCV & EMG",
+   "title": "EMG & NCV",
    "desc": "Numbness, tingling, nerve and muscle problems",
+   "date": "2026-10-10",
+   "status": "done",
+   "tests": [
+    "EMG*",
+    "EMG ALL LIMBS",
+    "EMG FACIAL NERVES",
+    "VEP",
+    "BAER",
+    "EMG NEEDLE",
+    "RNST*",
+    "SSEP",
+    "EMG TONGUE",
+    "EMG PARASPINAL"
+   ],
+   "video": "emg"
+  },
+  {
+   "id": "ncvnerve",
+   "title": "NCV nerve test",
+   "desc": "Nerve speed test for numbness and burning feet",
    "date": "2026-10-10",
    "status": "done",
    "tests": [
     "NCV*",
     "NCV ALL LIMBS",
     "NCV FACIAL NERVE",
-    "EMG*",
-    "EMG ALL LIMBS",
-    "EMG FACIAL NERVES",
-    "VEP",
-    "BAER",
+    "NCV HAND BRACHIAL PLEXUS",
     "H-REFLEX",
-    "EMG NEEDLE",
-    "RNST*",
-    "SSEP",
-    "EMG TONGUE",
-    "EMG PARASPINAL",
-    "BLINK-REFLEX",
-    "NCV HAND BRACHIAL PLEXUS"
+    "BLINK-REFLEX"
    ],
-   "video": "emg"
+   "video": "ncv"
   },
   {
    "id": "esrcrp",
