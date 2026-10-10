@@ -109,6 +109,14 @@ const V = [
      ["Reading the report","Positive (cause found) · Negative (no cause found, genetic not ruled out) · VUS (change of uncertain meaning). About 1 in 3 families find an answer."],
      ["Good to know","Cannot catch every change (e.g. Fragile X). Genetic counselling before and after is important."]]},
 
+ {id:"amh", c:"preg", t:"AMH test (egg reserve)", l:"Hindi", d:"2:43",
+  s:"Planning a baby and told to do AMH? What it shows, what it doesn't, and why low AMH is not 'no baby'.",
+  x:[["What it is","Anti-Müllerian Hormone, made by small egg sacs in the ovaries. It shows roughly how many eggs are left (ovarian reserve). It falls with age, faster after 35."],
+     ["What it does NOT show","Egg quality, or your chance of natural pregnancy. In a large study (JAMA 2017) of women 30–44, low AMH did not lower natural pregnancy chances."],
+     ["When it is useful","IVF planning (how the ovaries may respond to medicines), PCOS (often high), egg freezing or planning a baby later, after ovary surgery or chemotherapy. As your doctor advises."],
+     ["The test","One blood sample, any day of the cycle. Birth control pills can make AMH read lower; tell your doctor."],
+     ["Reading the report","Low: fewer eggs left, see a fertility doctor. Normal for age: reassuring. High: sometimes seen in PCOS. Normal range depends on age and the lab; doctors also check age, ultrasound and other hormones. Both partners matter."]]},
+
  {id:"story", c:"bio", t:"From Protein to Cell: the full story", l:"Hindi", d:"4:09",
   s:"Seven chapters in one video: protein, gene, DNA, histones, chromosome, nucleus and cell.",
   x:[["Chapters","Protein · Gene · DNA · Histones · Chromosome · Nucleus · Cell"],
@@ -208,6 +216,7 @@ const KEYS = {
  hba1c:"sugar diabetes glucose fasting pp hba1c",
  vitd:"vitamin d b12 bones",
  alz:"ptau217 test, ptau217 amyloid ratio, alzheimer blood test india, amyloid blood test, alzheimer test, alzheimer's disease, alzheimer test in hindi, dementia test, memory loss test, how is alzheimer diagnosed, alzheimer symptoms, early signs of dementia, memory loss in elderly, forgetfulness in old age, MMSE test, MRI brain for dementia, CT scan brain memory loss, vitamin B12 memory loss, thyroid and memory loss, alzheimer blood test, p-tau217 blood test, dementia in India, prevent dementia, brain health tips, अल्ज़ाइमर, अल्ज़ाइमर टेस्ट, डिमेंशिया, भूलने की बीमारी, याददाश्त कमजोर होना, bhoolne ki bimari, yaaddasht kamzor, health test simplified",
+ amh:"AMH test, AMH test in hindi, anti mullerian hormone, AMH blood test, ovarian reserve test, egg reserve test, low AMH, high AMH PCOS, AMH normal range by age, AMH and pregnancy, can I get pregnant with low AMH, AMH test for IVF, egg freezing test, fertility test for women, infertility test, AMH test kab karaye, AMH kam hona, एएमएच टेस्ट, अंडों की संख्या, बांझपन जांच, प्रेग्नेंसी प्लानिंग टेस्ट, fertility hormone test, PCOS test, health test simplified",
  sugar:"blood sugar test, fasting blood sugar, FBS test, PP sugar test, PPBS test, post meal sugar, GTT test, glucose tolerance test, OGTT 75 g, normal sugar level, diabetes test, prediabetes, sugar test in hindi, fasting sugar normal range, sugar test kaise hota hai, sugar test kab karaye, DIPSI test, gestational diabetes test, pregnancy sugar test, diabetes in India, शुगर टेस्ट, खाली पेट शुगर, डायबिटीज़ जांच, शुगर कितनी होनी चाहिए, health test simplified",
  ecg:"ECG test, ECG test in hindi, electrocardiogram, EKG test, ECG kya hai, ECG kaise hota hai, ECG report kaise samjhe, normal heart rate, chest pain test, palpitations test, heart attack symptoms, heart attack ke lakshan, irregular heartbeat, Holter test, TMT test, 2D echo, ECG before surgery, ईसीजी टेस्ट, ईसीजी क्या है, दिल की जांच, सीने में दर्द, दिल का दौरा लक्षण, dil ki jaanch, heart test in hindi, health test simplified",
  thyroid:"thyroid tsh t3 t4 hypothyroid hyperthyroid goitre weight hair fall",

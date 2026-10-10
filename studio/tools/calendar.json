@@ -54,6 +54,17 @@
    "video": "uric"
   },
   {
+   "id": "amh",
+   "title": "AMH (egg reserve)",
+   "desc": "Fertility planning for women",
+   "date": "2026-10-10",
+   "status": "done",
+   "tests": [
+    "AMH-ANTI MULLERIAN HORMONE/MULLERIAN INHIBITING SUBSTANCE"
+   ],
+   "video": "amh"
+  },
+  {
    "id": "esrcrp",
    "title": "ESR & CRP",
    "desc": "Inflammation markers: what a high value means",
@@ -335,20 +346,10 @@
    ]
   },
   {
-   "id": "amh",
-   "title": "AMH (egg reserve)",
-   "desc": "Fertility planning for women",
-   "date": "2026-10-27",
-   "status": "planned",
-   "tests": [
-    "AMH-ANTI MULLERIAN HORMONE/MULLERIAN INHIBITING SUBSTANCE"
-   ]
-  },
-  {
    "id": "semen",
    "title": "Semen analysis",
    "desc": "Male fertility test",
-   "date": "2026-10-28",
+   "date": "2026-10-27",
    "status": "planned",
    "tests": [
     "ANTI SPERM ANTIBODY",
@@ -362,7 +363,7 @@
    "id": "pcod",
    "title": "PCOD tests & female hormones",
    "desc": "LH, FSH, prolactin, testosterone in PCOD",
-   "date": "2026-10-29",
+   "date": "2026-10-28",
    "status": "planned",
    "tests": [
     "POLYCYSTIC OVARIAN DISEASE PANEL (PCOD)",
@@ -385,7 +386,7 @@
    "id": "testo",
    "title": "Testosterone",
    "desc": "Male hormone: low energy, low libido",
-   "date": "2026-10-30",
+   "date": "2026-10-29",
    "status": "planned",
    "tests": [
     "DIHYDRO TESTOSTERONE (DHT)",
@@ -398,7 +399,7 @@
    "id": "cortisol",
    "title": "Cortisol",
    "desc": "The stress hormone",
-   "date": "2026-10-31",
+   "date": "2026-10-30",
    "status": "planned",
    "tests": [
     "ACTH-ADRENO CORTICOTROPIC HORMONE",
@@ -412,7 +413,7 @@
    "id": "insulin",
    "title": "Insulin & HOMA-IR",
    "desc": "Insulin resistance before diabetes",
-   "date": "2026-11-01",
+   "date": "2026-10-31",
    "status": "planned",
    "tests": [
     "INSULIN HUMAN [ALLERGEN]",
@@ -437,7 +438,7 @@
    "id": "acr",
    "title": "Urine microalbumin",
    "desc": "Early kidney damage in diabetes and BP",
-   "date": "2026-11-02",
+   "date": "2026-11-01",
    "status": "planned",
    "tests": [
     "MICRO ALBUMIN/CREATININE RATIO*",
@@ -449,7 +450,7 @@
    "id": "stool",
    "title": "Stool routine & occult blood",
    "desc": "Worms, infection and hidden blood",
-   "date": "2026-11-03",
+   "date": "2026-11-02",
    "status": "planned",
    "tests": [
     "GIARDIA ANTIGEN, STOOL",
@@ -467,7 +468,7 @@
    "id": "hpylori",
    "title": "H. pylori test",
    "desc": "Acidity, ulcers and the stomach bug",
-   "date": "2026-11-04",
+   "date": "2026-11-03",
    "status": "planned",
    "tests": [
     "HELICOBACTER PYLORI ANTIBODIES*",
@@ -478,7 +479,7 @@
    "id": "endo",
    "title": "Endoscopy (UGI)",
    "desc": "Looking inside the food pipe and stomach",
-   "date": "2026-11-05",
+   "date": "2026-11-04",
    "status": "planned",
    "tests": [
     "UPPER G.I. ENDOSCOPY",
@@ -491,7 +492,7 @@
    "id": "colono",
    "title": "Colonoscopy",
    "desc": "Bleeding, bowel changes, colon cancer screening",
-   "date": "2026-11-06",
+   "date": "2026-11-05",
    "status": "planned",
    "tests": [
     "VIRTUAL COLONOSCOPY",
@@ -508,7 +509,7 @@
    "id": "fibro",
    "title": "Fibroscan",
    "desc": "Fatty liver and liver stiffness without a needle",
-   "date": "2026-11-07",
+   "date": "2026-11-06",
    "status": "planned",
    "tests": [
     "Elastography Liver",
@@ -520,7 +521,7 @@
    "id": "pancreas",
    "title": "Amylase & lipase",
    "desc": "Pancreas tests for severe stomach pain",
-   "date": "2026-11-08",
+   "date": "2026-11-07",
    "status": "planned",
    "tests": [
     "AMYLASE",
@@ -531,7 +532,7 @@
    "id": "trop",
    "title": "Troponin (heart attack test)",
    "desc": "Chest pain emergency blood test",
-   "date": "2026-11-09",
+   "date": "2026-11-08",
    "status": "planned",
    "tests": [
     "CREATINE KINASE -MB (CKMB)",
@@ -547,7 +548,7 @@
    "id": "bnp",
    "title": "NT-proBNP",
    "desc": "Heart failure blood test",
-   "date": "2026-11-10",
+   "date": "2026-11-09",
    "status": "planned",
    "tests": [
     "NT PRO BNP"
@@ -557,7 +558,7 @@
    "id": "ddimer",
    "title": "D-dimer",
    "desc": "Blood clot test",
-   "date": "2026-11-11",
+   "date": "2026-11-10",
    "status": "planned",
    "tests": [
     "D-DIMER QUANTIFICATION"
@@ -567,7 +568,7 @@
    "id": "ptinr",
    "title": "PT/INR & APTT",
    "desc": "Clotting tests and blood thinners",
-   "date": "2026-11-12",
+   "date": "2026-11-11",
    "status": "planned",
    "tests": [
     "APTT",
@@ -584,7 +585,7 @@
    "id": "bgroup",
    "title": "Blood group & Rh",
    "desc": "Why your blood group matters in pregnancy",
-   "date": "2026-11-13",
+   "date": "2026-11-12",
    "status": "planned",
    "tests": [
     "BLOOD GROUP ABO+RH [GEL METHOD]",
@@ -595,7 +596,7 @@
    "id": "smear",
    "title": "Peripheral smear & reticulocytes",
    "desc": "Looking at blood cells under the microscope",
-   "date": "2026-11-14",
+   "date": "2026-11-13",
    "status": "planned",
    "tests": [
     "PERIPHERAL ANGIO",
@@ -616,7 +617,7 @@
    "id": "g6pd",
    "title": "G6PD test",
    "desc": "A hidden enzyme deficiency",
-   "date": "2026-11-15",
+   "date": "2026-11-14",
    "status": "planned",
    "tests": [
     "G6PD-NEONATAL SCREEN",
@@ -627,7 +628,7 @@
    "id": "ana",
    "title": "ANA (autoimmune test)",
    "desc": "When the body attacks itself",
-   "date": "2026-11-16",
+   "date": "2026-11-15",
    "status": "planned",
    "tests": [
     "RENAL TRACK FOR RENAL CAL",
@@ -663,7 +664,7 @@
    "id": "ra",
    "title": "RA factor & Anti-CCP",
    "desc": "Joint pain and rheumatoid arthritis",
-   "date": "2026-11-17",
+   "date": "2026-11-16",
    "status": "planned",
    "tests": [
     "NASOPHARYNX",
@@ -681,7 +682,7 @@
    "id": "allergy",
    "title": "Allergy tests & IgE",
    "desc": "Sneezing, rashes, food allergy",
-   "date": "2026-11-18",
+   "date": "2026-11-17",
    "status": "planned",
    "tests": [
     "ALLERGY SCREENING TEST (PHADIATOP)*",
@@ -748,7 +749,7 @@
    "id": "tumour",
    "title": "Tumour markers",
    "desc": "CEA, CA-125, CA 19-9, AFP: what they can and can't tell",
-   "date": "2026-11-19",
+   "date": "2026-11-18",
    "status": "planned",
    "tests": [
     "ALPHA FETOPROTEIN (AFP)",
@@ -775,7 +776,7 @@
    "id": "bculture",
    "title": "Blood culture",
    "desc": "Finding the germ in serious fever",
-   "date": "2026-11-20",
+   "date": "2026-11-19",
    "status": "planned",
    "tests": [
     "TB/AFB CULTURE ROUTINE (sensitivity not incl)*",
@@ -793,7 +794,7 @@
    "id": "tb",
    "title": "TB tests",
    "desc": "Sputum, GeneXpert, Mantoux and IGRA",
-   "date": "2026-11-21",
+   "date": "2026-11-20",
    "status": "planned",
    "tests": [
     "GENEXPERT TB (RIF)*",
@@ -812,7 +813,7 @@
    "id": "biopsy",
    "title": "Biopsy & histopathology",
    "desc": "How a tissue sample gives a diagnosis",
-   "date": "2026-11-22",
+   "date": "2026-11-21",
    "status": "planned",
    "tests": [
     "CT GUIDED TRUCUT BIOPSY",
@@ -930,7 +931,7 @@
    "id": "fnac",
    "title": "FNAC",
    "desc": "A needle test for lumps",
-   "date": "2026-11-23",
+   "date": "2026-11-22",
    "status": "planned",
    "tests": [
     "C.T.GUIDED FNAC",
@@ -946,7 +947,7 @@
    "id": "marrow",
    "title": "Bone marrow test",
    "desc": "When blood counts stay abnormal",
-   "date": "2026-11-24",
+   "date": "2026-11-23",
    "status": "planned",
    "tests": [
     "BONE MARROW ASPIRATION PANEL WITH PROCEDURE",
@@ -961,7 +962,7 @@
    "id": "newborn",
    "title": "Newborn screening",
    "desc": "Tests every family should know about",
-   "date": "2026-11-25",
+   "date": "2026-11-24",
    "status": "planned",
    "tests": [
     "CYSTIC FIBROSIS (IRT), NEONATAL SCREEN",
@@ -986,7 +987,7 @@
    "id": "ctbrain",
    "title": "CT scan of the head",
    "desc": "Headache, injury, stroke",
-   "date": "2026-11-26",
+   "date": "2026-11-25",
    "status": "planned",
    "tests": [
     "HEAD & BRAIN",
@@ -1003,7 +1004,7 @@
    "id": "hrct",
    "title": "HRCT & CT chest",
    "desc": "Lungs in detail",
-   "date": "2026-11-27",
+   "date": "2026-11-26",
    "status": "planned",
    "tests": [
     "H.R.C.T.THORAX",
@@ -1017,7 +1018,7 @@
    "id": "ctabd",
    "title": "CT abdomen & KUB",
    "desc": "Stones, pain, tumours",
-   "date": "2026-11-28",
+   "date": "2026-11-27",
    "status": "planned",
    "tests": [
     "UROGRAM/ UROGRAPHY",
@@ -1030,7 +1031,7 @@
    "id": "ctangio",
    "title": "CT coronary angiography & calcium score",
    "desc": "Checking heart arteries without a catheter",
-   "date": "2026-11-29",
+   "date": "2026-11-28",
    "status": "planned",
    "tests": [
     "CT-Angio Arch to Vertex",
@@ -1041,7 +1042,7 @@
    "id": "mribrain",
    "title": "MRI brain",
    "desc": "Headache, fits, stroke, memory problems",
-   "date": "2026-11-30",
+   "date": "2026-11-29",
    "status": "planned",
    "tests": [
     "ORBIT",
@@ -1079,7 +1080,7 @@
    "id": "mrispine",
    "title": "MRI spine",
    "desc": "Back pain, neck pain, slip disc",
-   "date": "2026-12-01",
+   "date": "2026-11-30",
    "status": "planned",
    "tests": [
     "SPINE*",
@@ -1140,7 +1141,7 @@
    "id": "mrijoint",
    "title": "MRI joints (knee, shoulder)",
    "desc": "Ligament and sports injuries",
-   "date": "2026-12-02",
+   "date": "2026-12-01",
    "status": "planned",
    "tests": [
     "JOINT*",
@@ -1210,7 +1211,7 @@
    "id": "mriabd",
    "title": "MRI abdomen & MRCP",
    "desc": "Liver, pancreas and bile ducts in detail",
-   "date": "2026-12-03",
+   "date": "2026-12-02",
    "status": "planned",
    "tests": [
     "FISTULOGRAM",
@@ -1235,7 +1236,7 @@
    "id": "xray",
    "title": "X-ray: bones & joints",
    "desc": "Fractures, arthritis, sinus",
-   "date": "2026-12-04",
+   "date": "2026-12-03",
    "status": "planned",
    "tests": [
     "NOSE & PARANASAL SINUS (PNS)",
@@ -1308,7 +1309,7 @@
    "id": "dexa",
    "title": "DEXA (bone density)",
    "desc": "Osteoporosis after 50",
-   "date": "2026-12-05",
+   "date": "2026-12-04",
    "status": "planned",
    "tests": [
     "Dexa Fore Arm"
@@ -1318,7 +1319,7 @@
    "id": "pregusg",
    "title": "Pregnancy scans: NT, anomaly & growth",
    "desc": "Which scan in which month",
-   "date": "2026-12-06",
+   "date": "2026-12-05",
    "status": "planned",
    "tests": [
     "GROWTH HORMONE (HGH)",
@@ -1349,7 +1350,7 @@
    "id": "doppler",
    "title": "Doppler scan",
    "desc": "Blood flow in legs, neck and kidneys",
-   "date": "2026-12-07",
+   "date": "2026-12-06",
    "status": "planned",
    "tests": [
     "DOPPLER LIMBS*",
@@ -1367,7 +1368,7 @@
    "id": "smallparts",
    "title": "USG thyroid, breast & small parts",
    "desc": "Lumps in the neck, breast, scrotum",
-   "date": "2026-12-08",
+   "date": "2026-12-07",
    "status": "planned",
    "tests": [
     "NECK*",
@@ -1383,7 +1384,7 @@
    "id": "tvs",
    "title": "TVS & pelvic ultrasound",
    "desc": "Periods, cysts, fertility follicle scans",
-   "date": "2026-12-09",
+   "date": "2026-12-08",
    "status": "planned",
    "tests": [
     "KUB (KIDNEY URETER BLADDER)",
@@ -1400,7 +1401,7 @@
    "id": "eeg",
    "title": "EEG",
    "desc": "Brain waves for fits and seizures",
-   "date": "2026-12-10",
+   "date": "2026-12-09",
    "status": "planned",
    "tests": [
     "E.E.G. PLAIN",
@@ -1412,7 +1413,7 @@
    "id": "ncv",
    "title": "NCV & EMG",
    "desc": "Numbness, tingling, nerve and muscle problems",
-   "date": "2026-12-11",
+   "date": "2026-12-10",
    "status": "planned",
    "tests": [
     "NCV*",
@@ -1438,7 +1439,7 @@
    "id": "sleep",
    "title": "Sleep study",
    "desc": "Snoring and sleep apnoea",
-   "date": "2026-12-12",
+   "date": "2026-12-11",
    "status": "planned",
    "tests": []
   },
@@ -1446,7 +1447,7 @@
    "id": "ctother",
    "title": "Other CT scans",
    "desc": "Face, bones, guided procedures and more",
-   "date": "2026-12-13",
+   "date": "2026-12-12",
    "status": "planned",
    "tests": [
     "TEMPORAL BONE - H.R",
@@ -1483,7 +1484,7 @@
    "id": "mriother",
    "title": "Other MRI scans",
    "desc": "Face, limbs, venogram and special MRI studies",
-   "date": "2026-12-14",
+   "date": "2026-12-13",
    "status": "planned",
    "tests": [
     "BRACHIAL PLEXUS (1.5T)",
@@ -1547,7 +1548,7 @@
    "id": "checkup",
    "title": "Full body checkup: which package?",
    "desc": "Choosing the right health checkup",
-   "date": "2026-12-15",
+   "date": "2026-12-14",
    "status": "planned",
    "tests": [
     "COMPREHENSIVE FOOD PANEL",
@@ -1640,7 +1641,7 @@
    "id": "preop",
    "title": "Tests before surgery",
    "desc": "Why these tests are needed before an operation",
-   "date": "2026-12-16",
+   "date": "2026-12-15",
    "status": "planned",
    "tests": []
   },
@@ -1648,7 +1649,7 @@
    "id": "vitamins",
    "title": "Other vitamins: folate, A, E, B1",
    "desc": "When doctors check them",
-   "date": "2026-12-17",
+   "date": "2026-12-16",
    "status": "planned",
    "tests": [
     "CERULOPLASMIN (COPPER OXIDASE)",
@@ -1671,7 +1672,7 @@
    "id": "liverx",
    "title": "Liver extras: GGT, ammonia, albumin",
    "desc": "Tests beyond the routine LFT",
-   "date": "2026-12-18",
+   "date": "2026-12-17",
    "status": "planned",
    "tests": [
     "ALBUMIN*",
@@ -1702,7 +1703,7 @@
    "id": "kidneyx",
    "title": "Kidney extras: creatinine, eGFR, urea",
    "desc": "Understanding your kidney numbers",
-   "date": "2026-12-19",
+   "date": "2026-12-18",
    "status": "planned",
    "tests": [
     "H. PILORY & UREASE",
@@ -1725,7 +1726,7 @@
    "id": "infect",
    "title": "Other infection tests",
    "desc": "Typhoid, chikungunya, leptospira, scrub typhus",
-   "date": "2026-12-20",
+   "date": "2026-12-19",
    "status": "planned",
    "tests": [
     "ANTI SMOOTH MUSCLE ANTIBODY(ASMA),IFA",
@@ -1839,7 +1840,7 @@
    "id": "hormones",
    "title": "Other hormones",
    "desc": "Growth hormone, vitamin-like hormones and more",
-   "date": "2026-12-21",
+   "date": "2026-12-20",
    "status": "planned",
    "tests": [
     "5-HIAA URINE (HYDROXYINDOLE ACETIC ACID)*",
@@ -1864,7 +1865,7 @@
    "id": "genetic2",
    "title": "Genetic panels",
    "desc": "Single-gene tests and carrier screening",
-   "date": "2026-12-22",
+   "date": "2026-12-21",
    "status": "planned",
    "tests": [
     "ACTIVATE PROTIEN C -RESISTANCE; APCR",
@@ -1967,7 +1968,7 @@
    "id": "drug",
    "title": "Drug level tests",
    "desc": "Monitoring epilepsy and transplant medicines",
-   "date": "2026-12-23",
+   "date": "2026-12-22",
    "status": "planned",
    "tests": [
     "CARBAMAZEPINE",
@@ -1989,7 +1990,7 @@
    "id": "urinex",
    "title": "Other urine tests",
    "desc": "24-hour urine, urine sugar and more",
-   "date": "2026-12-24",
+   "date": "2026-12-23",
    "status": "planned",
    "tests": [
     "17 KETOSTERIOD, URINE",
