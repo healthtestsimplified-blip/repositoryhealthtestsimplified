@@ -89,6 +89,32 @@
    "video": "sleep"
   },
   {
+   "id": "ncv",
+   "title": "NCV & EMG",
+   "desc": "Numbness, tingling, nerve and muscle problems",
+   "date": "2026-10-10",
+   "status": "done",
+   "tests": [
+    "NCV*",
+    "NCV ALL LIMBS",
+    "NCV FACIAL NERVE",
+    "EMG*",
+    "EMG ALL LIMBS",
+    "EMG FACIAL NERVES",
+    "VEP",
+    "BAER",
+    "H-REFLEX",
+    "EMG NEEDLE",
+    "RNST*",
+    "SSEP",
+    "EMG TONGUE",
+    "EMG PARASPINAL",
+    "BLINK-REFLEX",
+    "NCV HAND BRACHIAL PLEXUS"
+   ],
+   "video": "emg"
+  },
+  {
    "id": "esrcrp",
    "title": "ESR & CRP",
    "desc": "Inflammation markers: what a high value means",
@@ -1270,7 +1296,6 @@
     "DUAL FEMUR",
     "FOOT (1.5T)",
     "PELVIS (1.5T)",
-    "NCV HAND BRACHIAL PLEXUS",
     "OPG",
     "KUB AND PELVIS",
     "PELVIS WITH TVS",
@@ -1421,36 +1446,10 @@
    ]
   },
   {
-   "id": "ncv",
-   "title": "NCV & EMG",
-   "desc": "Numbness, tingling, nerve and muscle problems",
-   "date": "2026-12-09",
-   "status": "planned",
-   "tests": [
-    "NCV*",
-    "NCV ALL LIMBS",
-    "NCV FACIAL NERVE",
-    "EMG*",
-    "EMG ALL LIMBS",
-    "EMG FACIAL NERVES",
-    "VEP",
-    "BAER",
-    "H-REFLEX",
-    "EMG NEEDLE",
-    "RNST*",
-    "SSEP",
-    "CLOSTRIDIUM DIFFICILE GDH REFLEX TOXIN A/B TEST",
-    "EMG TONGUE",
-    "EMG PARASPINAL",
-    "BLINK-REFLEX",
-    "TRANSPLANT VIRAL SCREENING PANEL, REFLEX QUANT. PCR"
-   ]
-  },
-  {
    "id": "ctother",
    "title": "Other CT scans",
    "desc": "Face, bones, guided procedures and more",
-   "date": "2026-12-10",
+   "date": "2026-12-09",
    "status": "planned",
    "tests": [
     "TEMPORAL BONE - H.R",
@@ -1487,7 +1486,7 @@
    "id": "mriother",
    "title": "Other MRI scans",
    "desc": "Face, limbs, venogram and special MRI studies",
-   "date": "2026-12-11",
+   "date": "2026-12-10",
    "status": "planned",
    "tests": [
     "BRACHIAL PLEXUS (1.5T)",
@@ -1551,7 +1550,7 @@
    "id": "checkup",
    "title": "Full body checkup: which package?",
    "desc": "Choosing the right health checkup",
-   "date": "2026-12-12",
+   "date": "2026-12-11",
    "status": "planned",
    "tests": [
     "COMPREHENSIVE FOOD PANEL",
@@ -1644,7 +1643,7 @@
    "id": "preop",
    "title": "Tests before surgery",
    "desc": "Why these tests are needed before an operation",
-   "date": "2026-12-13",
+   "date": "2026-12-12",
    "status": "planned",
    "tests": []
   },
@@ -1652,7 +1651,7 @@
    "id": "vitamins",
    "title": "Other vitamins: folate, A, E, B1",
    "desc": "When doctors check them",
-   "date": "2026-12-14",
+   "date": "2026-12-13",
    "status": "planned",
    "tests": [
     "CERULOPLASMIN (COPPER OXIDASE)",
@@ -1675,7 +1674,7 @@
    "id": "liverx",
    "title": "Liver extras: GGT, ammonia, albumin",
    "desc": "Tests beyond the routine LFT",
-   "date": "2026-12-15",
+   "date": "2026-12-14",
    "status": "planned",
    "tests": [
     "ALBUMIN*",
@@ -1706,7 +1705,7 @@
    "id": "kidneyx",
    "title": "Kidney extras: creatinine, eGFR, urea",
    "desc": "Understanding your kidney numbers",
-   "date": "2026-12-16",
+   "date": "2026-12-15",
    "status": "planned",
    "tests": [
     "H. PILORY & UREASE",
@@ -1729,7 +1728,7 @@
    "id": "infect",
    "title": "Other infection tests",
    "desc": "Typhoid, chikungunya, leptospira, scrub typhus",
-   "date": "2026-12-17",
+   "date": "2026-12-16",
    "status": "planned",
    "tests": [
     "ANTI SMOOTH MUSCLE ANTIBODY(ASMA),IFA",
@@ -1843,7 +1842,7 @@
    "id": "hormones",
    "title": "Other hormones",
    "desc": "Growth hormone, vitamin-like hormones and more",
-   "date": "2026-12-18",
+   "date": "2026-12-17",
    "status": "planned",
    "tests": [
     "5-HIAA URINE (HYDROXYINDOLE ACETIC ACID)*",
@@ -1868,7 +1867,7 @@
    "id": "genetic2",
    "title": "Genetic panels",
    "desc": "Single-gene tests and carrier screening",
-   "date": "2026-12-19",
+   "date": "2026-12-18",
    "status": "planned",
    "tests": [
     "ACTIVATE PROTIEN C -RESISTANCE; APCR",
@@ -1971,7 +1970,7 @@
    "id": "drug",
    "title": "Drug level tests",
    "desc": "Monitoring epilepsy and transplant medicines",
-   "date": "2026-12-20",
+   "date": "2026-12-19",
    "status": "planned",
    "tests": [
     "CARBAMAZEPINE",
@@ -1993,7 +1992,7 @@
    "id": "urinex",
    "title": "Other urine tests",
    "desc": "24-hour urine, urine sugar and more",
-   "date": "2026-12-21",
+   "date": "2026-12-20",
    "status": "planned",
    "tests": [
     "17 KETOSTERIOD, URINE",
