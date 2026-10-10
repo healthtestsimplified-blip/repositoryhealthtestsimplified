@@ -221,6 +221,13 @@ const V = [
      ["Preparation","Wear a top that opens easily. No cream, oil or powder on the chest. No exercise or cold water just before the test. Tell the staff about your medicines. Lie still and relax."],
      ["Reading the report","A resting heart rate of about 60 to 100 per minute with a regular rhythm is usually considered normal. An ECG records only a few seconds, so a normal ECG does not rule out every heart problem; your doctor may advise Holter, TMT or ECHO and reads the ECG with your symptoms."],
      ["Heart attack warning signs","Chest pain or pressure spreading to the arm, jaw or back, with sweating, breathlessness or uneasiness. Women, the elderly and people with diabetes may have no chest pain. Don't wait: call an ambulance or go to the nearest hospital."]]},
+ {id:"esrcrp", c:"daily", t:"ESR & CRP: inflammation tests", l:"Hindi", d:"3:16",
+  s:"Sunday tips, 11 Oct 2026. Fever that won't go or joint pain? What ESR and CRP show, how they differ and how to read the report.",
+  x:[["What they are","Two common blood tests that act like smoke alarms for inflammation (the body's response to infection, injury or disease). They show that inflammation is present, not where it is or what is causing it."],
+     ["ESR vs CRP","ESR measures how many mm red blood cells settle in a tall tube in 1 hour (mm/hr). CRP is a protein made by the liver; it rises within hours and falls quickly as things settle, while ESR rises over 1–2 days and may take weeks to come down."],
+     ["When doctors order them","Long unexplained fever, joint pain, swelling or stiffness, muscle pain, suspected infection, and to see whether treatment is working in arthritis and similar conditions."],
+     ["The test","A simple blood test; usually no fasting is needed, but follow your lab's instructions and tell your doctor about your medicines. hs-CRP is a more sensitive CRP test that is sometimes used to estimate heart disease risk."],
+     ["Reading the result","ESR is approximately up to 15 mm/hr in men and 20 mm/hr in women under 50, a little higher after 50. CRP is very low in most healthy people; labs report it in mg/L or mg/dL (10 mg/L = 1 mg/dL). Ranges vary by lab. Age, pregnancy and anaemia can raise ESR; obesity and smoking can raise CRP mildly. A high value has many causes and a normal one doesn't rule out every disease: your doctor reads it with your symptoms and other tests."]]},
  {id:"fever", c:"daily", t:"Dengue, Malaria or Typhoid?", l:"Hindi", d:"1:49",
   s:"Monday tips, 5 Oct 2026. Same fever, different test.",
   x:[["Dengue","High fever, eye and body pain, rash. Test: NS1 (days 1–5), IgM (after day 5), CBC for platelets."],
@@ -236,6 +243,7 @@ const V = [
 ];
 
 const KEYS = {
+ esrcrp:"ESR test, CRP test, ESR CRP test, ESR normal range, CRP normal range, high ESR, high CRP, C reactive protein, erythrocyte sedimentation rate, hs CRP test, inflammation test, inflammation blood test, fever blood test, joint pain blood test, ESR test in hindi, CRP test in hindi, ESR kitna hona chahiye, CRP badhne ka matlab, ESR badhne ke karan, sujan ki jaanch, ई एस आर टेस्ट, सी आर पी टेस्ट, ईएसआर कितना होना चाहिए, सूजन की जांच, सी रिएक्टिव प्रोटीन, health test simplified",
  uric:"uric acid test, uric acid normal range, high uric acid, uric acid symptoms, gout, gout test, joint pain test, big toe pain, hyperuricemia, serum uric acid, 24 hour urine uric acid, kidney stone test, uric acid in hindi, uric acid kitna hona chahiye, uric acid kaise kam kare, uric acid badhne ke lakshan, gathiya, यूरिक एसिड, यूरिक एसिड टेस्ट, यूरिक एसिड कितना होना चाहिए, गठिया, जोड़ों का दर्द, पैर के अंगूठे में दर्द, health test simplified",
  lft:"liver sgpt sgot bilirubin jaundice fatty liver hepatitis",
  lipid:"cholesterol ldl hdl triglycerides heart",

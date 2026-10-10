@@ -129,12 +129,13 @@
    "title": "ESR & CRP",
    "desc": "Inflammation markers: what a high value means",
    "date": "2026-10-11",
-   "status": "planned",
+   "status": "done",
    "tests": [
     "CRP-C REACTIVE PROTEIN",
     "CRP-HIGH SENSITIVITY",
     "ESR (ERYTHROCYTE SEDIMENTATION RATE)"
-   ]
+   ],
+   "video": "esrcrp"
   },
   {
    "id": "iron",
