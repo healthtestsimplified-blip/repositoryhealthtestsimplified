@@ -324,3 +324,105 @@ def antibody(d, x, y, s, ang, col=CYAN, a=255):
         d.line((P(0.0, 0), P(-0.42, 0.38 * sg)), fill=(*col, a), width=w)
         e = P(-0.42, 0.38 * sg); rr = 0.11 * s; d.ellipse((e[0] - rr, e[1] - rr, e[0] + rr, e[1] + rr), fill=(*col, a))
     e = P(0.6, 0); rr = 0.1 * s; d.ellipse((e[0] - rr, e[1] - rr, e[0] + rr, e[1] + rr), fill=(255, 200, 80, a))
+
+# ---------------- blood / molecular lab visuals ----------------
+def rbc_smear(n=1400, seed=4, thal=True):
+    """Peripheral blood smear: pale RBCs with central pallor; thal = microcytes, target cells, variable shape."""
+    r = random.Random(seed)
+    base = _mix((236, 224, 228), (226, 210, 218), _noise(n, 120, seed))
+    im = Image.fromarray(base.astype(np.uint8)).convert("RGB"); d = ImageDraw.Draw(im)
+    placed = []
+    for _ in range(int(n * n / (700 if thal else 900))):
+        x, y = r.uniform(0, n), r.uniform(0, n)
+        rad = r.uniform(13, 19) if thal else r.uniform(20, 24)
+        if any((x - a) ** 2 + (y - b) ** 2 < (rad + c) ** 2 * 0.72 for a, b, c in placed[-260:]): continue
+        placed.append((x, y, rad))
+        ex = 1 + (r.uniform(-0.25, 0.35) if thal else r.uniform(-0.06, 0.08)); a = r.uniform(0, math.pi)
+        pts = [(x + rad * ex * math.cos(t) * math.cos(a) - rad * math.sin(t) * math.sin(a),
+                y + rad * ex * math.cos(t) * math.sin(a) + rad * math.sin(t) * math.cos(a)) for t in np.linspace(0, 2 * math.pi, 22)]
+        d.polygon(pts, fill=(214, 120, 140), outline=(190, 95, 120))
+        pr = rad * (0.55 if thal else 0.4)
+        d.ellipse((x - pr, y - pr, x + pr, y + pr), fill=(232, 190, 200))
+        if thal and r.random() < 0.18:
+            q = pr * 0.45; d.ellipse((x - q, y - q, x + q, y + q), fill=(212, 125, 145))
+    for _ in range(3):
+        x, y = r.uniform(80, n - 80), r.uniform(80, n - 80)
+        d.ellipse((x - 30, y - 30, x + 30, y + 30), fill=(205, 175, 205))
+        for k in range(3): d.ellipse((x - 18 + k * 10, y - 16 + 6 * k, x + 2 + k * 10, y + 4 + 6 * k), fill=(95, 55, 140))
+    im = im.filter(ImageFilter.GaussianBlur(0.9))
+    a = np.asarray(im).astype(np.float32) + np.random.default_rng(seed).normal(0, 3, (n, n, 3))
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+
+def panel(fr, x, y, w, h, title=None, sub=None):
+    lay, d = overlay(fr)
+    d.rounded_rectangle((x, y, x + w, y + h), 22, fill=(6, 12, 24, 235), outline=(255, 255, 255, 50), width=2)
+    if title: d.text((x + 26, y + 20), title, font=font("Bold", 30), fill=WHITE)
+    if sub: d.text((x + w - 26, y + 24), sub, font=font("Regular", 24), fill=MUTED, anchor="ra")
+    fr.alpha_composite(lay)
+
+def hplc_chart(fr, x, y, w, h, t, tin, a2_high=True):
+    """HPLC chromatogram with F, A0, A2 peaks; A2 window highlighted."""
+    panel(fr, x, y, w, h, "HPLC (screening)")
+    lay, d = overlay(fr); p = ease((t - tin) / 1.2)
+    bx0, by = x + 40, y + h - 70; bw = w - 80; top = y + 80
+    peaks = [(0.18, 0.08, "F"), (0.47, 1.0, "A0"), (0.74, 0.22 if a2_high else 0.1, "A2")]
+    pts = []
+    for i in range(301):
+        u = i / 300; v = 0.02 * math.sin(u * 40)
+        for c, hgt, _ in peaks: v += hgt * math.exp(-((u - c) / 0.022) ** 2)
+        xx = bx0 + u * bw; yy = by - v * (by - top) * 0.92 * p
+        pts.append((xx, yy))
+    d.line(pts, fill=CYAN, width=3); d.line((bx0, by, bx0 + bw, by), fill=(255, 255, 255, 90), width=2)
+    for c, hgt, lab in peaks:
+        d.text((bx0 + c * bw, by + 26), lab, font=font("Bold", 26), fill=SOFT, anchor="mm")
+    if a2_high and p > 0.9:
+        cx = bx0 + 0.74 * bw; d.rounded_rectangle((cx - 40, top - 10, cx + 40, by), 12, outline=AMBER, width=3)
+        d.text((cx, top - 30), "HbA2 high", font=font("Bold", 26), fill=AMBER, anchor="mm")
+    fr.alpha_composite(lay)
+
+BASECOL = {"A": (67, 200, 110), "C": (80, 150, 255), "G": (240, 240, 240), "T": (255, 90, 90)}
+def sanger(fr, x, y, w, h, t, tin, seq="CCTTGGACCCAGAGGTTCTTTG", mut=None, scroll=True, title="DNA sequencing (Sanger)"):
+    """Sanger chromatogram with base calls; mut=(index, other_base) draws a double peak (heterozygous)."""
+    panel(fr, x, y, w, h, title)
+    lay, d = overlay(fr); p = ease((t - tin) / 1.5)
+    n = len(seq); bx0 = x + 30; bw = w - 60; by = y + h - 80; top = y + 90
+    step = bw / n
+    for b in "ACGT":
+        pts = []
+        for i in range(400):
+            u = i / 399; xx = bx0 + u * bw
+            if xx > bx0 + bw * p: break
+            v = 0
+            for k, ch in enumerate(seq):
+                c = (k + 0.5) / n; amp = 0.0
+                if ch == b: amp = 0.75 + 0.2 * math.sin(k * 2.3)
+                if mut and k == mut[0]:
+                    amp = 0.5 if (ch == b or mut[1] == b) else 0
+                v += amp * math.exp(-((u - c) / (0.32 / n)) ** 2)
+            pts.append((xx, by - v * (by - top)))
+        if len(pts) > 1: d.line(pts, fill=BASECOL[b], width=3)
+    for k, ch in enumerate(seq):
+        xx = bx0 + (k + 0.5) * step
+        if xx > bx0 + bw * p: break
+        col = BASECOL[ch]
+        if mut and k == mut[0]:
+            d.rounded_rectangle((xx - step / 2, top - 6, xx + step / 2, by + 50), 8, outline=AMBER, width=3)
+            d.text((xx, by + 30), "S", font=font("Bold", 28), fill=AMBER, anchor="mm")
+        else:
+            d.text((xx, by + 30), ch, font=font("Bold", 26), fill=col, anchor="mm")
+    fr.alpha_composite(lay)
+
+def gel(fr, x, y, w, h, t, tin, lanes):
+    """Agarose gel photo: lanes = list of band position lists (0..1 from top); lane 0 is a ladder."""
+    panel(fr, x, y, w, h, "ARMS-PCR gel")
+    lay = Image.new("RGBA", (w - 40, h - 90), (10, 14, 22, 255)); d = ImageDraw.Draw(lay)
+    p = ease((t - tin) / 1.2); n = len(lanes) + 1; lw = (w - 40) / (n + 1)
+    ladder = [0.15, 0.25, 0.34, 0.42, 0.5, 0.58, 0.66, 0.74, 0.82]
+    for li, bands in enumerate([ladder] + lanes):
+        cx = lw * (li + 1)
+        d.rectangle((cx - lw * 0.3, 8, cx + lw * 0.3, 20), fill=(40, 46, 60))
+        for b in bands:
+            yy = 30 + b * (h - 140) * p; inten = 150 if li == 0 else 235
+            d.rounded_rectangle((cx - lw * 0.3, yy - 5, cx + lw * 0.3, yy + 5), 4, fill=(inten, 255, inten + 10 if inten < 245 else 255))
+    glow = lay.filter(ImageFilter.GaussianBlur(5)); lay = Image.blend(lay, glow, 0.4)
+    fr.alpha_composite(lay, (x + 20, y + 70))

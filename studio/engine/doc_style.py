@@ -233,7 +233,7 @@ def exon_bar(fr, x, y, w, missing=None, lab=None, h=64, t=0, tin=0):
         d.text((x0 + (bw - 12) / 2, y + h / 2), str(i + 1), font=font("Bold", 28), fill=WHITE if i != 6 else INK, anchor="mm")
     fr.alpha_composite(lay)
 
-def pedigree(fr, y, t, tin):
+def pedigree(fr, y, t, tin, affected="SMA"):
     """Standard pedigree: carriers half-shaded, affected filled."""
     d = ImageDraw.Draw(fr); s = 70; col = (230, 236, 245)
     def male(x, yy, kind):
@@ -249,7 +249,7 @@ def pedigree(fr, y, t, tin):
     d.line((380 + s / 2, y, 700 - s / 2, y), fill=col, width=5); d.line((540, y, 540, y + 110), fill=col, width=5)
     d.text((380, y - 75), "Mother", font=font("Medium", 30), fill=MUTED, anchor="mm")
     d.text((700, y - 75), "Father", font=font("Medium", 30), fill=MUTED, anchor="mm")
-    xs = [210, 430, 650, 870]; kids = [("n", "Not affected", TEALG), ("c", "Carrier", AMBER), ("c", "Carrier", AMBER), ("a", "SMA", CORAL)]
+    xs = [210, 430, 650, 870]; kids = [("n", "Not affected", TEALG), ("c", "Carrier", AMBER), ("c", "Carrier", AMBER), ("a", affected, CORAL)]
     if t < tin + 0.5: return
     d.line((xs[0], y + 110, xs[-1], y + 110), fill=col, width=5)
     for i, (x, (kd, lab, c)) in enumerate(zip(xs, kids)):

@@ -286,6 +286,20 @@
    "video": "ihc"
   },
   {
+   "id": "btm",
+   "title": "Beta thalassemia mutation analysis",
+   "desc": "HBB gene DNA test for carriers, couples and prenatal diagnosis",
+   "date": "2026-10-11",
+   "status": "done",
+   "tests": [
+    "MUTATION ANALYSIS FOR BETA THALASSEMIA",
+    "BETA THALASSEMIA MUTATION ANALYSIS",
+    "PRENATAL DIAGNOSIS FOR BETA THALASSEMIA FAMILY SCREENING",
+    "HBB DELETION /MPLA"
+   ],
+   "video": "btm"
+  },
+  {
    "id": "iron",
    "title": "Iron studies & ferritin",
    "desc": "Iron-deficiency anaemia: iron, TIBC, ferritin",
@@ -1990,7 +2004,6 @@
     "BCR / ABL DETECTION BY FISH",
     "QF-PCR FOR ANEUPLOIDY (13, 18, 21, X, Y)",
     "DNA Extraction and Preservation",
-    "HBB DELETION /MPLA",
     "AMINO ACIDS QUANTITATIVE, PLASMA",
     "MYD88 GENE L265P MUTATION DETECTION",
     "BORDETELLA PERTUSSIS/PARAPERTUSSIS, QUALITATIVE PCR",
