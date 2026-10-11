@@ -201,13 +201,13 @@ def ribbon_sprite(t=0):
     d.text((w / 2, 60), "Sections thinner than a hair", font=font("Medium", 34), fill=SOFT, anchor="mm")
     return im
 
-def slide_sprite(tex):
+def slide_sprite(tex, stain="H&E"):
     w, h = 820, 290; im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
     d.rounded_rectangle((6, 10, w - 1, h - 1), 10, fill=(20, 30, 45, 150))
     d.rounded_rectangle((0, 0, w - 8, h - 12), 10, fill=(225, 240, 245, 120), outline=(240, 250, 255, 220), width=3)
     d.rectangle((2, 2, 220, h - 14), fill=(240, 240, 236))
     d.text((110, 90), "S-1024", font=font("Bold", 30), fill=(40, 40, 60), anchor="mm")
-    d.text((110, 140), "H&E", font=font("Bold", 34), fill=(180, 40, 120), anchor="mm")
+    d.text((110, 140), stain, font=font("Bold", 34), fill=(180, 40, 120) if stain == "H&E" else (130, 75, 25), anchor="mm")
     d.text((110, 190), "Histopath", font=font("Regular", 24), fill=(60, 60, 70), anchor="mm")
     patch = tex.resize((420, 420)).crop((0, 80, 420, 330)); mask = Image.new("L", patch.size, 0)
     md = ImageDraw.Draw(mask); md.polygon([(30, 60), (140, 10), (300, 30), (400, 110), (360, 220), (200, 240), (60, 200)], fill=235)
@@ -255,3 +255,72 @@ def film(fn):
     def wrapped(fr, t, D):
         fn(fr, t, D); fr.alpha_composite(GRAIN[int(t * 30) % 4])
     return wrapped
+
+# ---------------- IHC-specific textures ----------------
+def _cells(n, seed, count):
+    from scipy.spatial import Voronoi
+    r = np.random.default_rng(seed)
+    g = int(math.sqrt(count)); pts = []
+    for i in range(g + 2):
+        for j in range(g + 2):
+            pts.append(((i - 1 + 0.5 * (j % 2) + r.uniform(-0.25, 0.25)) * n / g, (j - 1 + r.uniform(-0.25, 0.25)) * n / g))
+    pts = np.array(pts); vor = Voronoi(pts); cells = []
+    for i, reg in enumerate(vor.point_region):
+        verts = vor.regions[reg]
+        if -1 in verts or not verts: continue
+        poly = [tuple(vor.vertices[v]) for v in verts]
+        cx, cy = pts[i]
+        if -60 < cx < n + 60 and -60 < cy < n + 60: cells.append(((cx, cy), poly))
+    return cells
+
+def her2_tex(level, n=700, seed=5):
+    """HER2 IHC membrane staining: level 0,1,2,3."""
+    r = random.Random(seed + level)
+    im = Image.new("RGB", (n, n), (238, 234, 240)); d = ImageDraw.Draw(im)
+    cells = _cells(n, seed, 70)
+    col = {0: None, 1: (205, 170, 120), 2: (160, 100, 45), 3: (95, 50, 15)}[level]
+    wid = {0: 0, 1: 2, 2: 4, 3: 7}[level]
+    for (c, poly) in cells:
+        d.polygon(poly, fill=(228, 222, 232))
+    for (c, poly) in cells:
+        if col and r.random() < (0.35 if level == 1 else 0.85 if level == 2 else 0.97):
+            k = len(poly); start = r.randrange(k); span = k if level >= 2 else max(2, k // 2)
+            seg = [poly[(start + j) % k] for j in range(span + 1)]
+            d.line(seg, fill=col, width=wid, joint="curve")
+        elif level == 0 and r.random() < 0.08:
+            d.line(poly[:3], fill=(215, 195, 165), width=1)
+    for (c, poly) in cells:
+        x, y = c; a = r.uniform(0, math.pi); L = r.uniform(11, 15); Wd = r.uniform(8, 11)
+        pts = [(x + L * math.cos(a) * math.cos(t) - Wd * math.sin(a) * math.sin(t), y + L * math.sin(a) * math.cos(t) + Wd * math.cos(a) * math.sin(t)) for t in np.linspace(0, 2 * math.pi, 12)]
+        d.polygon(pts, fill=(95, 100, 160))
+    im = im.filter(ImageFilter.GaussianBlur(0.8))
+    mod = (0.88 + 0.2 * _noise(n, 90, seed + 7) + 0.06 * _noise(n, 20, seed + 8))[..., None]
+    a = np.asarray(im).astype(np.float32) * mod + np.random.default_rng(seed).normal(0, 3, (n, n, 3))
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+
+def nuclear_tex(frac, n=900, seed=8):
+    """ER/PR style nuclear staining: frac of nuclei brown."""
+    r = random.Random(seed)
+    im = Image.new("RGB", (n, n), (236, 232, 238)); d = ImageDraw.Draw(im)
+    cells = _cells(n, seed, 170)
+    for (c, poly) in cells: d.polygon(poly, fill=(226, 220, 230), outline=(214, 206, 220))
+    for (c, poly) in cells:
+        x, y = c; a = r.uniform(0, math.pi); L = r.uniform(12, 17); Wd = r.uniform(9, 13)
+        pts = [(x + L * math.cos(a) * math.cos(t) - Wd * math.sin(a) * math.sin(t), y + L * math.sin(a) * math.cos(t) + Wd * math.cos(a) * math.sin(t)) for t in np.linspace(0, 2 * math.pi, 12)]
+        brown = r.random() < frac; s = r.uniform(0.8, 1.15)
+        d.polygon(pts, fill=tuple(int(v * s) for v in ((120, 65, 20) if brown else (100, 105, 165))))
+    im = im.filter(ImageFilter.GaussianBlur(0.8))
+    mod = (0.86 + 0.22 * _noise(n, 90, seed + 7))[..., None]
+    a = np.asarray(im).astype(np.float32) * mod + np.random.default_rng(seed).normal(0, 3, (n, n, 3))
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+
+def antibody(d, x, y, s, ang, col=CYAN, a=255):
+    """Y-shaped antibody, stem pointing along ang (radians) away from target."""
+    ca, sa = math.cos(ang), math.sin(ang)
+    def P(u, v): return (x + (u * ca - v * sa) * s, y + (u * sa + v * ca) * s)
+    w = max(3, int(0.16 * s))
+    d.line((P(0.0, 0), P(0.55, 0)), fill=(*col, a), width=w)
+    for sg in (-1, 1):
+        d.line((P(0.0, 0), P(-0.42, 0.38 * sg)), fill=(*col, a), width=w)
+        e = P(-0.42, 0.38 * sg); rr = 0.11 * s; d.ellipse((e[0] - rr, e[1] - rr, e[0] + rr, e[1] + rr), fill=(*col, a))
+    e = P(0.6, 0); rr = 0.1 * s; d.ellipse((e[0] - rr, e[1] - rr, e[0] + rr, e[1] + rr), fill=(255, 200, 80, a))
