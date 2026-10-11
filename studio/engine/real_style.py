@@ -1,0 +1,257 @@
+"""Realistic procedural visuals: H&E microscope tissue, ultrasound, lab objects, film grain.
+Builds on doc_style (dark clinical look)."""
+import math, random
+import numpy as np
+from PIL import Image, ImageDraw, ImageFilter, ImageChops
+from doc_style import *
+
+RNG = np.random.default_rng(7); random.seed(7)
+
+def _noise(n, scale, seed=0, aniso=1.0, rot=0):
+    r = np.random.default_rng(seed); big = int(n * 1.5) if rot else n
+    w = max(4, int(big / scale)); h = max(4, int(big / scale / aniso))
+    a = r.random((h, w)).astype(np.float32)
+    im = Image.fromarray((a * 255).astype(np.uint8)).resize((big, big), Image.BICUBIC)
+    if rot:
+        im = im.rotate(rot, resample=Image.BICUBIC); o = (big - n) // 2; im = im.crop((o, o, o + n, o + n))
+    return np.asarray(im).astype(np.float32) / 255
+
+def _mix(c1, c2, k):
+    k = k[..., None]; return np.array(c1) * (1 - k) + np.array(c2) * k
+
+# ---------------- H&E histology ----------------
+def he_tissue(n=1400, seed=3, glands=15, stain="he"):
+    """Procedural H&E (or IHC 'dab') stained tissue section."""
+    r = random.Random(seed)
+    f1 = _noise(n, 160, seed); f2 = _noise(n, 40, seed + 1); fib = _noise(n, 22, seed + 2, aniso=5, rot=35) * 0.6 + _noise(n, 26, seed + 3, aniso=4, rot=-20) * 0.4
+    k = np.clip(0.6 * f1 + 0.25 * f2 + 0.22 * fib - 0.12, 0, 1)
+    if stain == "dab":
+        light, deep = (236, 232, 236), (190, 175, 200)
+    else:
+        light, deep = (246, 205, 222), (214, 112, 160)
+    arr = _mix(light, deep, k)
+    holes = _noise(n, 220, seed + 5) + 0.25 * _noise(n, 50, seed + 6)
+    wm = np.clip((holes - 0.82) * 8, 0, 1)
+    arr = _mix(tuple(arr.reshape(-1, 3).mean(0)), (250, 244, 248), wm) * wm[..., None] + arr * (1 - wm[..., None])
+    im = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGB")
+    d = ImageDraw.Draw(im)
+    nuc_d = (70, 40, 120) if stain == "he" else (120, 70, 30)
+    nuc_l = (120, 80, 170) if stain == "he" else (165, 105, 50)
+    if stain == "dab": nuc_d, nuc_l = (75, 80, 145), (115, 120, 175)
+    for _ in range(int(n * n / 900)):
+        x, y = r.uniform(0, n), r.uniform(0, n); a = r.uniform(0, math.pi)
+        if r.random() < 0.3:
+            rr = r.uniform(3.5, 5); d.ellipse((x - rr, y - rr, x + rr, y + rr), fill=nuc_d)
+        else:
+            L = r.uniform(6, 13); Wd = r.uniform(2.6, 4.5); c = nuc_d if r.random() < 0.5 else nuc_l
+            pts = [(x + L * math.cos(a) * math.cos(t) - Wd * math.sin(a) * math.sin(t),
+                    y + L * math.sin(a) * math.cos(t) + Wd * math.cos(a) * math.sin(t)) for t in np.linspace(0, 2 * math.pi, 9)]
+            d.polygon(pts, fill=c)
+    # glands: ring of epithelial nuclei around a clear lumen
+    for g in range(glands):
+        cx, cy = r.uniform(0.1, 0.9) * n, r.uniform(0.1, 0.9) * n; R = r.uniform(60, 150); ry = R * r.uniform(0.55, 1.0)
+        rot = r.uniform(0, math.pi)
+        poly = []
+        for a in np.linspace(0, 2 * math.pi, 40):
+            rr = 1 + 0.12 * math.sin(3 * a + g)
+            x, y = R * rr * math.cos(a), ry * rr * math.sin(a)
+            poly.append((cx + x * math.cos(rot) - y * math.sin(rot), cy + x * math.sin(rot) + y * math.cos(rot)))
+        d.polygon(poly, fill=(236, 170, 205) if stain == "he" else (225, 215, 222))
+        inner = [(cx + (px - cx) * 0.62, cy + (py - cy) * 0.62) for px, py in poly]
+        d.polygon(inner, fill=(252, 246, 250))
+        for a in np.linspace(0, 2 * math.pi, int(R / 4)):
+            rr = 0.8 + r.uniform(-0.03, 0.03)
+            x, y = R * rr * math.cos(a), ry * rr * math.sin(a)
+            px, py = cx + x * math.cos(rot) - y * math.sin(rot), cy + x * math.sin(rot) + y * math.cos(rot)
+            ang = math.atan2(py - cy, px - cx); L = r.uniform(7, 10); Wd = r.uniform(4, 5.5)
+            pts = [(px + L * math.cos(ang) * math.cos(t) - Wd * math.sin(ang) * math.sin(t),
+                    py + L * math.sin(ang) * math.cos(t) + Wd * math.cos(ang) * math.sin(t)) for t in np.linspace(0, 2 * math.pi, 10)]
+            pos = stain == "dab" and r.random() < 0.6
+            d.polygon(pts, fill=(110, 60, 25) if pos else ((80, 85, 150) if stain == "dab" else nuc_d))
+    # stromal nuclei + lymphocytes
+    # red blood cells in vessels
+    for _ in range(6):
+        vx, vy = r.uniform(0, n), r.uniform(0, n)
+        for _ in range(25):
+            x, y = vx + r.gauss(0, 18), vy + r.gauss(0, 10)
+            d.ellipse((x - 4, y - 4, x + 4, y + 4), fill=(225, 70, 90))
+    im = im.filter(ImageFilter.GaussianBlur(0.9))
+    a = np.asarray(im).astype(np.float32)
+    a += np.random.default_rng(seed).normal(0, 3.5, a.shape)
+    return Image.fromarray(np.clip(a, 0, 255).astype(np.uint8)).convert("RGBA")
+
+def eyepiece(tex, size, t, zoom0=1.0, zoom1=1.25, D=10, pan=(0.0, 0.0), focus=0.0):
+    """Circular microscope field of view with slow zoom/pan; focus>0 blurs (rack focus)."""
+    z = zoom0 + (zoom1 - zoom0) * min(1, t / max(1, D))
+    cw = tex.width / z; cx = tex.width / 2 + pan[0] * t * 20; cy = tex.height / 2 + pan[1] * t * 20
+    crop = tex.crop((int(cx - cw / 2), int(cy - cw / 2), int(cx + cw / 2), int(cy + cw / 2))).resize((size, size), Image.BILINEAR)
+    if focus > 0.05: crop = crop.filter(ImageFilter.GaussianBlur(focus * 8))
+    m = Image.new("L", (size, size), 0); ImageDraw.Draw(m).ellipse((0, 0, size, size), fill=255)
+    vg = np.linspace(-1, 1, size); rr = np.sqrt(vg[None, :] ** 2 + vg[:, None] ** 2)
+    shade = np.clip(1.05 - 0.45 * rr ** 3, 0, 1)
+    arr = np.asarray(crop).astype(np.float32); arr[..., :3] *= shade[..., None]
+    out = Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)); out.putalpha(m)
+    ring = Image.new("RGBA", (size + 40, size + 40), (0, 0, 0, 0)); dr = ImageDraw.Draw(ring)
+    dr.ellipse((0, 0, size + 39, size + 39), fill=(10, 12, 18, 255))
+    ring.alpha_composite(out, (20, 20))
+    return ring
+
+def fullbleed(fr, tex, t, D, zoom0=1.0, zoom1=1.15, dark=0.55):
+    """Fill the frame with a slowly zooming texture, darkened for text."""
+    z = zoom0 + (zoom1 - zoom0) * min(1, t / max(1, D))
+    ar = H / W; cw = tex.width / z; ch = min(tex.height, cw * ar)
+    if ch == tex.height: cw = ch / ar
+    cx, cy = tex.width / 2 + t * 6, tex.height / 2
+    crop = tex.crop((int(cx - cw / 2), int(cy - ch / 2), int(cx + cw / 2), int(cy + ch / 2))).resize((W, H), Image.BILINEAR)
+    fr.alpha_composite(crop)
+    fr.alpha_composite(SHADE_FULL if dark else SHADE_LIGHT)
+    fr.alpha_composite(L2.HW, (0, 40))
+
+def _shade(top_a, bot_a, mid_a):
+    y = np.linspace(0, 1, H)[:, None]
+    a = np.where(y < 0.5, top_a + (mid_a - top_a) * (y / 0.5), mid_a + (bot_a - mid_a) * ((y - 0.5) / 0.5))
+    arr = np.zeros((H, W, 4), np.uint8); arr[..., 0] = INK[0]; arr[..., 1] = INK[1]; arr[..., 2] = INK[2]
+    arr[..., 3] = np.repeat((a * 255).astype(np.uint8), W, 1)
+    return Image.fromarray(arr, "RGBA")
+SHADE_FULL = _shade(0.92, 0.95, 0.45); SHADE_LIGHT = _shade(0.6, 0.7, 0.15)
+
+# ---------------- ultrasound ----------------
+def us_base(w=900, h=760, seed=11):
+    r = np.random.default_rng(seed)
+    speck = r.rayleigh(0.35, (h, w)).astype(np.float32)
+    sp = Image.fromarray(np.clip(speck * 255, 0, 255).astype(np.uint8)).filter(ImageFilter.GaussianBlur(1.1))
+    sp = sp.resize((w, h * 2)).filter(ImageFilter.BoxBlur(0)).resize((w, h))
+    a = np.asarray(sp).astype(np.float32) / 255
+    yy = np.linspace(0, 1, h)[:, None]; xx = np.linspace(-1, 1, w)[None, :]
+    layers = 0.55 + 0.35 * np.exp(-((yy - 0.08) / 0.02) ** 2) + 0.25 * np.exp(-((yy - 0.3) / 0.03) ** 2) * (1 + 0.2 * np.sin(xx * 6))
+    a = a * layers * (1 - 0.55 * yy)
+    edge = 1 + 0.18 * (_noise(max(w, h), 60, seed + 3)[:h, :w] - 0.5)
+    les = (((xx - 0.1) / 0.28) ** 2 + ((yy - 0.6) / 0.14) ** 2) * edge
+    a = a * np.where(les < 1, 0.35, 1.0) + np.where(np.abs(les - 1) < 0.15, 0.18, 0) * a * 2
+    a = a * (1 + 0.25 * (les < 1) * (yy > 0.74))
+    img = Image.fromarray(np.clip(a * 255, 0, 255).astype(np.uint8)).convert("RGB")
+    m = Image.new("L", (w, h), 0); dm = ImageDraw.Draw(m)
+    dm.pieslice((-w * 0.5, -h * 0.95, w * 1.5, h * 1.0), 56, 124, fill=255)
+    dm.rectangle((w * 0.22, 0, w * 0.78, 8), fill=255)
+    out = Image.new("RGBA", (w, h), (0, 0, 0, 255)); out.paste(img, (0, 0), m)
+    d = ImageDraw.Draw(out)
+    for k in range(0, 8):
+        y = 30 + k * (h - 60) / 7; d.line((w - 40, y, w - 25, y), fill=(200, 200, 200), width=2)
+        d.text((w - 50, y), str(k), font=font("Regular", 18), fill=(180, 180, 180), anchor="rm")
+    d.text((20, 16), "L 12 MHz", font=font("Regular", 20), fill=(200, 200, 200))
+    d.text((20, 42), "GAIN 54", font=font("Regular", 20), fill=(200, 200, 200))
+    return out
+
+def ultrasound(fr, x, y, t, base, prog):
+    im = base.copy(); d = ImageDraw.Draw(im); w, h = im.size
+    x0, y0 = w * 0.2, h * 0.05; x1, y1 = w * 0.55, h * 0.6
+    p = max(0, min(1, prog))
+    xe, ye = x0 + (x1 - x0) * p, y0 + (y1 - y0) * p
+    d.line((x0, y0, xe, ye), fill=(250, 250, 250), width=5)
+    if p > 0.95: d.ellipse((xe - 9, ye - 9, xe + 9, ye + 9), outline=(255, 230, 120), width=3)
+    fr.alpha_composite(im, (int(x), int(y)))
+
+# ---------------- lab objects (shaded) ----------------
+def cyl_shade(w, h, col, hi=0.5):
+    x = np.linspace(0, 1, w)
+    prof = 0.55 + 0.45 * np.sin(np.pi * x) + 0.35 * np.exp(-((x - 0.28) / 0.05) ** 2)
+    prof = prof * (0.85 + 0.15 * hi)
+    arr = np.clip(np.array(col)[None, None, :] * prof[None, :, None], 0, 255).repeat(h, 0)
+    return Image.fromarray(arr.astype(np.uint8)).convert("RGBA")
+
+def jar_sprite():
+    w, h = 360, 460; im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    body = cyl_shade(300, 330, (215, 228, 238)); m = Image.new("L", (300, 330), 0)
+    ImageDraw.Draw(m).rounded_rectangle((0, 0, 299, 329), 40, fill=150); body.putalpha(m)
+    liquid = cyl_shade(284, 250, (235, 232, 205)); ml = Image.new("L", (284, 250), 0)
+    ImageDraw.Draw(ml).rounded_rectangle((0, 0, 283, 249), 34, fill=150); liquid.putalpha(ml)
+    im.alpha_composite(body, (30, 110)); im.alpha_composite(liquid, (38, 182))
+    d = ImageDraw.Draw(im)
+    d.ellipse((150, 300, 215, 340), fill=(210, 150, 140)); d.ellipse((165, 306, 200, 326), fill=(225, 175, 160))
+    lid = cyl_shade(320, 90, (245, 245, 248)); im.alpha_composite(lid, (20, 30))
+    for k in range(20, 340, 12): d.line((k, 34, k, 116), fill=(215, 215, 222), width=2)
+    d.rounded_rectangle((60, 196, 300, 270), 8, fill=(255, 255, 255, 235))
+    d.text((180, 220), "10% FORMALIN", font=font("Bold", 26), fill=(200, 40, 40), anchor="mm")
+    d.text((180, 250), "Biopsy specimen", font=font("Regular", 20), fill=(60, 60, 70), anchor="mm")
+    return with_glow(im, (180, 210, 230), 14, 60)
+
+def cassette_sprite(col=(46, 125, 200), wax=False, tissue=True):
+    w, h = 420, 330; im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle((10, 20, 410, 320), 18, fill=tuple(int(c * 0.7) for c in col))
+    d.rounded_rectangle((0, 0, 400, 300), 18, fill=col)
+    d.polygon([(0, 0), (90, 0), (90, 300), (0, 300)], fill=tuple(min(255, int(c * 1.15)) for c in col))
+    d.text((45, 150), "S-1024", font=font("Bold", 24), fill=(20, 30, 50), anchor="mm")
+    if wax:
+        d.rounded_rectangle((110, 20, 385, 280), 14, fill=(236, 214, 160))
+        d.rounded_rectangle((120, 30, 375, 270), 12, fill=(244, 226, 178))
+        if tissue: d.ellipse((190, 105, 315, 190), fill=(205, 140, 120)); d.ellipse((215, 120, 285, 170), fill=(220, 165, 145))
+    else:
+        for yy in range(30, 280, 22):
+            for xx in range(115, 380, 30): d.rounded_rectangle((xx, yy, xx + 22, yy + 10), 4, fill=tuple(int(c * 0.45) for c in col))
+    d.line((92, 4, 396, 4), fill=(255, 255, 255, 120), width=3)
+    return with_glow(im, (120, 170, 230), 12, 50)
+
+def ribbon_sprite(t=0):
+    w, h = 900, 300; im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle((0, 120, w, h), 30, fill=(40, 90, 140, 200))
+    for k in range(6):
+        x = 40 + k * 140; y = 150 + 6 * math.sin(t * 2 + k)
+        d.rounded_rectangle((x, y, x + 128, y + 90), 6, fill=(250, 240, 220, 170), outline=(255, 255, 255, 140), width=2)
+        d.ellipse((x + 34, y + 22, x + 94, y + 66), fill=(225, 190, 175, 200))
+    d.text((w / 2, 60), "Sections thinner than a hair", font=font("Medium", 34), fill=SOFT, anchor="mm")
+    return im
+
+def slide_sprite(tex):
+    w, h = 820, 290; im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rounded_rectangle((6, 10, w - 1, h - 1), 10, fill=(20, 30, 45, 150))
+    d.rounded_rectangle((0, 0, w - 8, h - 12), 10, fill=(225, 240, 245, 120), outline=(240, 250, 255, 220), width=3)
+    d.rectangle((2, 2, 220, h - 14), fill=(240, 240, 236))
+    d.text((110, 90), "S-1024", font=font("Bold", 30), fill=(40, 40, 60), anchor="mm")
+    d.text((110, 140), "H&E", font=font("Bold", 34), fill=(180, 40, 120), anchor="mm")
+    d.text((110, 190), "Histopath", font=font("Regular", 24), fill=(60, 60, 70), anchor="mm")
+    patch = tex.resize((420, 420)).crop((0, 80, 420, 330)); mask = Image.new("L", patch.size, 0)
+    md = ImageDraw.Draw(mask); md.polygon([(30, 60), (140, 10), (300, 30), (400, 110), (360, 220), (200, 240), (60, 200)], fill=235)
+    mask = mask.filter(ImageFilter.GaussianBlur(6)); patch.putalpha(mask)
+    im.alpha_composite(patch.resize((400, 240)), (300, 12))
+    d.line((230, 6, w - 20, 6), fill=(255, 255, 255, 200), width=2)
+    return with_glow(im, (200, 230, 255), 10, 40)
+
+def needle_sprite(kind="core"):
+    w, h = 900, 120; im = Image.new("RGBA", (w, h), (0, 0, 0, 0))
+    shaft = cyl_shade(70, 640 if kind == "core" else 700, (200, 205, 215)).rotate(90, expand=True)
+    sh = 70 if kind == "core" else 34
+    shaft = shaft.resize((660, sh)); im.alpha_composite(shaft, (200, (h - sh) // 2))
+    d = ImageDraw.Draw(im)
+    d.polygon([(860, h / 2), (855 if kind != 'core' else 860, h / 2 - sh / 2), (860, h / 2 + sh / 2)], fill=(210, 215, 225))
+    d.polygon([(860, h / 2 - sh / 2), (900, h / 2), (860, h / 2 + sh / 2)], fill=(220, 225, 235))
+    hub = cyl_shade(200, 100, (240, 240, 245) if kind == "core" else (90, 160, 230)).rotate(90, expand=True).resize((200, 100))
+    im.alpha_composite(hub, (0, 10))
+    if kind == "core":
+        d.rounded_rectangle((640, h / 2 - 12, 820, h / 2 + 14), 6, fill=(120, 60, 60))
+        d.rounded_rectangle((650, h / 2 - 8, 810, h / 2 + 10), 5, fill=(205, 140, 130))
+    return im
+
+def report_sprite():
+    w, h = 560, 720; im = Image.new("RGBA", (w, h), (0, 0, 0, 0)); d = ImageDraw.Draw(im)
+    d.rectangle((14, 14, w, h), fill=(0, 0, 0, 90)); d.rectangle((0, 0, w - 14, h - 14), fill=(250, 250, 248))
+    d.rectangle((0, 0, w - 14, 80), fill=(225, 235, 245))
+    d.text((30, 40), "HISTOPATHOLOGY REPORT", font=font("Bold", 28), fill=(20, 50, 100), anchor="lm")
+    r = random.Random(4)
+    for k in range(16):
+        y = 120 + k * 34; L = r.uniform(0.4, 0.95) * (w - 80)
+        d.rounded_rectangle((30, y, 30 + L, y + 12), 6, fill=(200, 205, 215))
+        if k in (5, 11): d.text((30, y - 4), "Microscopy:" if k == 5 else "Impression:", font=font("Bold", 22), fill=(40, 40, 60));
+    d.rounded_rectangle((30, 650, 240, 664), 6, fill=(160, 170, 190))
+    return im
+
+# ---------------- film finish ----------------
+def _grain(seed):
+    a = np.random.default_rng(seed).normal(128, 30, (H // 2, W // 2)).astype(np.uint8)
+    g = Image.fromarray(a).resize((W, H), Image.NEAREST).convert("L")
+    out = Image.new("RGBA", (W, H), (128, 128, 128, 0)); out.putalpha(g.point(lambda v: int(abs(v - 128) * 0.35)))
+    return out
+GRAIN = [_grain(s) for s in range(4)]
+def film(fn):
+    def wrapped(fr, t, D):
+        fn(fr, t, D); fr.alpha_composite(GRAIN[int(t * 30) % 4])
+    return wrapped
