@@ -248,7 +248,7 @@ def report_sprite():
 def _grain(seed):
     a = np.random.default_rng(seed).normal(128, 30, (H // 2, W // 2)).astype(np.uint8)
     g = Image.fromarray(a).resize((W, H), Image.NEAREST).convert("L")
-    out = Image.new("RGBA", (W, H), (128, 128, 128, 0)); out.putalpha(g.point(lambda v: int(abs(v - 128) * 0.35)))
+    out = Image.new("RGBA", (W, H), (128, 128, 128, 0)); out.putalpha(g.point(lambda v: int(abs(v - 128) * 0.18)))
     return out
 GRAIN = [_grain(s) for s in range(4)]
 def film(fn):
