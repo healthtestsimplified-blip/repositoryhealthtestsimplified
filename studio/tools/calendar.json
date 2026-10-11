@@ -138,6 +138,18 @@
    "video": "esrcrp"
   },
   {
+   "id": "sma",
+   "title": "SMA genetic test",
+   "desc": "SMN1 gene test for spinal muscular atrophy and carriers",
+   "date": "2026-10-11",
+   "status": "done",
+   "tests": [
+    "MUTATION ANALYSIS - SPINAL MUSCULAR ATROPHY MLPA EXON 7 ,8",
+    "CARRIER DETECTION FOR SPINAL MUSCULAR ATROPHY BY MLPA"
+   ],
+   "video": "sma"
+  },
+  {
    "id": "iron",
    "title": "Iron studies & ferritin",
    "desc": "Iron-deficiency anaemia: iron, TIBC, ferritin",
@@ -1912,7 +1924,6 @@
     "PRADERWILLI - FISH",
     "CARRIER DETECTION FOR DUCHENNE MUSCULAR DYSTROPHY BY MLPA",
     "MUTATION ANALYSIS BECKER MUSCULAR DYSTROPHY BY MLPA",
-    "MUTATION ANALYSIS - SPINAL MUSCULAR ATROPHY MLPA EXON 7 ,8",
     "MUTATION ANALYSIS FOR CYSTIC FIBROSIS (4 COMMON MUTATIONS) &",
     "CFTR DELTA508 MUTATION ANALYSIS",
     "FRAGILE X MUTATION ANALYSIS BY PCR",
