@@ -304,7 +304,7 @@
    "title": "Iron studies & ferritin",
    "desc": "Iron-deficiency anaemia: iron, TIBC, ferritin",
    "date": "2026-10-12",
-   "status": "planned",
+   "status": "done",
    "tests": [
     "FERRITIN",
     "TOTAL IRON BINDING CAPACITY (TIBC-DIRECT)",
@@ -314,7 +314,8 @@
     "SOLUBLE TRANSFERRIN RECEPTOR [TFR]",
     "LIVER IRON CONCENTRATION (LIC) (3T)",
     "HEART IRON CONCENTRATION (MIC) (3T)"
-   ]
+   ],
+   "video": "iron"
   },
   {
    "id": "calcium",
