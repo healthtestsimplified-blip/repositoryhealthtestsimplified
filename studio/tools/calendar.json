@@ -322,7 +322,7 @@
    "title": "Calcium & phosphorus",
    "desc": "Bones, muscles, cramps and parathyroid",
    "date": "2026-10-13",
-   "status": "planned",
+   "status": "done",
    "tests": [
     "CALCIUM*",
     "PHOSPHORUS-INORGANIC*",
@@ -330,7 +330,8 @@
     "CALCIUM-CREATININE RATIO - Random urine",
     "CALCIUM-CREATININE RATIO - 24 hrs Urine",
     "Calcium Score (128S)"
-   ]
+   ],
+   "video": "calcium"
   },
   {
    "id": "electro",
