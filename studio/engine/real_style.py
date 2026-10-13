@@ -426,3 +426,92 @@ def gel(fr, x, y, w, h, t, tin, lanes):
             d.rounded_rectangle((cx - lw * 0.3, yy - 5, cx + lw * 0.3, yy + 5), 4, fill=(inten, 255, inten + 10 if inten < 245 else 255))
     glow = lay.filter(ImageFilter.GaussianBlur(5)); lay = Image.blend(lay, glow, 0.4)
     fr.alpha_composite(lay, (x + 20, y + 70))
+
+# ---------------- protein electrophoresis ----------------
+SPEP_POS = {"Alb": 0.18, "a1": 0.36, "a2": 0.5, "beta": 0.64, "gamma": 0.84}
+def spep_profile(kind="normal"):
+    """list of (center, height, width) in 0..1 along the strip (anode at left)."""
+    p = [(0.18, 1.0, 0.035), (0.36, 0.07, 0.025), (0.5, 0.16, 0.03), (0.64, 0.14, 0.035), (0.84, 0.17, 0.08)]
+    if kind == "mspike": p[4] = (0.84, 0.12, 0.08); p.append((0.82, 0.55, 0.012))
+    if kind == "lowalb": p[0] = (0.18, 0.55, 0.035)
+    if kind == "alpha2": p[2] = (0.5, 0.36, 0.032); p[0] = (0.18, 0.6, 0.035)
+    if kind == "poly": p[4] = (0.84, 0.36, 0.09)
+    return p
+
+def spep_curve(u, prof):
+    return sum(h * math.exp(-((u - c) / w) ** 2) for c, h, w in prof)
+
+def spep_strip(w, h, prof, prog=1.0):
+    """Stained agarose lane (white film, blue-black bands). prog = migration progress."""
+    arr = np.zeros((h, w, 3), np.float32) + np.array([246, 246, 242])
+    u = np.linspace(0, 1, w)
+    dens = np.zeros(w)
+    for c, hh, ww in prof:
+        cc = 0.92 + (c - 0.92) * prog
+        dens += hh * np.exp(-((u - cc) / (ww * (0.4 + 0.6 * prog))) ** 2)
+    dens = np.clip(dens, 0, 1.2)
+    yy = np.linspace(-1, 1, h)[:, None]; edge = np.clip(1.15 - yy ** 6, 0, 1)
+    k = (dens[None, :] * edge)[..., None]
+    arr = arr * (1 - 0.85 * np.clip(k, 0, 1)) + np.array([30, 40, 110]) * 0.85 * np.clip(k, 0, 1)
+    arr += np.random.default_rng(3).normal(0, 2.5, arr.shape)
+    return Image.fromarray(np.clip(arr, 0, 255).astype(np.uint8)).convert("RGBA")
+
+def spep_film(n_lanes=8, w=1400, h=1400, mlane=3):
+    im = Image.new("RGBA", (w, h), (238, 238, 232, 255)); lh = h / (n_lanes + 1)
+    for i in range(n_lanes):
+        kind = "mspike" if i == mlane else ["normal", "poly", "lowalb", "normal", "alpha2", "normal", "normal", "poly"][i % 8]
+        s = spep_strip(int(w * 0.86), int(lh * 0.6), spep_profile(kind))
+        im.alpha_composite(s, (int(w * 0.07), int(lh * (i + 0.7))))
+    return im
+
+def densito(fr, x, y, w, h, prof, t, tin, title=None, labels=True, col=CYAN, shade=True, highlight=None):
+    panel(fr, x, y, w, h, title)
+    lay, d = overlay(fr); p = ease((t - tin) / 1.2)
+    bx0, by = x + 30, y + h - (60 if labels else 30); bw = w - 60; top = y + (80 if title else 30)
+    mx = max(spep_curve(i / 400, prof) for i in range(401))
+    pts = []
+    for i in range(401):
+        u = i / 400
+        if u > p: break
+        pts.append((bx0 + u * bw, by - spep_curve(u, prof) / mx * (by - top) * 0.92))
+    if shade and len(pts) > 2:
+        fills = [(0, 0.27, (80, 160, 255)), (0.27, 0.43, (120, 200, 255)), (0.43, 0.57, (160, 140, 255)), (0.57, 0.72, (100, 220, 200)), (0.72, 1, (255, 190, 90))]
+        for a0, a1, c in fills:
+            seg = [q for q in pts if bx0 + a0 * bw <= q[0] <= bx0 + a1 * bw]
+            if len(seg) > 1: d.polygon(seg + [(seg[-1][0], by), (seg[0][0], by)], fill=(*c, 60))
+    if len(pts) > 1: d.line(pts, fill=col, width=4)
+    d.line((bx0, by, bx0 + bw, by), fill=(255, 255, 255, 90), width=2)
+    if labels:
+        for lab, u in (("Albumin", 0.18), ("α1", 0.36), ("α2", 0.5), ("β", 0.64), ("γ", 0.84)):
+            d.text((bx0 + u * bw, by + 28), lab, font=font("Medium", 26) if lab == "Albumin" else ImageFont.truetype(F.replace("Poppins-", "DejaVuSans-Bold.ttf"), 26), fill=SOFT, anchor="mm")
+    if highlight and p > 0.95:
+        u = highlight; d.rounded_rectangle((bx0 + (u - 0.05) * bw, top - 10, bx0 + (u + 0.05) * bw, by), 12, outline=AMBER, width=4)
+    fr.alpha_composite(lay)
+
+def ife_gel(fr, x, y, w, h, t, tin, heavy="G", light="κ"):
+    """Immunofixation: lanes SP, G, A, M, κ, λ; restricted band in heavy+light lanes."""
+    panel(fr, x, y, w, h, "Immunofixation (IFE)")
+    labs = ["SP", "G", "A", "M", "κ", "λ"]; n = len(labs); lw = (w - 60) / n
+    gh = h - 150; gy = y + 80; p = ease((t - tin) / 1.0)
+    film = Image.new("RGBA", (int(w - 60), int(gh)), (240, 240, 234, 255)); fd = ImageDraw.Draw(film)
+    band = Image.new("RGBA", film.size, (0, 0, 0, 0)); d = ImageDraw.Draw(band)
+    for i, lab in enumerate(labs):
+        cx = lw * (i + 0.5)
+        fd.rectangle((cx - lw * 0.32, 10, cx + lw * 0.32, gh - 10), fill=(232, 232, 226))
+        if lab == "SP":
+            for c, hh, bw2 in ((0.18, 0.95, 16), (0.36, 0.2, 8), (0.5, 0.35, 10), (0.64, 0.3, 10)):
+                cy = 10 + c * (gh - 20); d.rounded_rectangle((cx - lw * 0.3, cy - bw2, cx + lw * 0.3, cy + bw2), 6, fill=(30, 40, 110, int(230 * hh)))
+            d.rounded_rectangle((cx - lw * 0.3, 10 + 0.72 * (gh - 20), cx + lw * 0.3, 10 + 0.95 * (gh - 20)), 10, fill=(30, 40, 110, 45))
+            cy = 10 + 0.82 * (gh - 20); d.rounded_rectangle((cx - lw * 0.3, cy - 6, cx + lw * 0.3, cy + 6), 4, fill=(30, 40, 110, int(220 * p)))
+        elif lab in (heavy, light):
+            d.rounded_rectangle((cx - lw * 0.3, 10 + 0.72 * (gh - 20), cx + lw * 0.3, 10 + 0.95 * (gh - 20)), 10, fill=(30, 40, 110, 25))
+            cy = 10 + 0.82 * (gh - 20); d.rounded_rectangle((cx - lw * 0.3, cy - 7, cx + lw * 0.3, cy + 7), 4, fill=(30, 40, 110, int(235 * p)))
+        else:
+            d.rounded_rectangle((cx - lw * 0.3, 10 + 0.72 * (gh - 20), cx + lw * 0.3, 10 + 0.95 * (gh - 20)), 10, fill=(30, 40, 110, 40))
+    band = band.filter(ImageFilter.GaussianBlur(3)); film.alpha_composite(band)
+    film = film.filter(ImageFilter.GaussianBlur(1.6))
+    fr.alpha_composite(film, (int(x + 30), int(gy)))
+    lay, dd = overlay(fr); f2 = ImageFont.truetype(F.replace("Poppins-", "DejaVuSans-Bold.ttf"), 30)
+    for i, lab in enumerate(labs):
+        dd.text((x + 30 + lw * (i + 0.5), y + h - 40), lab, font=f2, fill=AMBER if lab in (heavy, light) else SOFT, anchor="mm")
+    fr.alpha_composite(lay)

@@ -334,6 +334,22 @@
    "video": "calcium"
   },
   {
+   "id": "spep",
+   "title": "Protein electrophoresis (SPEP)",
+   "desc": "Serum protein bands, M-spike, myeloma and MGUS",
+   "date": "2026-10-13",
+   "status": "done",
+   "tests": [
+    "PROTEIN ELECTROPHORESIS, SERUM",
+    "PROTEIN ELECTROPHORESIS, URINE",
+    "KAPPA LIGHT CHAINS-FREE",
+    "LAMBDA LIGHT CHAINS, FREE",
+    "FREE LIGHT CHAIN (KAPPA & LAMBDA)",
+    "BENCE JONES PROTEIN - URINE"
+   ],
+   "video": "spep"
+  },
+  {
    "id": "electro",
    "title": "Electrolytes: sodium & potassium",
    "desc": "Weakness, confusion, BP medicines and dehydration",
@@ -2044,7 +2060,6 @@
    "status": "planned",
    "tests": [
     "17 KETOSTERIOD, URINE",
-    "PROTEIN ELECTROPHORESIS, URINE",
     "AMINOLEVULINIC ACID (ALA), URINE QUALITATIVE*",
     "BARBITURATES (QUANTITATIVE), URINE",
     "CITRATE, 24-HOUR URINE",
@@ -2055,7 +2070,6 @@
     "SILVER NITROPRUSSIDE TEST, URINE",
     "TPMT ENZYME ACTIVITY THLOPURINE METHYL TRANSFERASE",
     "DYSMORPHIC RBC - URINE",
-    "BENCE JONES PROTEIN - URINE",
     "PORPHOBILINOGEN (PBG) QUALITATIVE URINE",
     "PORPHOBILINOGEN (PBG) QUANTITATIVE 24 HOURS URINE",
     "HEMOGLOBIN, FREE, URINE",
