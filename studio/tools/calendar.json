@@ -342,12 +342,22 @@
    "tests": [
     "PROTEIN ELECTROPHORESIS, SERUM",
     "PROTEIN ELECTROPHORESIS, URINE",
-    "KAPPA LIGHT CHAINS-FREE",
-    "LAMBDA LIGHT CHAINS, FREE",
-    "FREE LIGHT CHAIN (KAPPA & LAMBDA)",
     "BENCE JONES PROTEIN - URINE"
    ],
    "video": "spep"
+  },
+  {
+   "id": "flc",
+   "title": "Serum free light chains (kappa, lambda, ratio)",
+   "desc": "Kappa/lambda ratio for myeloma and related conditions",
+   "date": "2026-10-13",
+   "status": "done",
+   "tests": [
+    "KAPPA LIGHT CHAINS-FREE",
+    "LAMBDA LIGHT CHAINS, FREE",
+    "FREE LIGHT CHAIN (KAPPA & LAMBDA)"
+   ],
+   "video": "flc"
   },
   {
    "id": "electro",
