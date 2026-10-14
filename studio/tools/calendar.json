@@ -360,6 +360,24 @@
    "video": "flc"
   },
   {
+   "id": "dexa",
+   "title": "DEXA (bone density)",
+   "desc": "Osteoporosis after 50",
+   "date": "2026-10-14",
+   "status": "done",
+   "tests": [
+    "DUAL FEMUR",
+    "SPINE",
+    "WHOLE BODY",
+    "THREE PART (SPINE, FEMUR AND FOREARM)",
+    "Dexa Single Hip",
+    "Dexa Hip & Spine Region",
+    "Dexa Hip &Spine &Four arm Region",
+    "Dexa Fore Arm"
+   ],
+   "video": "dexa"
+  },
+  {
    "id": "electro",
    "title": "Electrolytes: sodium & potassium",
    "desc": "Weakness, confusion, BP medicines and dehydration",
@@ -1210,7 +1228,6 @@
    "tests": [
     "SPINE*",
     "MYLOGRAPHY: SPINE WITH CONTRAST",
-    "SPINE",
     "CERVICAL SPINE (1.5T)",
     "LUMBO SACRAL SPINE (1.5T)",
     "DORSAL SPINE (1.5T)",
@@ -1243,7 +1260,6 @@
     "LUMBO SACRAL SPINE OBL. (BOTH)",
     "LUMBO SACRAL SPINE (AP + LAT)",
     "CERVICO DORSAL SPINE (AP + LAT)",
-    "THREE PART (SPINE, FEMUR AND FOREARM)",
     "WHOLE SPINE (1.5T)",
     "CERVICAL SPINE (3T)",
     "LUMBO SACRAL SPINE (3T)",
@@ -1255,8 +1271,6 @@
     "MRI LUMBER SPINE WITH S.I JOINT (3T)",
     "MRI DYNAMIC (FLEX & EXT) CERVICAL SPINE (3T)",
     "MRI ANKYLOSING SPONDYLOSIS (AS) PROTOCOL ( WSS + SI) (3T)",
-    "Dexa Hip & Spine Region",
-    "Dexa Hip &Spine &Four arm Region",
     "LUMBO SACRAL SPINE WITH WHOLE SPINE -SCREENING (1.5T)",
     "CERVICAL SPINE WITH WHOLE SPINE -SCREENING (1.5T)",
     "DORSAL SPINE WITH WHOLE SPINE -SCREENING (1.5T)"
@@ -1328,7 +1342,6 @@
     "HIP JOINTS BOTH (3T)",
     "Power Doppler study of Joint",
     "PDUS (Single Joint)",
-    "Dexa Single Hip",
     "BIOFIRE JOINT INFECTION PANEL"
    ]
   },
@@ -1369,7 +1382,6 @@
     "PELVIS",
     "LOWER ABDOMEN & PELVIS",
     "FOOT & LOWER TIBIA",
-    "DUAL FEMUR",
     "FOOT (1.5T)",
     "PELVIS (1.5T)",
     "OPG",
@@ -1430,20 +1442,10 @@
    ]
   },
   {
-   "id": "dexa",
-   "title": "DEXA (bone density)",
-   "desc": "Osteoporosis after 50",
-   "date": "2026-12-03",
-   "status": "planned",
-   "tests": [
-    "Dexa Fore Arm"
-   ]
-  },
-  {
    "id": "pregusg",
    "title": "Pregnancy scans: NT, anomaly & growth",
    "desc": "Which scan in which month",
-   "date": "2026-12-04",
+   "date": "2026-12-03",
    "status": "planned",
    "tests": [
     "GROWTH HORMONE (HGH)",
@@ -1474,7 +1476,7 @@
    "id": "doppler",
    "title": "Doppler scan",
    "desc": "Blood flow in legs, neck and kidneys",
-   "date": "2026-12-05",
+   "date": "2026-12-04",
    "status": "planned",
    "tests": [
     "DOPPLER LIMBS*",
@@ -1492,7 +1494,7 @@
    "id": "smallparts",
    "title": "USG thyroid, breast & small parts",
    "desc": "Lumps in the neck, breast, scrotum",
-   "date": "2026-12-06",
+   "date": "2026-12-05",
    "status": "planned",
    "tests": [
     "NECK*",
@@ -1508,7 +1510,7 @@
    "id": "tvs",
    "title": "TVS & pelvic ultrasound",
    "desc": "Periods, cysts, fertility follicle scans",
-   "date": "2026-12-07",
+   "date": "2026-12-06",
    "status": "planned",
    "tests": [
     "KUB (KIDNEY URETER BLADDER)",
@@ -1525,7 +1527,7 @@
    "id": "ctother",
    "title": "Other CT scans",
    "desc": "Face, bones, guided procedures and more",
-   "date": "2026-12-08",
+   "date": "2026-12-07",
    "status": "planned",
    "tests": [
     "TEMPORAL BONE - H.R",
@@ -1562,7 +1564,7 @@
    "id": "mriother",
    "title": "Other MRI scans",
    "desc": "Face, limbs, venogram and special MRI studies",
-   "date": "2026-12-09",
+   "date": "2026-12-08",
    "status": "planned",
    "tests": [
     "BRACHIAL PLEXUS (1.5T)",
@@ -1626,7 +1628,7 @@
    "id": "checkup",
    "title": "Full body checkup: which package?",
    "desc": "Choosing the right health checkup",
-   "date": "2026-12-10",
+   "date": "2026-12-09",
    "status": "planned",
    "tests": [
     "COMPREHENSIVE FOOD PANEL",
@@ -1719,7 +1721,7 @@
    "id": "preop",
    "title": "Tests before surgery",
    "desc": "Why these tests are needed before an operation",
-   "date": "2026-12-11",
+   "date": "2026-12-10",
    "status": "planned",
    "tests": []
   },
@@ -1727,7 +1729,7 @@
    "id": "vitamins",
    "title": "Other vitamins: folate, A, E, B1",
    "desc": "When doctors check them",
-   "date": "2026-12-12",
+   "date": "2026-12-11",
    "status": "planned",
    "tests": [
     "CERULOPLASMIN (COPPER OXIDASE)",
@@ -1750,7 +1752,7 @@
    "id": "liverx",
    "title": "Liver extras: GGT, ammonia, albumin",
    "desc": "Tests beyond the routine LFT",
-   "date": "2026-12-13",
+   "date": "2026-12-12",
    "status": "planned",
    "tests": [
     "ALBUMIN*",
@@ -1781,7 +1783,7 @@
    "id": "kidneyx",
    "title": "Kidney extras: creatinine, eGFR, urea",
    "desc": "Understanding your kidney numbers",
-   "date": "2026-12-14",
+   "date": "2026-12-13",
    "status": "planned",
    "tests": [
     "H. PILORY & UREASE",
@@ -1804,7 +1806,7 @@
    "id": "infect",
    "title": "Other infection tests",
    "desc": "Typhoid, chikungunya, leptospira, scrub typhus",
-   "date": "2026-12-15",
+   "date": "2026-12-14",
    "status": "planned",
    "tests": [
     "ANTI SMOOTH MUSCLE ANTIBODY(ASMA),IFA",
@@ -1918,7 +1920,7 @@
    "id": "hormones",
    "title": "Other hormones",
    "desc": "Growth hormone, vitamin-like hormones and more",
-   "date": "2026-12-16",
+   "date": "2026-12-15",
    "status": "planned",
    "tests": [
     "5-HIAA URINE (HYDROXYINDOLE ACETIC ACID)*",
@@ -1943,7 +1945,7 @@
    "id": "genetic2",
    "title": "Genetic panels",
    "desc": "Single-gene tests and carrier screening",
-   "date": "2026-12-17",
+   "date": "2026-12-16",
    "status": "planned",
    "tests": [
     "ACTIVATE PROTIEN C -RESISTANCE; APCR",
@@ -2044,7 +2046,7 @@
    "id": "drug",
    "title": "Drug level tests",
    "desc": "Monitoring epilepsy and transplant medicines",
-   "date": "2026-12-18",
+   "date": "2026-12-17",
    "status": "planned",
    "tests": [
     "CARBAMAZEPINE",
@@ -2066,7 +2068,7 @@
    "id": "urinex",
    "title": "Other urine tests",
    "desc": "24-hour urine, urine sugar and more",
-   "date": "2026-12-19",
+   "date": "2026-12-18",
    "status": "planned",
    "tests": [
     "17 KETOSTERIOD, URINE",
