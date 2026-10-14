@@ -378,6 +378,42 @@
    "video": "dexa"
   },
   {
+   "id": "wes1",
+   "title": "WES Ep 1: Developmental delay & epilepsy",
+   "desc": "Whole exome sequencing clinical series for doctors",
+   "date": "2026-10-15",
+   "status": "done",
+   "tests": [],
+   "video": "wes1"
+  },
+  {
+   "id": "wes2",
+   "title": "WES Ep 2: Prenatal exome for fetal anomalies",
+   "desc": "Whole exome sequencing clinical series for doctors",
+   "date": "2026-10-15",
+   "status": "done",
+   "tests": [],
+   "video": "wes2"
+  },
+  {
+   "id": "wes3",
+   "title": "WES Ep 3: Rapid exome in the NICU",
+   "desc": "Whole exome sequencing clinical series for doctors",
+   "date": "2026-10-15",
+   "status": "done",
+   "tests": [],
+   "video": "wes3"
+  },
+  {
+   "id": "wes4",
+   "title": "WES Ep 4: Exome in adult specialties",
+   "desc": "Whole exome sequencing clinical series for doctors",
+   "date": "2026-10-15",
+   "status": "done",
+   "tests": [],
+   "video": "wes4"
+  },
+  {
    "id": "electro",
    "title": "Electrolytes: sodium & potassium",
    "desc": "Weakness, confusion, BP medicines and dehydration",
