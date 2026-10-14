@@ -23,7 +23,8 @@ The topic's `tests` list holds the exact Suraksha test names it covers.
 
 ## 3. Write the video (Hindi voice, English on-screen text)
 Copy `studio/engine/example_voice.py` and `studio/engine/example_cartoon.py` (Thyroid, 7 Oct 2026) to new files named after the topic id, e.g. `ecg_voice.py`, `ecg_cartoon.py`. Use a new /tmp prefix (e.g. `/tmp/ecg_`).
-- 9 scenes, about 2–2.5 minutes total: hook (navy/purple bg), what it is, why/when, what it shows, who should test, preparation, how to read the result, myth buster or good-to-know, close.
+- HARD LIMIT: the finished video must be 3:00 or shorter (owner's rule). The closing scene alone is ~33 s, so the 8 content voice lines must total about 135 s of speech or less (roughly 2–3 short sentences each). After the voice is generated, check `/tmp/<prefix>durs.json`: if sum(durs) + 1.3 s per scene > 180 s, shorten the lines and regenerate before rendering. The engine refuses to render anything over 180 s.
+- 9 scenes, about 2:15–2:55 total: hook (navy/purple bg), what it is, why/when, what it shows, who should test, preparation, how to read the result, myth buster or good-to-know, close.
 - Voice: Hindi, plain words, `.` not `।`, numbers in Hindi words. Hook ends with "आखिर तक देखिए".
 - Daily pill on screen: e.g. `THURSDAY HEALTH TIPS  •  8 OCT 2026` (weekday + date in IST).
 - Closing scene: ALWAYS `close_scene("<question in English>?", DATE)` from `hts_close.py`, and the voice line from `close_voice("<same question in Hindi>?")`. It says "Take any medicine only as advised by your doctor", "follow our Facebook page & YouTube channel to get more information", and shows + speaks the DISCLAIMER (general awareness only; facts may change; don't compare your condition with the video; consult your doctor and follow only their advice). The disclaimer is mandatory in every video: the Hindi text is `DISCLAIMER_HI` in hts_close.py and must be the end of the last voice line.
