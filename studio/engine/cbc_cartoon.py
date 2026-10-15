@@ -223,10 +223,10 @@ def c_close(fr, t, D):
 SC = [(c_hook, "red"), (c_intro, "light"), (c_attack, "purple"), (c_team, "light"), (c_doctor, "light"), (c_scan, "light"),
       (c_cheat, "light"), (c_who, "light"), (s_fight, "navy"), (c_victory, "gold"), (c_close, "light")]
 
-def run(SC, P, OUTF):
+def run(SC, P, OUTF, max_sec=180):
     vd = json.load(open(P + "durs.json"))
     durs = [round(v + 1.3, 2) for v in vd]; durs[0] = max(durs[0], 6.0); durs[-1] = max(durs[-1], 7.5)
-    MAX_SEC = 180  # owner's rule: no video longer than 3 minutes
+    MAX_SEC = max_sec  # owner's rule: daily videos max 3 minutes; Genetics Clinical Series (doctors) may be longer
     if sum(durs) > MAX_SEC:
         raise SystemExit(f"VIDEO TOO LONG: {sum(durs):.1f}s > {MAX_SEC}s (3 min). Shorten the voice script "
                          f"(content lines must total about {MAX_SEC - durs[-1] - 1.3 * (len(durs) - 1):.0f}s of speech) and regenerate the voice.")

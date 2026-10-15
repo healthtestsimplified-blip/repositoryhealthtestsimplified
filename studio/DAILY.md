@@ -23,7 +23,7 @@ The topic's `tests` list holds the exact Suraksha test names it covers.
 
 ## 3. Write the video (Hindi voice, English on-screen text)
 Copy `studio/engine/example_voice.py` and `studio/engine/example_cartoon.py` (Thyroid, 7 Oct 2026) to new files named after the topic id, e.g. `ecg_voice.py`, `ecg_cartoon.py`. Use a new /tmp prefix (e.g. `/tmp/ecg_`).
-- HARD LIMIT: the finished video must be 3:00 or shorter (owner's rule). The closing scene alone is ~33 s, so the 8 content voice lines must total about 135 s of speech or less (roughly 2–3 short sentences each). After the voice is generated, check `/tmp/<prefix>durs.json`: if sum(durs) + 1.3 s per scene > 180 s, shorten the lines and regenerate before rendering. The engine refuses to render anything over 180 s.
+- HARD LIMIT: the finished video must be 3:00 or shorter (owner's rule). The closing scene alone is ~33 s, so the 8 content voice lines must total about 135 s of speech or less (roughly 2–3 short sentences each). After the voice is generated, check `/tmp/<prefix>durs.json`: if sum(durs) + 1.3 s per scene > 180 s, shorten the lines and regenerate before rendering. The engine refuses to render anything over 180 s. (Exception: the Genetics Clinical Series for doctors may be longer; see GENETICS_SERIES.md. It passes max_sec to run().)
 - 9 scenes, about 2:15–2:55 total: hook (navy/purple bg), what it is, why/when, what it shows, who should test, preparation, how to read the result, myth buster or good-to-know, close.
 - Voice: Hindi, plain words, `.` not `।`, numbers in Hindi words. Hook ends with "आखिर तक देखिए".
 - Daily pill on screen: e.g. `THURSDAY HEALTH TIPS  •  8 OCT 2026` (weekday + date in IST).

@@ -117,6 +117,17 @@ button{font:inherit; color:inherit}
 .myth .b span{font-size:1rem}
 
 /* coming soon */
+.gen{margin:34px 0 10px}
+.gen h2{font-size:1.8rem}.gen .tag{font-size:.8rem; vertical-align:middle; background:var(--tint-saffron); color:#9a5b00; border-radius:999px; padding:3px 10px; margin-left:6px}
+.gen > p{margin:2px 0 14px; color:var(--muted)}
+.gen details{border:1px solid #d9e2ec; border-radius:12px; margin:8px 0; background:#fff}
+.gen summary{cursor:pointer; padding:12px 14px; font-weight:700}
+.gen ol{margin:0; padding:0 14px 12px 34px}
+.gen li{padding:6px 0; border-top:1px solid #eef2f6; display:flex; flex-wrap:wrap; gap:6px 12px; align-items:center}
+.gen li .t{flex:1 1 220px}
+.gen .ga{display:inline-flex; align-items:center; min-height:36px; padding:4px 12px; border-radius:999px; font-weight:700; font-size:.9rem; text-decoration:none; border:0; cursor:pointer}
+.gen .gp{background:var(--blue-2); color:#fff}.gen .gd{background:#e6f4f1; color:#0b5e52}.gen .gw{background:#e7f8ee; color:#11683a}
+.gen .gs{color:var(--muted); font-size:.85rem}
 .soon h2{font-size:1.8rem}
 .soon > p{margin:2px 0 16px; color:var(--muted)}
 .srow{display:grid; grid-flow:column; grid-auto-flow:column; grid-auto-columns:minmax(200px,1fr); gap:12px; overflow-x:auto; padding-bottom:6px; scrollbar-width:thin}
@@ -262,6 +273,12 @@ dialog::backdrop{background:rgba(6,18,28,.82)}
     <p>A new test explained every day, from the tests at Suraksha Diagnostic.</p>
     <div class="srow" id="srow"></div>
     <details class="allsched"><summary>See the full schedule</summary><ol id="sched"></ol></details>
+  </section>
+
+  <section class="gen" id="genetics" aria-labelledby="gen-h">
+    <h2 id="gen-h">Genetics Clinical Series <span class="tag">for doctors</span></h2>
+    <p>100 episodes on genetic testing, each with a published case study you can download and share.</p>
+    <div id="genlist"></div>
   </section>
 
   <div class="libhead" id="library"><h2>All videos</h2></div>
@@ -440,6 +457,15 @@ const todayIST = () => new Date(Date.now() + 5.5*3600e3).toISOString().slice(0,1
 function whenLabel(d){ const t = todayIST(); const diff = Math.round((Date.parse(d) - Date.parse(t)) / 864e5);
   if (diff <= 0) return "Today"; if (diff === 1) return "Tomorrow";
   return new Date(d + "T00:00:00+05:30").toLocaleDateString("en-IN", {weekday:"short", day:"numeric", month:"short", timeZone:"Asia/Kolkata"}); }
+fetch("data/genetics.json").then(r => r.json()).then(g => {
+  const groups = []; g.episodes.forEach(e => { let x = groups.find(y => y.n === e.group); if (!x) groups.push(x = {n: e.group, e: []}); x.e.push(e); });
+  $("genlist").innerHTML = groups.map((gr, i) => `<details${i === 0 ? " open" : ""}><summary>${esc(gr.n)} (${gr.e.length})</summary><ol start="${gr.e[0].n}">${gr.e.map(e => {
+    if (e.status !== "done") return `<li><span class="t">${esc(e.title)}</span><span class="gs">Coming soon</span></li>`;
+    const pdf = SITE + "cases/" + e.id + ".pdf";
+    const wa = "https://wa.me/?text=" + encodeURIComponent("Genetics Clinical Series, Ep " + e.n + ": " + e.title + ". Case study (PDF): " + pdf + "  Video: " + SITE + "#" + e.video);
+    return `<li id="${e.id}"><span class="t"><b>Ep ${e.n}.</b> ${esc(e.title)}</span>${byId[e.video] ? `<button type="button" class="ga gp" data-play="${e.video}">Watch</button>` : ""}<a class="ga gd" href="cases/${e.id}.pdf" download>Case study PDF</a><a class="ga gw" href="${wa}" target="_blank" rel="noopener">Share on WhatsApp</a></li>`;
+  }).join("")}</ol></details>`).join("");
+}).catch(() => {});
 fetch("data/calendar.json").then(r => r.json()).then(c => {
   CAL = c; const t = todayIST();
   const up = c.topics.filter(x => x.status !== "done" && x.date >= t);
