@@ -927,8 +927,8 @@
    "id": "ana",
    "title": "ANA (autoimmune test)",
    "desc": "When the body attacks itself",
-   "date": "2026-11-15",
-   "status": "planned",
+   "date": "2026-10-15",
+   "status": "done",
    "tests": [
     "RENAL TRACK FOR RENAL CAL",
     "MRI - Chemical Shift Imaging Adrenal/Liver (1.5T)",
@@ -957,7 +957,8 @@
     "AUTOIMMUNE BULLOUS DERMATOSES PROFILE IgG",
     "STEROID PANEL FOR CONGENITAL ADRENAL HYPERPLASIA (CAH)",
     "Sanger Seq+Congenital Adrenal Hyperplasia CAH (MLPA)"
-   ]
+   ],
+   "video": "ana"
   },
   {
    "id": "ra",
