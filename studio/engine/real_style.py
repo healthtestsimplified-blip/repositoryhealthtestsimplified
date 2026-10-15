@@ -380,6 +380,7 @@ def hplc_chart(fr, x, y, w, h, t, tin, a2_high=True):
         d.text((cx, top - 30), "HbA2 high", font=font("Bold", 26), fill=AMBER, anchor="mm")
     fr.alpha_composite(lay)
 
+IUPAC = {frozenset("AG"): "R", frozenset("CT"): "Y", frozenset("GC"): "S", frozenset("AT"): "W", frozenset("GT"): "K", frozenset("AC"): "M"}
 BASECOL = {"A": (67, 200, 110), "C": (80, 150, 255), "G": (240, 240, 240), "T": (255, 90, 90)}
 def sanger(fr, x, y, w, h, t, tin, seq="CCTTGGACCCAGAGGTTCTTTG", mut=None, scroll=True, title="DNA sequencing (Sanger)"):
     """Sanger chromatogram with base calls; mut=(index, other_base) draws a double peak (heterozygous)."""
@@ -407,7 +408,7 @@ def sanger(fr, x, y, w, h, t, tin, seq="CCTTGGACCCAGAGGTTCTTTG", mut=None, scrol
         col = BASECOL[ch]
         if mut and k == mut[0]:
             d.rounded_rectangle((xx - step / 2, top - 6, xx + step / 2, by + 50), 8, outline=AMBER, width=3)
-            d.text((xx, by + 30), "S", font=font("Bold", 28), fill=AMBER, anchor="mm")
+            d.text((xx, by + 30), IUPAC.get(frozenset((ch, mut[1])), "N"), font=font("Bold", 28), fill=AMBER, anchor="mm")
         else:
             d.text((xx, by + 30), ch, font=font("Bold", 26), fill=col, anchor="mm")
     fr.alpha_composite(lay)
