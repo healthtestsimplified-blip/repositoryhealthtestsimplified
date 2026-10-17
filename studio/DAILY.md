@@ -68,7 +68,10 @@ EOF
 ## 7. Report to the owner
 Send the full-size MP4 with SendUserFile, and a short message with:
 - what the video covers (5–7 bullets),
-- the Facebook caption (must include the line "⚠️ For general awareness only. Facts may change. Don't compare your condition with this video; consult your doctor and follow their advice."): hook line, "Watch till the end 👀", a question, "Share with your family 🙏", "👉 Follow our Facebook page & YouTube channel to get more information", the direct link `https://healthtestsimplified.netlify.app/#<id>`, then hashtags. Always include: #HealthTestSimplified #india #WestBengal #assam #jharkhand #Bihar #science #biology #ReelsIndia #FBReels #viralreelschallenge plus 4–5 topic tags,
+- ONE COMMON POST TEXT for both Facebook and YouTube (owner's rule, 17 Oct 2026), in two copy blocks:
+  1. TITLE (max 100 characters, YouTube title / first line on Facebook): `<Test name> in Hindi | <2–3 key words> | Health Test Simplified`
+  2. DESCRIPTION, in this order: hook line; "Watch till the end 👀"; "In this video:" with 4–6 ✔ lines; a question for comments; "Share with your family 🙏"; "👉 Follow our Facebook page & YouTube channel to get more information"; the links (website `https://healthtestsimplified.netlify.app/#<id>`, Facebook https://www.facebook.com/profile.php?id=61594730205462, YouTube https://www.youtube.com/@Healthtestsimplified); "Chapters:" with 0:00 and approximate scene start times (sum of earlier voice durations + 1.3 s each); the line "⚠️ For general awareness only. Facts may change. Don't compare your condition with this video; consult your doctor and follow their advice. Take any medicine only as advised by your doctor."; then hashtags with 3 topic hashtags FIRST (YouTube shows the first 3), then #HealthTestSimplified #india #WestBengal #assam #jharkhand #Bihar #science #biology #ReelsIndia #FBReels #viralreelschallenge plus 2–3 more topic tags.
+  Below the two blocks, a TAGS line for YouTube's Tags box (comma separated, under 500 characters; Facebook ignores it),
 - the SEO keyword line (comma separated, one line),
 - the sources used, and anything lab-specific the owner should confirm with Suraksha's lab team.
 If any step fails, publish nothing broken: report what failed and leave the website unchanged.
