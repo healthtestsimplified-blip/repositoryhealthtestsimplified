@@ -3,12 +3,12 @@ from lft_cartoon2 import *
 
 # Hindi voice for the last scene. Put the video-specific question in `question_hi`.
 def close_voice(question_hi):
-    return ("याद रखें, कोई भी दवा सिर्फ डॉक्टर की सलाह से ही लें. " + question_hi +
+    return ("याद रखें, कोई भी मेडिसिन सिर्फ डॉक्टर की सलाह से ही लें. " + question_hi +
             " कमेंट में बताइए, और शेयर करें. और ज़्यादा जानकारी के लिए, हमारा फेसबुक पेज और यूट्यूब चैनल फॉलो करें. हेल्थ टेस्ट सिम्प्लिफाइड. "
             + DISCLAIMER_HI)
 
-DISCLAIMER_HI = ("ध्यान दें, यह वीडियो केवल बीमारियों और टेस्ट के बारे में सामान्य जानकारी के लिए है. जानकारी समय के साथ बदल सकती है. "
-                 "अपनी स्थिति को इस वीडियो से न जोड़ें. हमेशा अपने डॉक्टर से ही सलाह लें, और उन्हीं की सलाह मानें.")
+DISCLAIMER_HI = ("ध्यान दें, यह वीडियो सिर्फ बीमारियों और टेस्ट की जनरल जानकारी के लिए है. जानकारी समय के साथ बदल सकती है. "
+                 "अपनी कंडीशन को इस वीडियो से न जोड़ें. हमेशा अपने डॉक्टर से ही सलाह लें, और उन्हीं की सलाह मानें.")
 DISCLAIMER_EN = ("Disclaimer: For general awareness about diseases and tests only. Facts may change over time. "
                  "Do not compare your condition with this video. Always consult your doctor and follow only their advice.")
 
