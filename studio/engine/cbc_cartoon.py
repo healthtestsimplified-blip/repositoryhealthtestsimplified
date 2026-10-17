@@ -223,7 +223,7 @@ def c_close(fr, t, D):
 SC = [(c_hook, "red"), (c_intro, "light"), (c_attack, "purple"), (c_team, "light"), (c_doctor, "light"), (c_scan, "light"),
       (c_cheat, "light"), (c_who, "light"), (s_fight, "navy"), (c_victory, "gold"), (c_close, "light")]
 
-def run(SC, P, OUTF, max_sec=180):
+def run(SC, P, OUTF, max_sec=180, cover_skip=2.0):
     vd = json.load(open(P + "durs.json"))
     durs = [round(v + 1.3, 2) for v in vd]; durs[0] = max(durs[0], 6.0); durs[-1] = max(durs[-1], 7.5)
     MAX_SEC = max_sec  # owner's rule: daily videos max 3 minutes; Genetics Clinical Series (doctors) may be longer
@@ -241,13 +241,17 @@ def run(SC, P, OUTF, max_sec=180):
     proc = subprocess.Popen(["ffmpeg", "-y", "-loglevel", "error", "-f", "rawvideo", "-pix_fmt", "rgb24", "-s", f"{W}x{H}",
         "-r", str(FPS), "-i", "-", "-c:v", "libx264", "-preset", "medium", "-crf", "20", "-pix_fmt", "yuv420p", P + "video.mp4"], stdin=subprocess.PIPE)
     total = sum(int(x * FPS) for x in durs); fidx = 0; t0 = 0.0
-    for (fn, bgk), D in zip(SC, durs):
+    for si, ((fn, bgk), D) in enumerate(zip(SC, durs)):
         base = BASES[bgk]; n = int(D * FPS)
+        # Owner's rule: the very first frame must already show the subject (title) — no blank/white opening frame.
+        # Scene 0 is rendered with its clock advanced by cover_skip seconds so the title is fully on screen at frame 0.
+        skip = cover_skip if si == 0 else 0.0
         for f in range(n):
-            t = f / FPS; NOW.update(t=t, t0=t0, shake=0.0)
-            fr = base.copy(); fn(fr, t, D)
+            t = f / FPS + skip; NOW.update(t=t, t0=t0 - skip, shake=0.0)
+            fr = base.copy(); fn(fr, t, D + skip)
             if NOW["shake"]: fr = ImageChops.offset(fr, int(NOW["shake"] * math.sin(t * 60)), int(NOW["shake"] * math.cos(t * 47)))
-            a = min(1, t / 0.2, (D - t) / 0.25)
+            tl = t - skip
+            a = min(1, (tl / 0.2) if si else 1, (D - tl) / 0.25)
             if a < 1: fr = Image.blend(base, fr, max(0, a))
             ImageDraw.Draw(fr).rectangle((0, 0, int(W * (fidx + 1) / total), 10), fill=YEL)
             proc.stdin.write(fr.convert("RGB").tobytes()); fidx += 1
