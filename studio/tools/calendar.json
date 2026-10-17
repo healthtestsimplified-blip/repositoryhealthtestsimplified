@@ -2138,6 +2138,14 @@
    "date": "2026-10-15",
    "status": "done",
    "video": "imaging"
+  },
+  {
+   "id": "fcp",
+   "title": "Fecal calprotectin",
+   "desc": "IBS or IBD? Gut inflammation stool test",
+   "date": "2026-10-17",
+   "status": "done",
+   "video": "fcp"
   }
  ]
 }
