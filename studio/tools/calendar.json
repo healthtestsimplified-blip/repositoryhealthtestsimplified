@@ -2154,6 +2154,14 @@
    "date": "2026-10-17",
    "status": "done",
    "video": "brca"
+  },
+  {
+   "id": "sero",
+   "title": "Serology profile",
+   "desc": "HIV, HBsAg, HCV, VDRL before surgery & pregnancy",
+   "date": "2026-10-17",
+   "status": "done",
+   "video": "sero"
   }
  ]
 }
