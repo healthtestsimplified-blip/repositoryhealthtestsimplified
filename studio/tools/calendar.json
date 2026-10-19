@@ -2170,6 +2170,14 @@
    "date": "2026-10-17",
    "status": "done",
    "video": "anca"
+  },
+  {
+   "id": "tumour",
+   "title": "Tumour markers",
+   "desc": "PSA, CA-125, CEA, CA 19-9, AFP",
+   "date": "2026-10-19",
+   "status": "done",
+   "video": "tumour"
   }
  ]
 }
