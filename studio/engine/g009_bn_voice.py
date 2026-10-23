@@ -1,7 +1,6 @@
 """Bengali narration for Genetics Ep 9 (same scenes as g009.py). Output: /tmp/g009bn_<i>.wav and /tmp/g009bn_durs.json"""
 import json, subprocess, warnings, os
 warnings.filterwarnings("ignore")
-from TTS.utils.synthesizer import Synthesizer
 
 DISCLAIMER_BN = ("মনে রাখবেন, এই ভিডিও শুধু রোগ আর টেস্ট সম্পর্কে সাধারণ তথ্যের জন্য. তথ্য সময়ের সঙ্গে বদলাতে পারে. "
                  "নিজের অবস্থা এই ভিডিওর সঙ্গে মেলাবেন না. সবসময় নিজের ডাক্তারের পরামর্শ নিন, আর তাঁর পরামর্শই মেনে চলুন.")
@@ -25,7 +24,10 @@ lines = [
  "মূল কথা. জিনোম, কোডিং আর নন কোডিং, দুটোই পড়ে. একটাই টেস্টে, ছোট পরিবর্তন, সি এন ভি, আর স্ট্রাকচারাল ভ্যারিয়েন্ট. এক্সোম নেগেটিভ, কিন্তু সন্দেহ জোরালো হলে, জিনোম ভাবুন. এটাও সব কিছু ধরে না, তাই ক্লিনিক্যাল ছবি জরুরি. আর সঠিক পরিবর্তন পেলে, পুরো পরিবার উপকার পায়.",
  close_voice_bn("আপনি কি কখনও, হোল জিনোম সিকোয়েন্সিং করিয়েছেন?"),
 ]
+TEASER_Q = "আপনি কি কখনও, হোল জিনোম সিকোয়েন্সিং করিয়েছেন?"
+
 if __name__ == "__main__":
+    from TTS.utils.synthesizer import Synthesizer
     d = "/tmp/bnf/tts_models--bn--custom--vits_female/"
     s = Synthesizer(tts_checkpoint=d + "model_file.pth", tts_config_path=d + "config.json", use_cuda=False)
     durs = []
