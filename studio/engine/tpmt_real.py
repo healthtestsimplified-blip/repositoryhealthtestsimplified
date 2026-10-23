@@ -128,4 +128,5 @@ if __name__ == "__main__":
         s = Image.new("RGB", (360 * 5, 640 * 2), "white")
         for i, im in enumerate(ims): s.paste(im, ((i % 5) * 360, (i // 5) * 640))
         s.save("/tmp/sheet_tpmt.png")
+    elif len(sys.argv) > 1 and sys.argv[1] == "bn": run(SC, "/tmp/tpmtbn_", "TPMT_NUDT15_Test_Bengali.mp4")
     else: run(SC, "/tmp/tpmt_", "TPMT_NUDT15_Test_Hindi.mp4")

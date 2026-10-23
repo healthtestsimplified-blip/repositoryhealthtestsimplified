@@ -5,12 +5,13 @@ import asyncio, importlib, json, os, subprocess, sys
 import edge_tts
 
 VOICE = "bn-IN-TanishaaNeural"
+RATE = os.environ.get("BN_RATE", "+0%")
 PROXY = os.environ.get("HTTPS_PROXY") or os.environ.get("https_proxy")
 
 async def say(text, mp3):
     for attempt in range(4):
         try:
-            await edge_tts.Communicate(text, VOICE, proxy=PROXY).save(mp3)
+            await edge_tts.Communicate(text, VOICE, rate=RATE, proxy=PROXY).save(mp3)
             if os.path.getsize(mp3) > 1000: return
         except Exception as e:
             print("retry", attempt, e, flush=True)
