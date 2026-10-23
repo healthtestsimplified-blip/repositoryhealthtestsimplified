@@ -197,4 +197,9 @@ if __name__ == "__main__":
         s = Image.new("RGB", (300 * 5, 533 * 3), "white")
         for i, im in enumerate(ims): s.paste(im, ((i % 5) * 300, (i // 5) * 533))
         s.save(sys.argv[2] if len(sys.argv) > 2 else "/tmp/sheet_g009.png")
+    elif len(sys.argv) > 1 and sys.argv[1] == "bn":
+        run(SC, "/tmp/g009bn_", "Genetics_Ep09_Whole_Genome_Sequencing_Bengali.mp4", max_sec=480)
+    elif len(sys.argv) > 1 and sys.argv[1] == "bn_teaser":
+        import doc_style
+        run([(close_scene("Used genome sequencing yet?", "WATCH THE FULL VIDEO ON OUR CHANNEL"), "docl")], "/tmp/tzbn_g009_", "/tmp/tzbn_g009.mp4", max_sec=180, cover_skip=0)
     else: run(SC, "/tmp/g009_", "Genetics_Ep09_Whole_Genome_Sequencing_Hindi.mp4", max_sec=480)
