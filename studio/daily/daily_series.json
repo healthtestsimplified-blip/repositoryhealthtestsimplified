@@ -1,0 +1,709 @@
+{
+ "series": "Aaj Ka Health Gyan",
+ "command": "health aaj kya gyan",
+ "rules": "Under 2 min; Hindi Microsoft Swara voice (hi-IN-SwaraNeural); English on-screen text; purple & pink theme; title on first frame; sourced facts; end: medicine line + doctor-opinion disclaimer + follow line (Instagram, Facebook, YouTube); give caption + hashtags; deliver files only (user posts).",
+ "videos": [
+  {
+   "n": 1,
+   "id": "d001",
+   "title": "Vitamin D ki kami: lakshan, khana, test",
+   "type": "condition",
+   "status": "done",
+   "file": "AajKaHealthGyan_Day01_VitaminD_Hindi.mp4",
+   "made": "2026-10-26"
+  },
+  {
+   "n": 2,
+   "id": "d002",
+   "title": "HbA1c test: 3 mahine ki sugar report",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 3,
+   "id": "d003",
+   "title": "Thyroid (TSH): kab test karayein",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 4,
+   "id": "d004",
+   "title": "Anaemia (khoon ki kami): iron wala khana",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 5,
+   "id": "d005",
+   "title": "Vitamin B12 ki kami",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 6,
+   "id": "d006",
+   "title": "High BP: ghar par BP kaise naapein",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 7,
+   "id": "d007",
+   "title": "Cholesterol: lipid profile samjhein",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 8,
+   "id": "d008",
+   "title": "Fatty liver: kaun sa test, kya khayein",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 9,
+   "id": "d009",
+   "title": "Uric acid aur gout",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 10,
+   "id": "d010",
+   "title": "Kidney function test (KFT/creatinine)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 11,
+   "id": "d011",
+   "title": "Liver function test (LFT)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 12,
+   "id": "d012",
+   "title": "Peeliya (jaundice)",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 13,
+   "id": "d013",
+   "title": "CBC report kaise padhein",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 14,
+   "id": "d014",
+   "title": "Urine routine test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 15,
+   "id": "d015",
+   "title": "Dengue: NS1 aur platelet",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 16,
+   "id": "d016",
+   "title": "Typhoid: Widal ya blood culture?",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 17,
+   "id": "d017",
+   "title": "Malaria test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 18,
+   "id": "d018",
+   "title": "TB: kab test karayein",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 19,
+   "id": "d019",
+   "title": "PCOS: lakshan aur test",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 20,
+   "id": "d020",
+   "title": "Pregnancy ke pehle 3 mahine ke test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 21,
+   "id": "d021",
+   "title": "Calcium wala khana",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 22,
+   "id": "d022",
+   "title": "Protein: shakahari logon ke liye",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 23,
+   "id": "d023",
+   "title": "Daal: protein ka sasta source",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 24,
+   "id": "d024",
+   "title": "Ande: roz kha sakte hain?",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 25,
+   "id": "d025",
+   "title": "Gud ya cheeni: kya behtar?",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 26,
+   "id": "d026",
+   "title": "Millets (bajra, ragi, jowar)",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 27,
+   "id": "d027",
+   "title": "Chawal aur diabetes",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 28,
+   "id": "d028",
+   "title": "Namak: roz kitna?",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 29,
+   "id": "d029",
+   "title": "Chai aur khaane ke saath iron",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 30,
+   "id": "d030",
+   "title": "Paani: din bhar kitna?",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 31,
+   "id": "d031",
+   "title": "Diabetes mein phal",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 32,
+   "id": "d032",
+   "title": "Fasting blood sugar vs PP sugar",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 33,
+   "id": "d033",
+   "title": "Prediabetes kya hai",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 34,
+   "id": "d034",
+   "title": "Heart attack ke lakshan",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 35,
+   "id": "d035",
+   "title": "ECG kab karayein",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 36,
+   "id": "d036",
+   "title": "Troponin test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 37,
+   "id": "d037",
+   "title": "Stroke ke lakshan: BE FAST",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 38,
+   "id": "d038",
+   "title": "Migraine",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 39,
+   "id": "d039",
+   "title": "Asthma aur spirometry",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 40,
+   "id": "d040",
+   "title": "Allergy test (IgE)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 41,
+   "id": "d041",
+   "title": "Arthritis: RA factor aur anti-CCP",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 42,
+   "id": "d042",
+   "title": "Osteoporosis aur DEXA",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 43,
+   "id": "d043",
+   "title": "Kamar dard: kab test?",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 44,
+   "id": "d044",
+   "title": "Kidney stone: khana aur test",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 45,
+   "id": "d045",
+   "title": "UTI (peshab ka infection)",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 46,
+   "id": "d046",
+   "title": "Prostate aur PSA",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 47,
+   "id": "d047",
+   "title": "Breast self-exam aur mammography",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 48,
+   "id": "d048",
+   "title": "Cervical cancer: Pap smear aur HPV",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 49,
+   "id": "d049",
+   "title": "HPV vaccine",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 50,
+   "id": "d050",
+   "title": "Colon cancer: stool test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 51,
+   "id": "d051",
+   "title": "Tumour markers ka sach",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 52,
+   "id": "d052",
+   "title": "Hepatitis B test aur vaccine",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 53,
+   "id": "d053",
+   "title": "Hepatitis C test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 54,
+   "id": "d054",
+   "title": "HIV test: kab aur kaise",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 55,
+   "id": "d055",
+   "title": "Pet ke keede (stool test)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 56,
+   "id": "d056",
+   "title": "H. pylori aur acidity",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 57,
+   "id": "d057",
+   "title": "Constipation aur fibre",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 58,
+   "id": "d058",
+   "title": "Dahi aur probiotics",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 59,
+   "id": "d059",
+   "title": "Junk food aur bachche",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 60,
+   "id": "d060",
+   "title": "Bachchon mein iron ki kami",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 61,
+   "id": "d061",
+   "title": "Bachchon ki height aur growth",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 62,
+   "id": "d062",
+   "title": "Newborn screening",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 63,
+   "id": "d063",
+   "title": "Thalassemia carrier test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 64,
+   "id": "d064",
+   "title": "Sickle cell test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 65,
+   "id": "d065",
+   "title": "Blood group aur Rh",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 66,
+   "id": "d066",
+   "title": "Pregnancy mein sugar test (GTT)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 67,
+   "id": "d067",
+   "title": "Pregnancy mein anaemia",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 68,
+   "id": "d068",
+   "title": "Menopause aur haddiyan",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 69,
+   "id": "d069",
+   "title": "Iron ki goli: sahi tarika",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 70,
+   "id": "d070",
+   "title": "Vitamin C wala khana",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 71,
+   "id": "d071",
+   "title": "Omega-3 shakahari source",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 72,
+   "id": "d072",
+   "title": "Nashte ka sahi tarika",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 73,
+   "id": "d073",
+   "title": "Raat ka khana kab",
+   "type": "food",
+   "status": "planned"
+  },
+  {
+   "n": 74,
+   "id": "d074",
+   "title": "Vazan aur BMI",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 75,
+   "id": "d075",
+   "title": "Pet ki charbi (waist size)",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 76,
+   "id": "d076",
+   "title": "Thyroid aur vazan",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 77,
+   "id": "d077",
+   "title": "Neend aur sehat",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 78,
+   "id": "d078",
+   "title": "Stress aur BP",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 79,
+   "id": "d079",
+   "title": "Dhoomrapaan chhodne ke fayde",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 80,
+   "id": "d080",
+   "title": "Sharaab aur liver",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 81,
+   "id": "d081",
+   "title": "Garmi mein lu (heat stroke)",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 82,
+   "id": "d082",
+   "title": "Monsoon ki bimariyan",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 83,
+   "id": "d083",
+   "title": "Sardi-khansi ya flu?",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 84,
+   "id": "d084",
+   "title": "Antibiotic ka sahi upyog",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 85,
+   "id": "d085",
+   "title": "Full body checkup: kya zaroori",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 86,
+   "id": "d086",
+   "title": "40 ke baad ke test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 87,
+   "id": "d087",
+   "title": "60 ke baad ke test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 88,
+   "id": "d088",
+   "title": "Diabetes: aankh aur pair ki jaanch",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 89,
+   "id": "d089",
+   "title": "Microalbumin (kidney) test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 90,
+   "id": "d090",
+   "title": "Vitamin D ka zyada hona",
+   "type": "condition",
+   "status": "planned"
+  },
+  {
+   "n": 91,
+   "id": "d091",
+   "title": "Ferritin test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 92,
+   "id": "d092",
+   "title": "CRP aur ESR",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 93,
+   "id": "d093",
+   "title": "D-dimer",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 94,
+   "id": "d094",
+   "title": "Electrolytes (sodium, potassium)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 95,
+   "id": "d095",
+   "title": "Hormone test: testosterone",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 96,
+   "id": "d096",
+   "title": "Infertility: semen analysis",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 97,
+   "id": "d097",
+   "title": "AMH test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 98,
+   "id": "d098",
+   "title": "Pregnancy test (beta hCG)",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 99,
+   "id": "d099",
+   "title": "Covid aur flu test",
+   "type": "test",
+   "status": "planned"
+  },
+  {
+   "n": 100,
+   "id": "d100",
+   "title": "Health check ka saalana calendar",
+   "type": "test",
+   "status": "planned"
+  }
+ ]
+}
