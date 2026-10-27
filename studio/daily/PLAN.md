@@ -9,7 +9,7 @@ Code: studio/engine/dNNN.py (scenes), dNNN_voice.py (lines), hi_swara.py (voice)
 | Day | Topic | Type | Status |
 | --- | --- | --- | --- |
 | 1 | Vitamin D ki kami: lakshan, khana, test | condition | done |
-| 2 | HbA1c test: 3 mahine ki sugar report | test | planned |
+| 2 | HbA1c test: 3 mahine ki sugar report | test | done |
 | 3 | Thyroid (TSH): kab test karayein | test | planned |
 | 4 | Anaemia (khoon ki kami): iron wala khana | condition | planned |
 | 5 | Vitamin B12 ki kami | condition | planned |
