@@ -106,7 +106,7 @@ button{font:inherit; color:inherit}
 
 /* series */
 .series{padding-block:44px}
-.sgrid{display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:16px}
+.sgrid{display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:16px}
 .stile{display:flex; flex-direction:column; gap:10px; text-align:left; background:var(--surface); border:1px solid var(--line); border-radius:20px; padding:22px; cursor:pointer; position:relative; overflow:hidden; transition:transform .18s, box-shadow .18s, border-color .18s}
 .stile:hover{transform:translateY(-3px); box-shadow:var(--shadow); border-color:color-mix(in srgb,var(--c) 45%,var(--line))}
 .stile::before{content:""; position:absolute; inset:0 0 auto 0; height:4px; background:var(--c)}
@@ -392,6 +392,7 @@ const WORRIES = [
 const SERIES = [
  {id:"tests", ic:"🩸", c:"#d64550", aud:"For everyone"},
  {id:"gen", ic:"🧬", c:"#0f8b8d", aud:"For doctors", to:"genetics"},
+ {id:"cancer", ic:"🎗️", c:"#7b3fa0", aud:"For everyone"},
  {id:"high", ic:"🔬", c:"#0b2545", aud:"For doctors"},
  {id:"preg", ic:"🤰", c:"#c2185b", aud:"For families"},
  {id:"bio", ic:"🧫", c:"#1f9d63", aud:"For everyone"},
