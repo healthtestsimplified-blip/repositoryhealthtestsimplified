@@ -1,7 +1,8 @@
 const CATS = [
   {id:"tests", name:"Health tests", blurb:"Doctor vs Disease: blood, urine and scan tests explained as a fight."},
   {id:"preg", name:"Pregnancy care", blurb:"A three-part series for mothers-to-be."},
-  {id:"gen", name:"Genetic tests", blurb:"Karyotype, microarray and exome: finding the cause in the genes."},
+  {id:"gen", name:"Genetics Clinical Series", blurb:"Karyotype, microarray, exome and gene-by-gene field guides, each with a PDF."},
+  {id:"high", name:"High-End Tests", blurb:"Advanced cancer and specialty tests like liquid biopsy, explained for doctors."},
   {id:"bio", name:"Biology made simple", blurb:"From one protein to the whole body."},
   {id:"daily", name:"Daily health tips", blurb:"Seasonal tips posted on the page."}
 ];
@@ -376,7 +377,7 @@ const V = [
      ["Indian data","AIIMS: MECP2 change in 98.6% of 72 classic Rett girls (sequencing 88.9%, MLPA deletions 9.7%); symptoms at 16 months, diagnosis at 42 months (medians). Lucknow/AIIMS: classic 93%, atypical 20%, Rett-like only 0 of 17."],
      ["Which test","MECP2 sequencing plus MLPA for deletions; if negative or atypical, CDKL5, FOXG1, a panel or exome with CNV. A positive test alone does not diagnose (NICHD). Not on the standard menu: confirm with the lab."],
      ["Field approach","Visit paediatric neurologists, developmental paediatricians and therapy centres. Ask whether girls who lost hand use and speech are tested for MECP2 with MLPA. Trofinetide approved in the USA in 2023 (age 2+). Never promise a cure."]]},
- {id:"ht001", c:"gen", t:"High-End Tests Ep 1: Liquid biopsy and NGS cancer panels (field guide)", l:"Bengali", d:"5:49",
+ {id:"ht001", c:"high", t:"High-End Tests Ep 1: Liquid biopsy and NGS cancer panels (field guide)", l:"Bengali", d:"5:49",
   s:"A field guide for sales and healthcare teams on liquid biopsy (plasma ctDNA) and NGS cancer panels, using advanced lung cancer as the example: what it is, why genes matter, which doctors to visit, Indian data from Tata Memorial and Hyderabad, when to use it (IASLC 2021), its limits, which test, which patients, how to talk to doctors, samples and field rules. Bengali narration; Hindi teaser. PDF included.",
   x:[["What it is","Tumours release DNA into the blood (ctDNA). Liquid biopsy reads it from a blood sample; NGS reads many cancer genes in one test."],
      ["Indian data","Tata Memorial, 163 advanced lung cancer patients: plasma agreed with tissue in 97%, sensitivity 91.1%, specificity 100%; about 1 in 5 had no tissue, and plasma found EGFR in 16% of them (Veldore et al., 2018). Hyderabad: 79% of 53 lung adenocarcinomas had an actionable change on a 46-gene panel (Sharma et al., 2023)."],
