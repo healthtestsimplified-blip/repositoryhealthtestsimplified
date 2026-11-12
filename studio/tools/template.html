@@ -416,7 +416,7 @@ function card(v){
     <button class="thumb" type="button" data-play="${v.id}" aria-label="Play: ${esc(v.t)}"><img src="p/${v.id}.jpg" alt="" loading="lazy" width="360" height="640"><span class="pbtn"></span><span class="dur">${v.d}</span></button>
     <div class="body">
       <div class="meta"><span>${esc(catName(v.c))}</span><span class="lang">${v.l}</span></div>
-      <h3>${esc(v.t)}</h3>
+      <h3><a href="watch/${v.id}/" style="color:inherit;text-decoration:none">${esc(v.t)}</a></h3>
       <p class="sum">${esc(v.s)}</p>
       <details><summary>Test details</summary><dl>${dl}</dl></details>
     </div></article>`;
@@ -493,8 +493,8 @@ function openV(id){
   $("pm").innerHTML = `<span>${esc(catName(v.c))}</span><span class="lang">${v.l}</span><span>${v.d} min</span>`;
   $("pt").textContent = v.t; $("ps").textContent = v.s;
   $("pd").innerHTML = v.x.map(([a,b]) => `<dt>${esc(a)}</dt><dd>${esc(b)}</dd>`).join("");
-  const url = SITE + "#" + v.id;
-  $("pw").href = "https://wa.me/?text=" + encodeURIComponent(v.t + " – watch this 2-minute video in Hindi: " + url);
+  const url = SITE + "watch/" + v.id + "/";
+  $("pw").href = "https://wa.me/?text=" + encodeURIComponent(v.t + ": watch this short " + v.l + " video: " + url);
   const n = nextOf(id);
   $("pn").innerHTML = `<small>Watch next</small><button type="button" data-next="${n.id}"><img src="p/${n.id}.jpg" alt=""><b>${esc(n.t)}</b></button>`;
   if (!dlg.open) dlg.showModal();
@@ -508,7 +508,7 @@ $("px").addEventListener("click", closeV);
 dlg.addEventListener("cancel", e => { e.preventDefault(); closeV(); });
 dlg.addEventListener("click", e => { if (e.target === dlg) closeV(); });
 pv.addEventListener("ended", () => { const b = $("pn").querySelector("button"); if (b) b.focus(); });
-$("pc").addEventListener("click", async () => { try { await navigator.clipboard.writeText(SITE + "#" + cur); $("pc").textContent = "Link copied"; setTimeout(()=>$("pc").textContent = "Copy link", 1600); } catch(e) {} });
+$("pc").addEventListener("click", async () => { try { await navigator.clipboard.writeText(SITE + "watch/" + cur + "/"); $("pc").textContent = "Link copied"; setTimeout(()=>$("pc").textContent = "Copy link", 1600); } catch(e) {} });
 
 // coming soon + all tests
 let CAL = null, TESTS = null;
@@ -522,7 +522,7 @@ fetch("data/genetics.json").then(r => r.json()).then(g => {
   $("genlist").innerHTML = groups.map((gr, i) => `<details${i === 0 ? " open" : ""}><summary>${esc(gr.n)} (${gr.e.length})</summary><ol start="${gr.e[0].n}">${gr.e.map(e => {
     if (e.status !== "done") return `<li><span class="t">${esc(e.title)}</span><span class="gs">Coming soon</span></li>`;
     const pdf = SITE + "cases/" + e.id + ".pdf";
-    const wa = "https://wa.me/?text=" + encodeURIComponent("Genetics Clinical Series, Ep " + e.n + ": " + e.title + ". Case study (PDF): " + pdf + "  Video: " + SITE + "#" + e.video);
+    const wa = "https://wa.me/?text=" + encodeURIComponent("Genetics Clinical Series, Ep " + e.n + ": " + e.title + ". Case study (PDF): " + pdf + "  Video: " + SITE + "watch/" + e.video + "/");
     return `<li id="${e.id}"><span class="t"><b>Ep ${e.n}.</b> ${esc(e.title)}</span>${byId[e.video] ? `<button type="button" class="ga gp" data-play="${e.video}">Watch</button>` : ""}<a class="ga gd" href="cases/${e.id}.pdf" download>Case study PDF</a><a class="ga gw" href="${wa}" target="_blank" rel="noopener">Share on WhatsApp</a></li>`;
   }).join("")}</ol></details>`).join("");
 }).catch(() => {});
