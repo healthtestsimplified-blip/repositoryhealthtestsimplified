@@ -50,7 +50,13 @@ def build(root, data, cats, upload):
                 {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE},
                 {"@type": "ListItem", "position": 2, "name": catname.get(v["c"], "Videos"), "item": SITE + "#library"},
                 {"@type": "ListItem", "position": 3, "name": v["t"], "item": url}]}]}
-        dl = "".join(f"<dt>{e(a)}</dt><dd>{e(b)}</dd>" for a, b in v["x"])
+        def fmt(b):
+            t = e(b)
+            if t.startswith("What: "):
+                t = t.replace("What: ", "<b>What:</b> ", 1).replace(" When: ", "<br><b>When:</b> ", 1).replace(" Sales pitch: ", "<br><b>Sales pitch:</b> ", 1)
+                if " [" in t and t.endswith("]"): t = t.replace(" [", '<br><small style="color:var(--muted)">', 1)[:-1] + "</small>"
+            return t
+        dl = "".join(f"<dt>{e(a)}</dt><dd>{fmt(b)}</dd>" for a, b in v["x"])
         pdf = f'<a class="btn pdf" href="../../cases/{vid}.pdf" download>Download the 2-page PDF</a>' if os.path.exists(f"{root}/cases/{vid}.pdf") else ""
         wa = "https://wa.me/?text=" + H.escape(__import__("urllib.parse").parse.quote(f'{v["t"]}: watch this short {v["l"]} video: {url}'))
         rel = [r for r in data if r["c"] == v["c"] and r["id"] != vid][:8]
